@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bishanath Tarafder - Software Engineer Portfolio showcasing projects and skills in web development">
+  <meta name="keywords" content="Bishanath Tarafder, Software Engineer, Web Developer, Portfolio, Projects">
+  <title>Bishanath Tarafder - Software Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #0070f3;
+      --secondary-color: #0366d6;
+      --background-color: #0f172a;
+      --text-color: #e2e8f0;
+      --card-background: #1e293b;
+      --border-color: #334155;
+      --accent-color: #38bdf8;
+      --secondary-text: #94a3b8;
+      --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-duration: 0.3s;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--background-color);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-color);
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background-color: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+      transition: all var(--transition-duration) var(--animation-timing);
+      animation: fadeInDown 0.5s ease-out forwards;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: all var(--transition-duration) var(--animation-timing);
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent-color);
+      transition: width var(--transition-duration) var(--animation-timing);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      padding: 150px 0 100px;
+      text-align: left;
+      background-color: var(--background-color);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(15, 23, 42, 0) 70%);
+      z-index: 0;
+      animation: pulse 8s infinite alternate;
+    }
+    
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0.2;
+      }
+    }
+
+    .hero h1 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: var(--accent-color);
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+      opacity: 0;
+    }
+    
+    .hero .name {
+      font-size: 4rem;
+      font-weight: 700;
+      margin: 0 0 10px;
+      color: var(--text-color);
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.6s var(--animation-timing) 0.2s forwards;
+      opacity: 0;
+    }
+    
+    .hero .tagline {
+      font-size: 3rem;
+      font-weight: 600;
+      margin: 0 0 20px;
+      color: var(--secondary-text);
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.6s var(--animation-timing) 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 0 30px;
+      color: var(--secondary-text);
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.6s var(--animation-timing) 0.6s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 0.6s var(--animation-timing) 0.8s forwards;
+      opacity: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--accent-color);
+      color: var(--background-color);
+      padding: 12px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition-duration) var(--animation-timing);
+      border: 2px solid var(--accent-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.5s, height 0.5s;
+    }
+
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn:hover {
+      background-color: transparent;
+      color: var(--accent-color);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--accent-color);
+      border: 2px solid var(--accent-color);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--accent-color);
+      color: var(--background-color);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .projects {
+      padding: 80px 0;
+      background-color: var(--background-color);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: var(--text-color);
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background-color: var(--card-background);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-duration) var(--animation-timing);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+      animation-delay: calc(0.2s * var(--card-index, 0));
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: var(--accent-color);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .project-img {
+      height: 200px;
+      background-color: var(--card-background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary-text);
+      font-weight: bold;
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+    
+    .project-img::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(15, 23, 42, 0) 100%);
+      opacity: 0;
+      transition: opacity var(--transition-duration) var(--animation-timing);
+    }
+    
+    .project-card:hover .project-img::before {
+      opacity: 1;
+    }
+    
+    .project-img i {
+      font-size: 3rem;
+      color: var(--accent-color);
+      opacity: 0.7;
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+    
+    .project-card:hover .project-img i {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    .project-content {
+      padding: 25px;
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+
+    .project-card:hover .project-content {
+      transform: translateY(-5px);
+    }
+
+    .project-content h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      color: var(--text-color);
+      transition: color var(--transition-duration) var(--animation-timing);
+    }
+
+    .project-card:hover .project-content h3 {
+      color: var(--accent-color);
+    }
+
+    .project-content p {
+      color: var(--secondary-text);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+
+    .project-card:hover .project-content p {
+      color: var(--text-color);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+
+    .tag {
+      background-color: rgba(56, 189, 248, 0.1);
+      color: var(--accent-color);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      transition: all var(--transition-duration) var(--animation-timing);
+      transform: translateZ(0);
+    }
+    
+    .tag:hover {
+      background-color: var(--accent-color);
+      color: var(--background-color);
+      transform: translateY(-2px);
+    }
+    
+    .project-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+    
+    .project-card:hover .project-links {
+      transform: translateY(-2px);
+    }
+    
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all var(--transition-duration) var(--animation-timing);
+      padding: 5px 0;
+      position: relative;
+    }
+    
+    .project-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--accent-color);
+      transition: width var(--transition-duration) var(--animation-timing);
+    }
+    
+    .project-link:hover {
+      color: var(--text-color);
+      transform: translateX(5px);
+    }
+    
+    .project-link:hover::after {
+      width: 100%;
+    }
+    
+    .project-link i {
+      transition: transform var(--transition-duration) var(--animation-timing);
+    }
+    
+    .project-link:hover i {
+      transform: translateX(3px);
+    }
+
+    .about {
+      padding: 100px 0;
+      background-color: var(--background-color);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 60px;
+      align-items: start;
+      position: relative;
+    }
+    
+    .about-content::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(15, 23, 42, 0) 70%);
+      border-radius: 50%;
+      z-index: -1;
+      opacity: 0;
+      animation: fadeIn 1s var(--animation-timing) forwards;
+      animation-delay: 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .about-img {
+      height: 400px;
+      background-color: var(--card-background);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--secondary-text);
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+      transform: translateX(-50px);
+      opacity: 0;
+      animation: slideInRight 0.8s var(--animation-timing) forwards;
+      animation-delay: 0.3s;
+      border: 1px solid var(--border-color);
+    }
+    
+    @keyframes slideInRight {
+      from { transform: translateX(-50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    .about-img::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(15, 23, 42, 0) 100%);
+      opacity: 0;
+      transition: opacity var(--transition-duration) var(--animation-timing);
+    }
+    
+    .about-img:hover::after {
+      opacity: 1;
+    }
+
+    .about-text {
+      transform: translateX(50px);
+      opacity: 0;
+      animation: slideInLeft 0.8s var(--animation-timing) forwards;
+      animation-delay: 0.5s;
+    }
+    
+    @keyframes slideInLeft {
+      from { transform: translateX(50px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .about-text h2 {
+      color: var(--text-color);
+      margin-top: 0;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .about-text h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background-color: var(--accent-color);
+      transition: width var(--transition-duration) var(--animation-timing);
+    }
+    
+    .about-text:hover h2::after {
+      width: 100%;
+    }
+
+    .skills {
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+      animation-delay: 0.7s;
+    }
+
+    .skills h3 {
+      color: var(--text-color);
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .skills h3::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-color);
+      transition: width var(--transition-duration) var(--animation-timing);
+    }
+    
+    .skills:hover h3::after {
+      width: 100%;
+    }
+
+    .skill-category {
+      margin-bottom: 25px;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+      animation-delay: calc(0.8s + var(--category-index, 0) * 0.1s);
+    }
+    
+    .skill-category h4 {
+      color: var(--text-color);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .skill-category h4::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 20px;
+      height: 2px;
+      background-color: var(--accent-color);
+      transition: width var(--transition-duration) var(--animation-timing);
+    }
+    
+    .skill-category:hover h4::after {
+      width: 100%;
+    }
+    
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .skill-tags .tag {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.4s var(--animation-timing) forwards;
+      animation-delay: calc(1s + var(--tag-index, 0) * 0.05s);
+    }
+    
+    .skill-tags .tag:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact {
+      padding: 100px 0;
+      background-color: var(--background-color);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      
+      /* Add subtle background pattern */
+      background-image: radial-gradient(var(--accent-color) 1px, transparent 1px);
+      background-size: 50px 50px;
+      background-position: 0 0;
+      background-repeat: repeat;
+      background-blend-mode: overlay;
+      background-opacity: 0.05;
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .contact h2 {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+      animation-delay: 0.2s;
+    }
+
+    .contact-info {
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: slideInRight 0.8s var(--animation-timing) forwards;
+      animation-delay: 0.4s;
+    }
+
+    .contact-info h3 {
+      color: var(--text-color);
+      margin-top: 0;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .contact-info h3::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background-color: var(--accent-color);
+      transition: width var(--transition-duration) var(--animation-timing);
+    }
+    
+    .contact-info:hover h3::after {
+      width: 100%;
+    }
+
+    .contact-info p {
+      margin-bottom: 20px;
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+    
+    .contact-info:hover p {
+      color: var(--text-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+      animation-delay: 0.6s;
+    }
+
+    .social-links a {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      transition: all var(--transition-duration) var(--animation-timing);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(56, 189, 248, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform var(--transition-duration) var(--animation-timing);
+      z-index: -1;
+    }
+
+    .social-links a:hover {
+      color: var(--background-color);
+      transform: translateY(-5px);
+    }
+    
+    .social-links a:hover::before {
+      transform: scale(1);
+    }
+
+    .contact-form {
+      opacity: 0;
+      transform: translateX(30px);
+      animation: slideInLeft 0.8s var(--animation-timing) forwards;
+      animation-delay: 0.5s;
+    }
+    
+    .contact-form .form-group {
+      margin-bottom: 20px;
+      transform: translateY(10px);
+      opacity: 0;
+      animation: fadeInUp 0.4s var(--animation-timing) forwards;
+      animation-delay: calc(0.7s + var(--field-index, 0) * 0.1s);
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+    
+    .contact-form .form-group:hover label {
+      color: var(--accent-color);
+      transform: translateX(5px);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+      background-color: var(--card-background);
+      color: var(--text-color);
+      transition: all var(--transition-duration) var(--animation-timing);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .contact-form input:hover,
+    .contact-form textarea:hover {
+      border-color: var(--accent-color);
+    }
+
+    .contact-form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    footer {
+      background-color: var(--card-background);
+      color: var(--secondary-text);
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .footer-links a {
+      color: var(--secondary-text);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+      .about-content,
+      .contact-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+    }
+
+    /* Resume Section Styles */
+    .resume {
+      padding: 100px 0;
+      background-color: var(--background-color);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .resume::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(15, 23, 42, 0) 70%);
+      z-index: 0;
+      animation: pulse 8s infinite alternate;
+    }
+    
+    .resume::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(15, 23, 42, 0) 70%);
+      z-index: 0;
+      animation: pulse 10s infinite alternate-reverse;
+    }
+
+    .resume .section-title h2 {
+      color: var(--text-color);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+      animation-delay: 0.2s;
+    }
+
+    .resume .section-title p {
+      color: var(--secondary-text);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+      animation-delay: 0.3s;
+    }
+
+    .resume-header {
+      text-align: center;
+      margin-bottom: 60px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+      animation-delay: 0.4s;
+    }
+
+    .resume-download .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background-color: var(--accent-color);
+      color: var(--background-color);
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition-duration) var(--animation-timing);
+      border: 2px solid var(--accent-color);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .resume-download .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.5s, height 0.5s;
+    }
+
+    .resume-download .btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .resume-download .btn:hover {
+      background-color: transparent;
+      color: var(--accent-color);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .resume-sections {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 50px;
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .resume-section {
+      background-color: var(--card-background);
+      padding: 40px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      transition: all var(--transition-duration) var(--animation-timing);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s var(--animation-timing) forwards;
+    }
+    
+    .resume-section:nth-child(1) {
+      animation-delay: 0.5s;
+    }
+    
+    .resume-section:nth-child(2) {
+      animation-delay: 0.7s;
+    }
+    
+    .resume-section:nth-child(3) {
+      animation-delay: 0.9s;
+    }
+
+    .resume-section:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-color);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .resume-section h3 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      color: var(--text-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .resume-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent-color);
+      transition: width var(--transition-duration) var(--animation-timing);
+    }
+    
+    .resume-section:hover h3::after {
+      width: 100%;
+    }
+
+    .experience-item,
+    .education-item,
+    .project-item {
+      margin-bottom: 30px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid var(--border-color);
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+
+    .experience-item:last-child,
+    .education-item:last-child,
+    .project-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .experience-header,
+    .education-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+
+    .experience-header h4,
+    .education-header h4,
+    .project-item h4 {
+      font-size: 1.3rem;
+      color: var(--text-color);
+      margin: 0;
+      font-weight: 600;
+      transition: color var(--transition-duration) var(--animation-timing);
+    }
+    
+    .resume-section:hover .experience-header h4,
+    .resume-section:hover .education-header h4,
+    .resume-section:hover .project-item h4 {
+      color: var(--accent-color);
+    }
+
+    .company,
+    .school {
+      color: var(--secondary-text);
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: color var(--transition-duration) var(--animation-timing);
+    }
+    
+    .resume-section:hover .company,
+    .resume-section:hover .school {
+      color: var(--text-color);
+    }
+
+    .duration {
+      color: var(--secondary-text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      background-color: rgba(56, 189, 248, 0.1);
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      transition: all var(--transition-duration) var(--animation-timing);
+    }
+    
+    .resume-section:hover .duration {
+      background-color: var(--accent-color);
+      color: var(--background-color);
+      transform: translateY(-2px);
+    }
+
+    .experience-details {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .experience-details li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      color: var(--secondary-text);
+      line-height: 1.6;
+      transition: color var(--transition-duration) var(--animation-timing);
+    }
+
+    .experience-details li:before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+      font-weight: bold;
+      transition: transform var(--transition-duration) var(--animation-timing);
+    }
+    
+    .resume-section:hover .experience-details li {
+      color: var(--text-color);
+    }
+    
+    .resume-section:hover .experience-details li:before {
+      transform: translateX(3px);
+    }
+
+    .education-details {
+      color: var(--secondary-text);
+      margin: 0;
+      line-height: 1.6;
+      transition: color var(--transition-duration) var(--animation-timing);
+    }
+    
+    .resume-section:hover .education-details {
+      color: var(--text-color);
+    }
+
+    .project-item p {
+      color: var(--secondary-text);
+      margin: 10px 0 0 0;
+      line-height: 1.6;
+      transition: color var(--transition-duration) var(--animation-timing);
+    }
+    
+    .resume-section:hover .project-item p {
+      color: var(--text-color);
+    }
+
+    @media (max-width: 768px) {
+      .resume {
+        padding: 60px 0;
+      }
+
+      .resume-section {
+        padding: 30px 20px;
+      }
+
+      .experience-header,
+      .education-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .duration {
+        align-self: flex-start;
+      }
+
+      .resume-download .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">Bishanath Tarafder</a>
+        <div class="nav-links">
+          <a href="#">Home</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#resume">Resume</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Hi, my name is</h1>
+      <h2 class="name">Bishanath Tarafder</h2>
+      <h3 class="tagline">I make ideas & things alive.</h3>
+      <p>I'm a software engineer, I possess strong problem-solving skills and specialize in crafting exceptional digital experiences. My current area of focus is in the javascript ecosystem, where I actively engage in developing and designing immersive full stack applications. This involves working with Backend and Frontend of Web & Mobile Applications.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Featured Projects</h2>
+        <p>A selection of my recent work and personal projects that showcase my skills and interests.</p>
+      </div>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-img">Project Image</div>
+          <div class="project-content">
+            <h3>DevConnect Platform</h3>
+            <p>A social network platform for developers to share projects, connect with peers, and collaborate on coding challenges.</p>
+            <div class="project-tags">
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag">MongoDB</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">View Demo</a>
+              <a href="#" class="project-link">Source Code</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">Project Image</div>
+          <div class="project-content">
+            <h3>AI Image Generator</h3>
+            <p>A web application that uses machine learning to generate unique images based on text descriptions provided by users.</p>
+            <div class="project-tags">
+              <span class="tag">Next.js</span>
+              <span class="tag">OpenAI API</span>
+              <span class="tag">Tailwind CSS</span>
+              <span class="tag">Vercel</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">View Demo</a>
+              <a href="#" class="project-link">Source Code</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-img">Project Image</div>
+          <div class="project-content">
+            <h3>Crypto Dashboard</h3>
+            <p>A real-time cryptocurrency dashboard with price tracking, portfolio management, and market trend analysis.</p>
+            <div class="project-tags">
+              <span class="tag">React</span>
+              <span class="tag">Redux</span>
+              <span class="tag">CoinGecko API</span>
+              <span class="tag">Chart.js</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link">View Demo</a>
+              <a href="#" class="project-link">Source Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-img">
+          <img src="profile-image.jpg" alt="Bishanath Tarafder" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="about-text">
+            <h2>About Me</h2>
+            <p>I'm a passionate software engineer with expertise in full-stack development. I specialize in building exceptional digital experiences that combine clean code, intuitive design, and high performance.</p>
+            <p>With over 5 years of experience in the industry, I've worked on a diverse range of projects from enterprise applications to innovative startups. My approach combines technical excellence with a deep understanding of user needs.</p>
+            <p>Currently, I'm focused on building accessible, human-centered products at the intersection of technology and creativity.</p>
+            <div class="skills">
+              <h3>Technical Skills</h3>
+              <div class="skill-category">
+                <h4>Languages</h4>
+                <div class="skill-tags">
+                  <span class="tag">JavaScript (ES6+)</span>
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">HTML5</span>
+                  <span class="tag">CSS3/SASS</span>
+                  <span class="tag">Python</span>
+                  <span class="tag">SQL</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h4>Frameworks & Libraries</h4>
+                <div class="skill-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Next.js</span>
+                  <span class="tag">Node.js</span>
+                  <span class="tag">Express</span>
+                  <span class="tag">Redux</span>
+                  <span class="tag">Tailwind CSS</span>
+                  <span class="tag">Material UI</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h4>Tools & Platforms</h4>
+                <div class="skill-tags">
+                  <span class="tag">Git</span>
+                  <span class="tag">MongoDB</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">Firebase</span>
+                  <span class="tag">AWS</span>
+                  <span class="tag">Vercel</span>
+                  <span class="tag">Docker</span>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="resume">
+    <div class="container">
+      <div class="section-title">
+        <h2>Resume</h2>
+        <p>My professional experience, education, and skills in detail.</p>
+      </div>
+      <div class="resume-content">
+        <div class="resume-header">
+          <div class="resume-download">
+            <a href="/resume.pdf" target="_blank" class="btn btn-outline">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7,10 12,15 17,10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Download Resume PDF
+            </a>
+          </div>
+        </div>
+        
+        <div class="resume-sections">
+          <div class="resume-section">
+            <h3>Professional Experience</h3>
+            <div class="experience-item">
+              <div class="experience-header">
+                <h4>Senior AI Engineer</h4>
+                <span class="company">TechInnovate AI</span>
+                <span class="duration">Jan 2022 - Present</span>
+              </div>
+              <ul class="experience-details">
+                <li>Led the development of a real-time recommendation engine that increased user engagement by 35%</li>
+                <li>Designed and implemented a computer vision system for quality control in manufacturing</li>
+                <li>Mentored junior engineers and conducted knowledge-sharing sessions on advanced ML techniques</li>
+                <li>Collaborated with product teams to define AI roadmap and prioritize features</li>
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <div class="experience-header">
+                <h4>Machine Learning Engineer</h4>
+                <span class="company">DataSmart Solutions</span>
+                <span class="duration">Jun 2020 - Dec 2021</span>
+              </div>
+              <ul class="experience-details">
+                <li>Developed NLP models for sentiment analysis and entity extraction with 92% accuracy</li>
+                <li>Built and deployed ML pipelines using TensorFlow and Kubernetes</li>
+                <li>Optimized model inference time by 40% through quantization and hardware acceleration</li>
+                <li>Collaborated with cross-functional teams to integrate ML solutions into production systems</li>
+              </ul>
+            </div>
+            
+            <div class="experience-item">
+              <div class="experience-header">
+                <h4>AI Research Intern</h4>
+                <span class="company">Google AI</span>
+                <span class="duration">Summer 2019</span>
+              </div>
+              <ul class="experience-details">
+                <li>Researched novel approaches to few-shot learning in computer vision</li>
+                <li>Implemented and evaluated prototypical networks for image classification</li>
+                <li>Co-authored research paper published at International Conference on Machine Learning</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="resume-section">
+            <h3>Education</h3>
+            <div class="education-item">
+              <div class="education-header">
+                <h4>M.S. in Computer Science</h4>
+                <span class="school">Stanford University</span>
+                <span class="duration">2018 - 2020</span>
+              </div>
+              <p class="education-details">Specialization in Artificial Intelligence • GPA: 3.9/4.0</p>
+            </div>
+            
+            <div class="education-item">
+              <div class="education-header">
+                <h4>B.S. in Computer Engineering</h4>
+                <span class="school">MIT</span>
+                <span class="duration">2014 - 2018</span>
+              </div>
+              <p class="education-details">Minor in Mathematics • Magna Cum Laude • GPA: 3.8/4.0</p>
+            </div>
+          </div>
+          
+          <div class="resume-section">
+            <h3>Key Projects</h3>
+            <div class="project-item">
+              <h4>Few-Shot Learning for Image Classification</h4>
+              <p>Developed novel prototypical networks achieving 15% improvement over baseline methods. Published at ICML 2020.</p>
+            </div>
+            
+            <div class="project-item">
+              <h4>Open-Source NLP Library</h4>
+              <p>Created comprehensive NLP toolkit for low-resource languages with 2.5k+ GitHub stars and active community.</p>
+            </div>
+            
+            <div class="project-item">
+              <h4>Real-time Fraud Detection System</h4>
+              <p>Built scalable ML pipeline processing 1M+ transactions daily with 99.7% accuracy and <50ms latency.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Get In Touch</h2>
+        <p>Interested in working together? Feel free to reach out for collaborations or just a friendly hello.</p>
+      </div>
+      <div class="contact-content">
+        <div class="contact-info">
+          <h3>Let's Talk</h3>
+          <p>Whether you have a question, project proposal, or just want to say hi, my inbox is always open.</p>
+          <p><strong>Email:</strong> bishanath.tarafder@example.com</p>
+          <p><strong>Location:</strong> San Francisco, CA</p>
+          <p>Currently available for freelance work and full-time opportunities.</p>
+          <div class="social-links">
+            <a href="https://github.com/" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+            <a href="https://twitter.com/" target="_blank">Twitter</a>
+            <a href="https://dribbble.com/" target="_blank">Dribbble</a>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2023 Bishanath Tarafder. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#">Home</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#resume">Resume</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <p>Designed and built with ❤️ by Bishanath Tarafder</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple form handling
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! This is a static demo, so the form does not actually submit data.');
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Intersection Observer for scroll-triggered animations
+    document.addEventListener('DOMContentLoaded', function() {
+      // Remove initial animations by removing animation delays
+      const styleSheet = document.createElement('style');
+      styleSheet.textContent = `
+        .hero h1, .hero .name, .hero .tagline, .hero p, .hero-buttons,
+        .resume .section-title h2, .resume .section-title p, .resume-header, .resume-section,
+        .section-title h2, .section-title p,
+        .project-card, .skill-category, .skill-tags .tag, .about-img, .about-text, .skills,
+        .contact h2, .contact-info, .contact-form, .contact-info-item, .social-links a {
+          animation: none;
+          opacity: 0;
+        }
+      `;
+      document.head.appendChild(styleSheet);
+      
+      // Create an observer with options
+      const observerOptions = {
+        root: null, // viewport is the root
+        rootMargin: '0px',
+        threshold: 0.15 // trigger when at least 15% of the element is visible
+      };
+      
+      // Track which elements have already been animated
+      const animatedElements = new Set();
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // Only animate elements that haven't been animated yet
+          if (entry.isIntersecting && !animatedElements.has(entry.target)) {
+            animatedElements.add(entry.target);
+            
+            // Hero section animations
+            if (entry.target.classList.contains('hero')) {
+              const h1 = entry.target.querySelector('h1');
+              const name = entry.target.querySelector('.name');
+              const tagline = entry.target.querySelector('.tagline');
+              const p = entry.target.querySelector('p');
+              const buttons = entry.target.querySelector('.hero-buttons');
+              
+              if (h1) animateElement(h1, 'fadeInUp', 0);
+              if (name) animateElement(name, 'fadeInUp', 200);
+              if (tagline) animateElement(tagline, 'fadeInUp', 400);
+              if (p) animateElement(p, 'fadeInUp', 600);
+              if (buttons) animateElement(buttons, 'fadeInUp', 800);
+            }
+            
+            // Resume section animations
+            else if (entry.target.classList.contains('resume')) {
+              const title = entry.target.querySelector('.section-title h2');
+              const subtitle = entry.target.querySelector('.section-title p');
+              const header = entry.target.querySelector('.resume-header');
+              const sections = entry.target.querySelectorAll('.resume-section');
+              
+              if (title) animateElement(title, 'fadeInUp', 0);
+              if (subtitle) animateElement(subtitle, 'fadeInUp', 100);
+              if (header) animateElement(header, 'fadeInUp', 200);
+              
+              sections.forEach((section, index) => {
+                animateElement(section, 'fadeInUp', 300 + (index * 200));
+              });
+            }
+            
+            // About section animations
+            else if (entry.target.id === 'about') {
+              const aboutImg = entry.target.querySelector('.about-img');
+              const aboutText = entry.target.querySelector('.about-text');
+              const skills = entry.target.querySelector('.skills');
+              const skillCategories = entry.target.querySelectorAll('.skill-category');
+              
+              if (aboutImg) animateElement(aboutImg, 'slideInRight', 0);
+              if (aboutText) animateElement(aboutText, 'slideInLeft', 200);
+              if (skills) animateElement(skills, 'fadeInUp', 400);
+              
+              skillCategories.forEach((category, index) => {
+                animateElement(category, 'fadeInUp', 500 + (index * 100));
+                
+                // Animate skill tags within each category
+                const tags = category.querySelectorAll('.tag');
+                tags.forEach((tag, tagIndex) => {
+                  animateElement(tag, 'fadeInUp', 600 + (index * 100) + (tagIndex * 50));
+                });
+              });
+            }
+            
+            // Projects section animations
+            else if (entry.target.id === 'projects') {
+              const title = entry.target.querySelector('.section-title h2');
+              const subtitle = entry.target.querySelector('.section-title p');
+              const projectCards = entry.target.querySelectorAll('.project-card');
+              
+              if (title) animateElement(title, 'fadeInUp', 0);
+              if (subtitle) animateElement(subtitle, 'fadeInUp', 100);
+              
+              projectCards.forEach((card, index) => {
+                animateElement(card, 'fadeInUp', 200 + (index * 100));
+              });
+            }
+            
+            // Contact section animations
+            else if (entry.target.id === 'contact') {
+              const title = entry.target.querySelector('h2');
+              const contactInfo = entry.target.querySelector('.contact-info');
+              const contactForm = entry.target.querySelector('.contact-form');
+              const contactItems = entry.target.querySelectorAll('.contact-info-item');
+              const socialLinks = entry.target.querySelectorAll('.social-links a');
+              
+              if (title) animateElement(title, 'fadeInUp', 0);
+              if (contactInfo) animateElement(contactInfo, 'fadeInUp', 100);
+              if (contactForm) animateElement(contactForm, 'fadeInUp', 200);
+              
+              contactItems.forEach((item, index) => {
+                animateElement(item, 'fadeInUp', 300 + (index * 100));
+              });
+              
+              socialLinks.forEach((link, index) => {
+                animateElement(link, 'fadeInUp', 500 + (index * 50));
+              });
+            }
+            
+            // Other sections with section-title
+            else if (entry.target.querySelector('.section-title')) {
+              const title = entry.target.querySelector('.section-title h2');
+              const subtitle = entry.target.querySelector('.section-title p');
+              
+              if (title) animateElement(title, 'fadeInUp', 0);
+              if (subtitle) animateElement(subtitle, 'fadeInUp', 100);
+              
+              // Animate child elements with staggered delay
+              const contentElements = entry.target.querySelectorAll('.project-card, .skill-category, .contact-info, .contact-form');
+              contentElements.forEach((element, index) => {
+                animateElement(element, 'fadeInUp', 200 + (index * 100));
+              });
+            }
+            
+            // For any other element that should be animated
+            else {
+              animateElement(entry.target, 'fadeInUp', 0);
+            }
+          }
+        });
+      }, observerOptions);
+      
+      // Helper function to animate an element
+      function animateElement(element, animationType, delay) {
+        setTimeout(() => {
+          // Ensure the element will be visible after animation
+          element.style.opacity = "0";
+          element.style.animation = `${animationType} 0.6s var(--animation-timing) forwards`;
+          
+          // Fallback to ensure visibility in case animation doesn't work
+          setTimeout(() => {
+            if (parseFloat(window.getComputedStyle(element).opacity) < 0.5) {
+              element.style.opacity = "1";
+            }
+          }, 700); // Wait slightly longer than animation duration
+        }, delay);
+      }
+      
+      // Observe all sections
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
+      
+      // Also observe specific elements that need animation
+      document.querySelectorAll('.project-card, .skill-category, .about-img, .about-text, .skills').forEach(element => {
+        observer.observe(element);
+      });
+    });
+  </script>
+</body>
+</html>
