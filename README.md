@@ -1,2 +1,2 @@
 # portfolio-website
-A responsive portfolio website showcasing my projects and skills
+A responsive portfolio website showcasing projects 
