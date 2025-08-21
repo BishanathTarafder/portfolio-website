@@ -62,6 +62,7 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+      width: 100%;
     }
 
     header {
@@ -77,6 +78,7 @@
       transition: all 0.3s ease;
       animation: fadeInDown 0.5s ease-out forwards;
       transform: translateY(0);
+      box-sizing: border-box;
     }
     
     header.scrolled {
@@ -112,9 +114,9 @@
       align-items: center;
       position: relative;
       padding: 0 15px;
-      border-radius: 12px;
       margin: 0 auto;
       max-width: 1200px;
+      width: 100%;
     }
     
     .hamburger {
@@ -297,12 +299,16 @@
     }
 
     .hero {
-      padding: 150px 0 100px;
+      padding: 0;
       text-align: left;
       background-color: var(--background-color);
       position: relative;
       overflow: hidden;
-      margin-top: 60px; /* Added to account for fixed header */
+      margin-top: 0;
+      height: 100vh; /* Full viewport height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
     
     .hero::before {
