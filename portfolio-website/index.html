@@ -65,23 +65,27 @@
     }
 
     header {
-      background-color: rgba(15, 23, 42, 0.15);
-      position: sticky;
+      background-color: transparent;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
       z-index: 100;
       padding: 20px 0;
-      border-bottom: 1px solid rgba(51, 65, 85, 0.1);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
       animation: fadeInDown 0.5s ease-out forwards;
       transform: translateY(0);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     }
     
     header.scrolled {
-      background-color: rgba(15, 23, 42, 0.25);
+      background-color: rgba(15, 23, 42, 0.95);
       padding: 15px 0;
       border-bottom: 1px solid rgba(56, 189, 248, 0.1);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     
     header.hidden {
@@ -298,6 +302,7 @@
       background-color: var(--background-color);
       position: relative;
       overflow: hidden;
+      margin-top: 60px; /* Added to account for fixed header */
     }
     
     .hero::before {
@@ -1924,19 +1929,27 @@
       function handleScroll() {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
-        // Add a small class to make header more transparent when scrolling down
-        if (scrollTop > 50) {
+        // Add scrolled class when not at the top of the page
+        if (scrollTop > 10) {
           header.classList.add('scrolled');
         } else {
           header.classList.remove('scrolled');
         }
         
-        // Determine scroll direction with improved threshold handling
-        if (scrollTop > lastScrollTop && scrollTop > 20) { // Reduced threshold to 20px
-          // Scrolling down & past threshold
+        // Always show header when at the top of the page
+        if (scrollTop <= 10) {
+          header.classList.remove('hidden');
+          lastScrollTop = scrollTop;
+          ticking = false;
+          return;
+        }
+        
+        // Hide header when scrolling down
+        if (scrollTop > lastScrollTop && scrollTop > 50) {
           header.classList.add('hidden');
-        } else if (scrollTop < lastScrollTop || scrollTop <= 0) {
-          // Scrolling up or at the top of the page
+        } 
+        // Show header when scrolling up
+        else if (scrollTop < lastScrollTop) {
           header.classList.remove('hidden');
         }
         

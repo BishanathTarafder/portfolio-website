@@ -62,6 +62,7 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}/`);
   console.log(`Open your browser to http://localhost:${PORT}/ to view the website`);
+  console.log('DEBUG: Server started successfully');
 });
 
 // Keep the server running
