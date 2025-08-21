@@ -71,7 +71,7 @@
       top: 0;
       left: 0;
       right: 0;
-      width: 100%;
+      width: 100vw;
       z-index: 100;
       padding: 20px 0;
       border-bottom: 1px solid transparent;
@@ -79,6 +79,8 @@
       animation: fadeInDown 0.5s ease-out forwards;
       transform: translateY(0);
       box-sizing: border-box;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
     }
     
     header.scrolled {
@@ -117,6 +119,7 @@
       margin: 0 auto;
       max-width: 1200px;
       width: 100%;
+      box-sizing: border-box;
     }
     
     .hamburger {
@@ -456,108 +459,173 @@
     }
 
     .projects {
-      padding: 80px 0;
+      padding: 100px 0;
       background-color: var(--background-color);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .projects::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(15, 23, 42, 0) 70%);
+      z-index: 0;
+    }
+    
+    .projects::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, rgba(15, 23, 42, 0) 70%);
+      z-index: 0;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
+      position: relative;
+      z-index: 1;
     }
 
     .section-title h2 {
       font-size: 2.5rem;
       color: var(--text-color);
       margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background-color: var(--accent-color);
     }
 
     .section-title p {
-      color: #666;
+      color: var(--secondary-text);
       max-width: 600px;
-      margin: 0 auto;
+      margin: 20px auto 0;
+      font-size: 1.1rem;
     }
 
-    .project-grid {
+    .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 40px;
+      position: relative;
+      z-index: 1;
     }
 
     .project-card {
       background-color: var(--card-background);
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border-color);
-      transition: all var(--transition-duration) var(--animation-timing);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.6s var(--animation-timing) forwards;
-      animation-delay: calc(0.2s * var(--card-index, 0));
+      transform: translateY(30px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .project-card.in-view {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: calc(0.15s * var(--card-index, 0));
     }
 
     .project-card:hover {
-      transform: translateY(-5px) scale(1.02);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
       border-color: var(--accent-color);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .project-img {
-      height: 200px;
-      background-color: var(--card-background);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--secondary-text);
-      font-weight: bold;
-      border-bottom: 1px solid var(--border-color);
+    .project-image {
       position: relative;
       overflow: hidden;
-      transition: all var(--transition-duration) var(--animation-timing);
+      height: 220px;
     }
-    
-    .project-img::before {
-      content: '';
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.08);
+    }
+
+    .project-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(15, 23, 42, 0) 100%);
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
       opacity: 0;
-      transition: opacity var(--transition-duration) var(--animation-timing);
+      transition: opacity 0.4s ease;
     }
-    
-    .project-card:hover .project-img::before {
+
+    .project-card:hover .project-overlay {
       opacity: 1;
     }
-    
-    .project-img i {
-      font-size: 3rem;
-      color: var(--accent-color);
-      opacity: 0.7;
-      transition: all var(--transition-duration) var(--animation-timing);
+
+    .project-overlay-content {
+      text-align: center;
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+      opacity: 0;
     }
-    
-    .project-card:hover .project-img i {
-      transform: scale(1.1);
+
+    .project-card:hover .project-overlay-content {
+      transform: translateY(0);
       opacity: 1;
+      transition-delay: 0.1s;
+    }
+
+    .project-overlay-content .btn {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      margin: 5px;
     }
 
     .project-content {
       padding: 25px;
-      transition: all var(--transition-duration) var(--animation-timing);
-    }
-
-    .project-card:hover .project-content {
-      transform: translateY(-5px);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .project-content h3 {
       margin-top: 0;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       font-size: 1.5rem;
       color: var(--text-color);
-      transition: color var(--transition-duration) var(--animation-timing);
+      transition: color 0.3s ease;
+      position: relative;
+      display: inline-block;
     }
 
     .project-card:hover .project-content h3 {
@@ -569,30 +637,25 @@
       margin-bottom: 20px;
       font-size: 0.95rem;
       line-height: 1.7;
-      transition: all var(--transition-duration) var(--animation-timing);
-    }
-
-    .project-card:hover .project-content p {
-      color: var(--text-color);
+      flex-grow: 1;
     }
 
     .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 20px;
-      transition: all var(--transition-duration) var(--animation-timing);
     }
 
     .tag {
       background-color: rgba(56, 189, 248, 0.1);
       color: var(--accent-color);
-      padding: 5px 12px;
+      padding: 6px 12px;
       border-radius: 20px;
       font-size: 0.8rem;
       font-weight: 500;
       border: 1px solid rgba(56, 189, 248, 0.2);
-      transition: all var(--transition-duration) var(--animation-timing);
+      transition: all 0.3s ease;
       transform: translateZ(0);
     }
     
@@ -605,12 +668,8 @@
     .project-links {
       display: flex;
       gap: 15px;
-      margin-top: 20px;
-      transition: all var(--transition-duration) var(--animation-timing);
-    }
-    
-    .project-card:hover .project-links {
-      transform: translateY(-2px);
+      margin-top: auto;
+      justify-content: flex-start;
     }
     
     .project-link {
@@ -620,7 +679,7 @@
       color: var(--accent-color);
       text-decoration: none;
       font-weight: 500;
-      transition: all var(--transition-duration) var(--animation-timing);
+      transition: all 0.3s ease;
       padding: 5px 0;
       position: relative;
     }
@@ -633,7 +692,7 @@
       width: 0;
       height: 2px;
       background-color: var(--accent-color);
-      transition: width var(--transition-duration) var(--animation-timing);
+      transition: width 0.3s ease;
     }
     
     .project-link:hover {
@@ -646,11 +705,44 @@
     }
     
     .project-link i {
-      transition: transform var(--transition-duration) var(--animation-timing);
+      transition: transform 0.3s ease;
     }
     
     .project-link:hover i {
       transform: translateX(3px);
+    }
+    
+    /* Responsive Breakpoints */
+    @media (max-width: 1200px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .project-image {
+        height: 200px;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+    }
+    
+    /* Animation for project cards */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .about {
@@ -1426,9 +1518,17 @@
         <h2>Featured Projects</h2>
         <p>A selection of my recent work and personal projects that showcase my skills and interests.</p>
       </div>
-      <div class="project-grid">
-        <div class="project-card">
-          <div class="project-img">Project Image</div>
+      <div class="projects-grid">
+        <div class="project-card" style="--card-index: 0;">
+          <div class="project-image">
+            <img src="https://via.placeholder.com/600x400/1e293b/38bdf8?text=DevConnect+Platform" alt="DevConnect Platform">
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <a href="#" class="btn btn-outline">View Demo</a>
+                <a href="#" class="btn btn-outline">Source Code</a>
+              </div>
+            </div>
+          </div>
           <div class="project-content">
             <h3>DevConnect Platform</h3>
             <p>A social network platform for developers to share projects, connect with peers, and collaborate on coding challenges.</p>
@@ -1439,13 +1539,22 @@
               <span class="tag">MongoDB</span>
             </div>
             <div class="project-links">
-              <a href="#" class="project-link">View Demo</a>
-              <a href="#" class="project-link">Source Code</a>
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
             </div>
           </div>
         </div>
-        <div class="project-card">
-          <div class="project-img">Project Image</div>
+        
+        <div class="project-card" style="--card-index: 1;">
+          <div class="project-image">
+            <img src="https://via.placeholder.com/600x400/1e293b/38bdf8?text=AI+Image+Generator" alt="AI Image Generator">
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <a href="#" class="btn btn-outline">View Demo</a>
+                <a href="#" class="btn btn-outline">Source Code</a>
+              </div>
+            </div>
+          </div>
           <div class="project-content">
             <h3>AI Image Generator</h3>
             <p>A web application that uses machine learning to generate unique images based on text descriptions provided by users.</p>
@@ -1456,13 +1565,21 @@
               <span class="tag">Vercel</span>
             </div>
             <div class="project-links">
-              <a href="#" class="project-link">View Demo</a>
-              <a href="#" class="project-link">Source Code</a>
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
             </div>
           </div>
         </div>
-        <div class="project-card">
-          <div class="project-img">Project Image</div>
+        <div class="project-card" style="--card-index: 2;">
+          <div class="project-image">
+            <img src="https://via.placeholder.com/600x400/1e293b/38bdf8?text=Crypto+Dashboard" alt="Crypto Dashboard">
+            <div class="project-overlay">
+              <div class="project-overlay-content">
+                <a href="#" class="btn btn-outline">View Demo</a>
+                <a href="#" class="btn btn-outline">Source Code</a>
+              </div>
+            </div>
+          </div>
           <div class="project-content">
             <h3>Crypto Dashboard</h3>
             <p>A real-time cryptocurrency dashboard with price tracking, portfolio management, and market trend analysis.</p>
@@ -1473,8 +1590,8 @@
               <span class="tag">Chart.js</span>
             </div>
             <div class="project-links">
-              <a href="#" class="project-link">View Demo</a>
-              <a href="#" class="project-link">Source Code</a>
+              <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <a href="#" class="project-link"><i class="fab fa-github"></i> Source Code</a>
             </div>
           </div>
         </div>
@@ -1730,6 +1847,55 @@
           window.scrollTo({
             top: targetElement.offsetTop - 80,
             behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Project section animations and interactions
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set up project card animations
+      const projectCards = document.querySelectorAll('.project-card');
+      
+      // Apply animation delay based on index
+      projectCards.forEach((card, index) => {
+        card.style.setProperty('--card-index', index);
+      });
+      
+      // Intersection Observer for triggering animations when scrolled into view
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      // Observe each project card
+      projectCards.forEach(card => {
+        observer.observe(card);
+      });
+      
+      // Add hover effect for project overlay content
+      projectCards.forEach(card => {
+        const overlay = card.querySelector('.project-overlay');
+        const overlayContent = card.querySelector('.project-overlay-content');
+        
+        if (overlay && overlayContent) {
+          card.addEventListener('mouseenter', () => {
+            overlay.style.opacity = '1';
+            overlayContent.style.transform = 'translateY(0)';
+            overlayContent.style.opacity = '1';
+          });
+          
+          card.addEventListener('mouseleave', () => {
+            overlay.style.opacity = '0';
+            overlayContent.style.transform = 'translateY(20px)';
+            overlayContent.style.opacity = '0';
           });
         }
       });
