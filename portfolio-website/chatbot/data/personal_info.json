@@ -1,0 +1,51 @@
+{
+  "name": "AI Engineer",
+  "title": "AI Engineer & Full Stack Developer",
+  "summary": "I'm an experienced AI Engineer and Full Stack Developer with expertise in machine learning, natural language processing, and building scalable web applications. I specialize in creating intelligent systems that solve real-world problems.",
+  "skills": {
+    "programming": ["Python", "JavaScript", "TypeScript", "Go", "SQL"],
+    "ai_ml": ["TensorFlow", "PyTorch", "scikit-learn", "LangChain", "LangGraph", "Hugging Face", "OpenAI API"],
+    "web_development": ["React", "Next.js", "Node.js", "FastAPI", "Django", "Express"],
+    "databases": ["PostgreSQL", "MongoDB", "Redis", "Supabase"],
+    "devops": ["Docker", "Kubernetes", "AWS", "GCP", "CI/CD", "Vercel", "Railway"]
+  },
+  "experience": [
+    {
+      "title": "Senior AI Engineer",
+      "company": "Tech Innovations Inc.",
+      "period": "2021 - Present",
+      "description": "Leading the development of AI-powered products, including NLP systems and recommendation engines. Collaborating with cross-functional teams to integrate AI solutions into existing products."
+    },
+    {
+      "title": "Full Stack Developer",
+      "company": "WebSolutions Co.",
+      "period": "2018 - 2021",
+      "description": "Developed and maintained web applications using React, Node.js, and PostgreSQL. Implemented CI/CD pipelines and containerized applications for deployment."
+    },
+    {
+      "title": "Machine Learning Engineer",
+      "company": "DataInsights Ltd.",
+      "period": "2016 - 2018",
+      "description": "Built machine learning models for data analysis and prediction. Worked on computer vision projects and natural language processing systems."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Science in Computer Science",
+      "institution": "Tech University",
+      "year": "2016",
+      "specialization": "Artificial Intelligence"
+    },
+    {
+      "degree": "Bachelor of Science in Computer Engineering",
+      "institution": "Engineering College",
+      "year": "2014"
+    }
+  ],
+  "contact": {
+    "email": "contact@example.com",
+    "linkedin": "https://linkedin.com/in/aidev",
+    "github": "https://github.com/aidev",
+    "twitter": "@aidev"
+  }
+}

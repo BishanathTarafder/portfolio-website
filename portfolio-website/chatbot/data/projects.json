@@ -1,0 +1,74 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "AI-Powered Portfolio Chatbot",
+      "description": "A conversational AI chatbot built with LangGraph and FastAPI that helps visitors navigate my portfolio and learn about my skills and projects.",
+      "technologies": ["LangGraph", "FastAPI", "Next.js", "Tailwind CSS", "React"],
+      "github": "https://github.com/username/portfolio-chatbot",
+      "demo": "https://portfolio-demo.com",
+      "image": "/images/projects/chatbot.jpg",
+      "highlights": [
+        "Implemented conversation state management with LangGraph",
+        "Created a responsive chat interface with Tailwind CSS",
+        "Deployed backend on Railway and frontend on Vercel"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "E-commerce Recommendation Engine",
+      "description": "A machine learning-based recommendation system that analyzes user behavior to suggest relevant products, increasing conversion rates by 25%.",
+      "technologies": ["Python", "TensorFlow", "Flask", "PostgreSQL", "Docker"],
+      "github": "https://github.com/username/recommendation-engine",
+      "demo": "https://recommendation-demo.com",
+      "image": "/images/projects/recommendation.jpg",
+      "highlights": [
+        "Trained collaborative filtering model on user interaction data",
+        "Implemented A/B testing framework to measure effectiveness",
+        "Containerized application for easy deployment"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Real-time Data Dashboard",
+      "description": "An interactive dashboard that visualizes IoT sensor data in real-time, helping facility managers monitor environmental conditions.",
+      "technologies": ["React", "D3.js", "Node.js", "WebSockets", "MongoDB"],
+      "github": "https://github.com/username/data-dashboard",
+      "demo": "https://dashboard-demo.com",
+      "image": "/images/projects/dashboard.jpg",
+      "highlights": [
+        "Built real-time data visualization with D3.js and WebSockets",
+        "Implemented time-series data storage and querying",
+        "Created responsive design that works on mobile devices"
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Natural Language Processing API",
+      "description": "A REST API that provides text analysis capabilities including sentiment analysis, entity recognition, and text summarization.",
+      "technologies": ["Python", "spaCy", "FastAPI", "Docker", "Redis"],
+      "github": "https://github.com/username/nlp-api",
+      "demo": "https://nlp-api-demo.com",
+      "image": "/images/projects/nlp.jpg",
+      "highlights": [
+        "Implemented custom NLP pipelines using spaCy",
+        "Added caching layer with Redis to improve performance",
+        "Created comprehensive API documentation with Swagger"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Mobile Fitness Tracker",
+      "description": "A cross-platform mobile app that tracks workouts, nutrition, and provides personalized fitness recommendations.",
+      "technologies": ["React Native", "TypeScript", "Firebase", "Redux", "Jest"],
+      "github": "https://github.com/username/fitness-tracker",
+      "demo": "https://fitness-app-demo.com",
+      "image": "/images/projects/fitness.jpg",
+      "highlights": [
+        "Built cross-platform app with React Native",
+        "Implemented offline-first architecture with local storage",
+        "Created custom animations for interactive workout guides"
+      ]
+    }
+  ]
+}

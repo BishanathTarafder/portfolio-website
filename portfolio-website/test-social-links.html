@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Links Test</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #0070f3;
+      --secondary-color: #0366d6;
+      --background-color: #0f172a;
+      --text-color: #e2e8f0;
+      --card-background: #1e293b;
+      --border-color: #334155;
+      --accent-color: #38bdf8;
+      --secondary-text: #94a3b8;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      color: var(--accent-color);
+    }
+
+    .test-section {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background-color: var(--card-background);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* Social Links Styles */
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(56, 189, 248, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .social-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--accent-color);
+      border-radius: 50%;
+      transform: scale(0);
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+
+    .social-links a:hover {
+      color: var(--background-color);
+      transform: translateY(-5px);
+    }
+    
+    .social-links a:hover::before {
+      transform: scale(1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Social Links Test</h1>
+    
+    <div class="test-section">
+      <h2>Social Links with Icons</h2>
+      <div class="social-links">
+        <a href="https://github.com/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://dribbble.com/" target="_blank" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h2>Navigation Links Test</h2>
+      <p>Click these links to test smooth scrolling:</p>
+      <div style="display: flex; gap: 15px;">
+        <a href="#section1" style="color: var(--accent-color);">Section 1</a>
+        <a href="#section2" style="color: var(--accent-color);">Section 2</a>
+        <a href="#section3" style="color: var(--accent-color);">Section 3</a>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h2>Resume Download Test</h2>
+      <p>Click to test resume download:</p>
+      <a href="resume.pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background-color: var(--accent-color); color: var(--background-color); padding: 10px 20px; border-radius: 4px; text-decoration: none;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7,10 12,15 17,10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download Resume PDF
+      </a>
+    </div>
+
+    <div id="section1" class="test-section" style="margin-top: 500px;">
+      <h2>Section 1</h2>
+      <p>This is section 1 content.</p>
+    </div>
+
+    <div id="section2" class="test-section" style="margin-top: 500px;">
+      <h2>Section 2</h2>
+      <p>This is section 2 content.</p>
+    </div>
+
+    <div id="section3" class="test-section" style="margin-top: 500px;">
+      <h2>Section 3</h2>
+      <p>This is section 3 content.</p>
+    </div>
+  </div>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

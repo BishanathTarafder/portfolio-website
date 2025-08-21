@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ThemeToggle } from './theme-toggle';
 import { MenuIcon, CloseIcon } from './icons';
 
@@ -17,23 +17,59 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [atTop, setAtTop] = useState(true);
+  const lastY = useRef(0);
+  const ticking = useRef(false);
   
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+    // Set initial value
+    lastY.current = window.scrollY;
+    setAtTop(window.scrollY <= 8);
+    
+    const onScroll = () => {
+      if (ticking.current) return;
+      
+      ticking.current = true;
+      
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        
+        // Update atTop state
+        setAtTop(y <= 8);
+        
+        // Hide header when scrolling down past threshold
+        if (y > lastY.current && y > 80) {
+          setHidden(true);
+        } 
+        // Show header when scrolling up
+        else if (y < lastY.current - 4) {
+          setHidden(false);
+        }
+        
+        lastY.current = y;
+        ticking.current = false;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
+  // Force navbar visible when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      setHidden(false);
+    }
+  }, [mobileMenuOpen]);
+  
   return (
-    <header className={`fixed w-full z-20 transition duration-500 ${scrolled ? 'bg-AAprimary bg-opacity-80 backdrop-blur-sm py-2' : 'bg-opacity-0 bg-AAprimary py-4'}`}>
-      <div className="container flex items-center justify-between px-6 sm:px-12">
+    <header className={`
+      fixed top-0 inset-x-0 z-[100] transition-all duration-300 will-change-transform
+      ${hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}
+      ${atTop ? 'bg-transparent backdrop-blur-0 shadow-none' : 'bg-[rgba(17,25,40,0.55)] backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.18)]'}
+    `}>
+      <div className="container flex items-center justify-between px-6 sm:px-12 py-4">
         <div className="relative h-12 w-10">
           <Link href="/" className="flex items-center gap-2">
             <div className="relative h-12 w-10">
