@@ -67,12 +67,12 @@ export function Header() {
     <header className={`
       fixed top-0 inset-x-0 z-[100] transition-all duration-300 will-change-transform
       ${hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}
-      ${atTop ? 'bg-transparent backdrop-blur-0 shadow-none' : 'bg-[rgba(17,25,40,0.55)] backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.18)]'}
+      ${atTop ? 'bg-transparent backdrop-blur-0 shadow-none' : 'bg-[rgba(17,25,40,0.75)] backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.18)]'}
     `}>
-      <div className="container flex items-center justify-between px-6 sm:px-12 py-4">
-        <div className="relative h-12 w-10">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="relative h-12 w-10">
+      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4">
+        <div className="relative h-10 sm:h-12 w-8 sm:w-10">
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="relative h-10 sm:h-12 w-8 sm:w-10 transition-transform duration-300 group-hover:scale-110">
               <div className="absolute h-1 w-1/2 bg-AAsecondary"></div>
               <div className="absolute h-full w-1 bg-AAsecondary"></div>
               <div className="absolute bottom-0 h-1 w-full bg-AAsecondary"></div>
@@ -88,75 +88,92 @@ export function Header() {
               <div className="absolute left-3 bottom-[10px] w-3 h-[3px] bg-AAsecondary"></div>
               <div className="absolute left-[9px] bottom-[7px] w-[3px] h-[3px] bg-AAsecondary"></div>
               <div className="absolute right-[9px] bottom-[7px] w-[3px] h-[3px] bg-AAsecondary"></div>
-              <span className="absolute font-bold text-AAsecondary text-2xl" style={{transform: 'translateX(-13px) translateY(30px)'}}>S</span>
+              <span className="absolute font-bold text-AAsecondary text-xl sm:text-2xl" style={{transform: 'translateX(-13px) translateY(25px) sm:translateY(30px)'}}>S</span>
             </div>
           </Link>
         </div>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex font-mono text-xs items-center space-x-8">
+        <nav className="hidden md:flex font-mono text-xs lg:text-sm items-center space-x-5 lg:space-x-8">
           {navItems.map((item) => (
-            <div key={item.path} className="text-AAsecondary">
-              <Link href={item.path}>
-                &gt; {item.number}.{' '}
-                <span className={`text-white hover:text-AAsecondary duration-300 ${pathname === item.path ? 'text-AAsecondary' : ''}`}>
+            <div key={item.path} className="text-AAsecondary hover:translate-y-[-2px] transition-transform duration-200">
+              <Link href={item.path} className="group">
+                <span className="text-AAsecondary">&gt; {item.number}.{' '}</span>
+                <span className={`text-white group-hover:text-AAsecondary transition-colors duration-300 ${pathname === item.path ? 'text-AAsecondary' : ''}`}>
                   {item.name}
                 </span>
               </Link>
             </div>
           ))}
-          <Link href="/resume" className="text-AAsecondary">
-            &gt; 04.{' '}
-            <span className={`text-white hover:text-AAsecondary duration-300 ${pathname === '/resume' ? 'text-AAsecondary' : ''}`}>
+          <div className="flex items-center space-x-4">
+            <Link 
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noreferrer"
+              className="text-AAsecondary border border-AAsecondary py-2 px-3 rounded-md hover:bg-AAsecondary hover:bg-opacity-10 transition-all duration-300 text-xs lg:text-sm"
+            >
               Resume
-            </span>
-          </Link>
-          <Link href="/resume.pdf" target="_blank" rel="noreferrer">
-            <button className="text-AAsecondary border border-spacing-2 py-2 px-3 rounded-sm border-AAsecondary hover:bg-ResumeButtonHover">
-              Resume PDF
-            </button>
-          </Link>
+            </Link>
+            <ThemeToggle />
+          </div>
         </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden text-white space-y-2 hover:cursor-pointer mt-2">
+        {/* Mobile Menu Button and Theme Toggle */}
+        <div className="md:hidden flex items-center space-x-3">
+          <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex flex-col items-end"
+            className="flex flex-col items-end p-1"
             aria-label="Toggle menu"
           >
-            <div className="w-8 h-0.5 rounded bg-AAsecondary"></div>
-            <div className="w-6 h-0.5 rounded bg-AAsecondary mt-1.5"></div>
-            <div className="w-4 h-0.5 rounded bg-AAsecondary mt-1.5"></div>
+            {mobileMenuOpen ? (
+              <CloseIcon className="w-6 h-6 text-AAsecondary" />
+            ) : (
+              <div className="flex flex-col items-end space-y-1.5">
+                <div className="w-8 h-0.5 rounded bg-AAsecondary"></div>
+                <div className="w-6 h-0.5 rounded bg-AAsecondary"></div>
+                <div className="w-4 h-0.5 rounded bg-AAsecondary"></div>
+              </div>
+            )}
           </button>
         </div>
       </div>
 
       {/* Mobile Navigation */}
-      <div className={`w-full fixed h-screen flex md:hidden duration-300 z-20 ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div 
+        className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+      >
         <div 
-          className="w-1/4 h-full backdrop-blur-sm bg-MobileNavColor/30 hover:cursor-pointer" 
+          className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" 
           onClick={() => setMobileMenuOpen(false)}
         ></div>
-        <div className="w-3/4 h-full bg-MobileNavBarColor flex flex-col justify-center items-center space-y-8 font-sans">
-          {navItems.map((item) => (
+        <div 
+          className={`absolute right-0 top-0 h-screen w-3/4 max-w-sm bg-AAprimary shadow-xl transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        >
+          <div className="flex flex-col h-full justify-center items-center space-y-8 py-8">
+            {navItems.map((item) => (
+              <Link 
+                key={item.path} 
+                href={item.path}
+                className="flex flex-col text-center space-y-1 group"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <span className="text-AAsecondary text-xs font-mono">{item.number}.</span>
+                <span className="text-white text-lg group-hover:text-AAsecondary transition-colors duration-300">
+                  {item.name}
+                </span>
+              </Link>
+            ))}
             <Link 
-              key={item.path} 
-              href={item.path}
-              className="flex flex-col text-center space-y-2"
+              href="/resume.pdf" 
+              target="_blank" 
+              rel="noreferrer" 
               onClick={() => setMobileMenuOpen(false)}
+              className="mt-6 inline-block border border-AAsecondary text-AAsecondary rounded-md py-3 px-8 hover:bg-AAsecondary hover:bg-opacity-10 transition-all duration-300"
             >
-              <span className="text-AAsecondary text-xs font-mono">{item.number}.</span>
-              <span className="text-white font-Text2 text-sm sm:text-base hover:text-AAsecondary hover:cursor-pointer duration-300">
-                {item.name}
-              </span>
+              Resume
             </Link>
-          ))}
-          <Link href="/resume.pdf" target="_blank" rel="noreferrer" onClick={() => setMobileMenuOpen(false)}>
-            <button className="rounded border font-Text2 border-AAsecondary hover:bg-ResumeButtonHover py-2 sm:py-4 px-5 sm:px-10 text-xs text-AAsecondary">
-              Resume PDF
-            </button>
-          </Link>
+          </div>
         </div>
       </div>
     </header>
