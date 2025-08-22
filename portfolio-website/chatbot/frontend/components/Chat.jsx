@@ -3,25 +3,43 @@ import ChatBubble from './ChatBubble';
 import ChatInput from './ChatInput';
 import ChatToggle from './ChatToggle';
 import TypingIndicator from './TypingIndicator';
+import { sendMessage as sendApiMessage, checkApiAvailability } from '../utils/api';
+import { getResponseForMessage } from '../fallback-responses';
+import styles from '../ChatWidget.module.css';
 
-const Chat = () => {
+const Chat = ({ initialMessage = "Hello! I'm the portfolio assistant. How can I help you today?" }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [isTyping, setIsTyping] = useState(false);
   const [sessionId, setSessionId] = useState(null);
+  const [usesFallback, setUsesFallback] = useState(false);
   const messagesEndRef = useRef(null);
 
+  // Check API availability and set fallback mode
+  useEffect(() => {
+    const checkApi = async () => {
+      const isAvailable = await checkApiAvailability();
+      setUsesFallback(!isAvailable);
+      
+      if (!isAvailable) {
+        console.log('API not available, using fallback mode');
+      }
+    };
+    
+    checkApi();
+  }, []);
+  
   // Add initial greeting when chat is first opened
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setMessages([
         {
           role: 'assistant',
-          content: 'Hello! I\'m the portfolio assistant. How can I help you today?',
+          content: initialMessage,
         },
       ]);
     }
-  }, [isOpen, messages.length]);
+  }, [isOpen, messages.length, initialMessage]);
 
   // Scroll to bottom when messages change
   useEffect(() => {
@@ -35,7 +53,7 @@ const Chat = () => {
     setIsOpen(!isOpen);
   };
 
-  // Send message to backend API
+  // Send message to backend API or use fallback
   const sendMessage = async (content) => {
     if (!content.trim()) return;
 
@@ -45,63 +63,75 @@ const Chat = () => {
     
     // Show typing indicator
     setIsTyping(true);
+    
+    // Simulate typing delay for better UX
+    const typingDelay = usesFallback ? 500 : 0;
+    
+    setTimeout(async () => {
+      try {
+        if (usesFallback) {
+          // Use fallback mode with predefined responses
+          const fallbackResponse = getResponseForMessage(content);
+          
+          // Add fallback response to chat
+          setMessages((prev) => [
+            ...prev,
+            { role: 'assistant', content: fallbackResponse },
+          ]);
+        } else {
+          // Try to use the API
+          const data = await sendApiMessage(content, sessionId);
+          
+          // Save session ID for future requests
+          if (data.session_id) {
+            setSessionId(data.session_id);
+          }
 
-    try {
-      const response = await fetch('http://localhost:8000/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          messages: [userMessage],
-          session_id: sessionId,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
+          // Add assistant response to chat
+          setMessages((prev) => [
+            ...prev,
+            { role: 'assistant', content: data.message },
+          ]);
+        }
+      } catch (error) {
+        console.error('Error sending message:', error);
+        
+        // Switch to fallback mode if API fails
+        setUsesFallback(true);
+        
+        // Try to get a fallback response
+        const fallbackResponse = getResponseForMessage(content);
+        
+        // Add fallback response to chat
+        setMessages((prev) => [
+          ...prev,
+          { role: 'assistant', content: fallbackResponse },
+        ]);
+      } finally {
+        // Hide typing indicator
+        setIsTyping(false);
       }
-
-      const data = await response.json();
-      
-      // Save session ID for future requests
-      if (data.session_id) {
-        setSessionId(data.session_id);
-      }
-
-      // Add assistant response to chat
-      setMessages((prev) => [
-        ...prev,
-        { role: 'assistant', content: data.message },
-      ]);
-    } catch (error) {
-      console.error('Error sending message:', error);
-      
-      // Add error message to chat
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: 'assistant',
-          content: 'Sorry, I\'m having trouble connecting to the server. Please try again later.',
-        },
-      ]);
-    } finally {
-      // Hide typing indicator
-      setIsTyping(false);
-    }
+    }, typingDelay);
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className={styles.container}>
       {/* Chat toggle button */}
       <ChatToggle isOpen={isOpen} onClick={toggleChat} />
 
       {/* Chat window */}
       {isOpen && (
-        <div className="w-80 sm:w-96 h-96 bg-white rounded-lg shadow-xl flex flex-col overflow-hidden transition-all duration-300 ease-in-out">
+        <div className={`${styles.chatWindow} ${styles.fadeIn}`}>
           {/* Chat header */}
-          <div className="bg-blue-600 text-white p-4 font-medium flex justify-between items-center">
-            <span>Portfolio Assistant</span>
+          <div className={styles.chatHeader}>
+            <span>
+              Portfolio Assistant
+              {usesFallback && (
+                <span className={styles.fallbackBadge}>
+                  Offline Mode
+                </span>
+              )}
+            </span>
             <button
               onClick={toggleChat}
               className="text-white hover:text-gray-200 focus:outline-none"
@@ -122,7 +152,7 @@ const Chat = () => {
           </div>
 
           {/* Chat messages */}
-          <div className="flex-1 p-4 overflow-y-auto bg-gray-50">
+          <div className={styles.messagesContainer}>
             {messages.map((message, index) => (
               <ChatBubble
                 key={index}

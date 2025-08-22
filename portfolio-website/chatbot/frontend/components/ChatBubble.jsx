@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import styles from '../ChatWidget.module.css';
 
 const ChatBubble = ({ message, isUser }) => {
   return (
     <div
-      className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4 animate-fadeIn`}
+      className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4 ${styles.messageIn}`}
     >
       <div
         className={`max-w-3/4 rounded-lg px-4 py-2 ${

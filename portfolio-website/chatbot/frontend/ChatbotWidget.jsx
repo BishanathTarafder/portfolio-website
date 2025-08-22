@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import Chat from './components/Chat';
 import { checkApiAvailability } from './utils/api';
+import styles from './ChatWidget.module.css';
 
-const ChatbotWidget = () => {
-  const [apiAvailable, setApiAvailable] = useState(true);
+const ChatbotWidget = ({ initialMessage = "Hello! I'm the portfolio assistant. How can I help you today?" }) => {
+  const [apiAvailable, setApiAvailable] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Check if the API is available on component mount
   useEffect(() => {
     const checkApi = async () => {
-      const isAvailable = await checkApiAvailability();
-      setApiAvailable(isAvailable);
+      try {
+        const isAvailable = await checkApiAvailability();
+        setApiAvailable(isAvailable);
+      } catch (error) {
+        console.error('Error checking API availability:', error);
+        setApiAvailable(false);
+      } finally {
+        setLoading(false);
+      }
     };
 
     checkApi();
   }, []);
 
-  // Don't render the chat widget if the API is not available
-  if (!apiAvailable) {
-    return null;
+  // Show loading state while checking API
+  if (loading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.loadingDot}></div>
+        <div className={styles.loadingDot}></div>
+        <div className={styles.loadingDot}></div>
+      </div>
+    );
   }
 
-  return <Chat />;
+  // Always render the Chat component, it will handle fallback mode internally
+  return <Chat initialMessage={initialMessage} />;
+
 };
 
 export default ChatbotWidget;

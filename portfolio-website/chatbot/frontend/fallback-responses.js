@@ -51,36 +51,41 @@ function getRandomResponse(category) {
   return responses[randomIndex];
 }
 
-// Function to determine the most likely category based on user input
-function categorizeInput(input) {
-  input = input.toLowerCase();
+// Function to determine the category of a message
+function getCategoryFromMessage(message) {
+  const lowerMessage = message.toLowerCase();
   
-  // Simple keyword matching
-  if (input.match(/hi|hello|hey|greetings|howdy/)) {
+  // Check for greeting patterns
+  if (/\b(hi|hello|hey|greetings|howdy)\b/.test(lowerMessage)) {
     return 'greeting';
   }
   
-  if (input.match(/about|who|background|yourself|experience|work history|education/)) {
+  // Check for about me patterns
+  if (/\b(about|who are you|tell me about you|your background|experience|bio)\b/.test(lowerMessage)) {
     return 'about';
   }
   
-  if (input.match(/project|portfolio|work|app|application|website|developed|built|created/)) {
+  // Check for projects patterns
+  if (/\b(project|portfolio|work|app|application|website|developed|built)\b/.test(lowerMessage)) {
     return 'projects';
   }
   
-  if (input.match(/skill|technology|tech stack|language|framework|tool|proficient|expertise/)) {
+  // Check for skills patterns
+  if (/\b(skill|technology|tech stack|framework|language|tool|proficient|expertise)\b/.test(lowerMessage)) {
     return 'skills';
   }
   
-  if (input.match(/contact|email|reach|connect|linkedin|github|social|message/)) {
+  // Check for contact patterns
+  if (/\b(contact|email|phone|reach|message|connect|linkedin|github)\b/.test(lowerMessage)) {
     return 'contact';
   }
   
+  // Default category
   return 'default';
 }
 
-// Main function to get a fallback response
-function getFallbackResponse(userInput) {
-  const category = categorizeInput(userInput);
+// Main function to get a response for a message
+export function getResponseForMessage(message) {
+  const category = getCategoryFromMessage(message);
   return getRandomResponse(category);
 }
