@@ -1,13 +1,44 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Fira_Code } from 'next/font/google';
 import '../styles/globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const inter = Inter({ 
+  subsets: ['latin'], 
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const firaCode = Fira_Code({
+  subsets: ['latin'],
+  variable: '--font-fira-code',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: 'AI Engineer Portfolio',
-  description: 'Portfolio website showcasing AI engineering projects and skills',
+  title: 'Saidul Mursalin Khan | AI Engineer Portfolio',
+  description: 'Portfolio website showcasing AI engineering projects, machine learning expertise, and software development skills',
+  keywords: ['AI Engineer', 'Machine Learning', 'Software Development', 'Portfolio', 'Next.js', 'React'],
+  authors: [{ name: 'Saidul Mursalin Khan' }],
+  creator: 'Saidul Mursalin Khan',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://portfolio-website.com',
+    title: 'Saidul Mursalin Khan | AI Engineer Portfolio',
+    description: 'Portfolio website showcasing AI engineering projects, machine learning expertise, and software development skills',
+    siteName: 'Saidul Mursalin Khan Portfolio',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Saidul Mursalin Khan | AI Engineer Portfolio',
+    description: 'Portfolio website showcasing AI engineering projects, machine learning expertise, and software development skills',
+    creator: '@saidulkhan',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -17,7 +48,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans`}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="theme-color" content="#0f172a" />
+      </head>
+      <body className={`${inter.variable} ${firaCode.variable} font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

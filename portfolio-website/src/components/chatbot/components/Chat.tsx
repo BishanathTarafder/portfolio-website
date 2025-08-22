@@ -126,7 +126,7 @@ const Chat: React.FC<ChatProps> = ({ initialMessage = "Hello! I'm the portfolio 
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isOpen ? styles.mobileFullscreen : ''}`}>
       {/* Chat toggle button */}
       <ChatToggle isOpen={isOpen} onClick={toggleChat} />
 

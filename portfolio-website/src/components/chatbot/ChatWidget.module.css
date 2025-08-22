@@ -9,6 +9,22 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* Responsive container adjustments */
+@media (max-width: 640px) {
+  .container {
+    bottom: 0.75rem;
+    right: 0.75rem;
+  }
+  
+  .mobileFullscreen {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+  }
+}
+
 /* Chat window styles */
 .chatWindow {
   width: 20rem;
@@ -20,6 +36,31 @@
   flex-direction: column;
   overflow: hidden;
   transition: all 0.3s ease;
+}
+
+@media (max-width: 640px) {
+  .chatWindow {
+    width: calc(100vw - 1.5rem);
+    height: 60vh;
+    max-height: 24rem;
+    bottom: 4rem;
+    right: 0.75rem;
+    position: fixed;
+  }
+  
+  .mobileFullscreen .chatWindow {
+    width: 100%;
+    height: calc(100vh - 4rem);
+    max-height: none;
+    bottom: 0;
+    right: 0;
+    border-radius: 0;
+  }
+}
+
+:global(.dark) .chatWindow {
+  background-color: #1e293b; /* dark slate blue */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Chat header styles */
@@ -51,6 +92,10 @@
   padding: 1rem;
   overflow-y: auto;
   background-color: #f9fafb; /* Tailwind gray-50 */
+}
+
+:global(.dark) .messagesContainer {
+  background-color: #1e293b; /* slate-800 */
 }
 
 /* Loading animation */
@@ -133,12 +178,40 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
+:global(.dark) .botBubble {
+  background-color: #334155; /* dark slate blue */
+  color: #f1f5f9; /* slate-100 */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Typing indicator */
+.typingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  background-color: #f3f4f6; /* Tailwind gray-100 */
+  border-radius: 1rem;
+  align-self: flex-start;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+:global(.dark) .typingIndicator {
+  background-color: #334155; /* slate-700 */
+}
+
 /* Chat input styles */
 .inputContainer {
   display: flex;
   padding: 0.75rem;
   border-top: 1px solid #e5e7eb; /* Tailwind gray-200 */
   background-color: white;
+}
+
+:global(.dark) .inputContainer {
+  border-top: 1px solid #334155; /* dark slate blue */
+  background-color: #1e293b;
 }
 
 .input {
@@ -148,10 +221,23 @@
   padding: 0.5rem 0.75rem;
   outline: none;
   font-size: 0.875rem;
+  background-color: white;
+  color: #1f2937; /* gray-800 */
 }
 
 .input:focus {
   border-color: #3b82f6; /* Tailwind blue-500 */
+  box-shadow: 0 0 0 1px #3b82f6;
+}
+
+:global(.dark) .input {
+  background-color: #334155; /* slate-700 */
+  border-color: #475569; /* slate-600 */
+  color: #f1f5f9; /* slate-100 */
+}
+
+:global(.dark) .input:focus {
+  border-color: #3b82f6; /* blue-500 */
   box-shadow: 0 0 0 1px #3b82f6;
 }
 

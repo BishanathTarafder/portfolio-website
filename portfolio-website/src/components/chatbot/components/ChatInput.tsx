@@ -27,6 +27,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
         placeholder="Type a message..."
         className={styles.input}
         aria-label="Type a message"
+        autoComplete="off"
       />
       <button 
         type="submit" 
