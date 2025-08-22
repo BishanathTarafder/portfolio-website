@@ -1,0 +1,71 @@
+{
+  "name": "John Doe",
+  "title": "Full Stack Developer",
+  "email": "john.doe@example.com",
+  "phone": "+1 (555) 123-4567",
+  "location": "San Francisco, CA",
+  "website": "https://johndoe.example.com",
+  "github": "https://github.com/johndoe",
+  "linkedin": "https://linkedin.com/in/johndoe",
+  "twitter": "https://twitter.com/johndoe",
+  "bio": "Experienced Full Stack Developer with a passion for building innovative web applications. Specialized in React, Node.js, and cloud technologies with a focus on creating scalable and user-friendly solutions.",
+  "skills": [
+    {
+      "category": "Frontend",
+      "items": ["React", "Next.js", "Vue.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Material UI"]
+    },
+    {
+      "category": "Backend",
+      "items": ["Node.js", "Express", "FastAPI", "Django", "Flask", "GraphQL", "REST API Design"]
+    },
+    {
+      "category": "Databases",
+      "items": ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Firebase Firestore"]
+    },
+    {
+      "category": "DevOps & Cloud",
+      "items": ["AWS", "Google Cloud", "Docker", "Kubernetes", "CI/CD", "GitHub Actions"]
+    },
+    {
+      "category": "Tools & Others",
+      "items": ["Git", "Jira", "Figma", "Agile Methodologies", "TDD", "Microservices Architecture"]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Science in Computer Science",
+      "institution": "Stanford University",
+      "location": "Stanford, CA",
+      "year": "2018-2020"
+    },
+    {
+      "degree": "Bachelor of Science in Software Engineering",
+      "institution": "University of California, Berkeley",
+      "location": "Berkeley, CA",
+      "year": "2014-2018"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Senior Full Stack Developer",
+      "company": "Tech Innovations Inc.",
+      "location": "San Francisco, CA",
+      "period": "2020-Present",
+      "description": "Lead developer for enterprise SaaS applications, managing a team of 5 developers and implementing microservices architecture."
+    },
+    {
+      "title": "Full Stack Developer",
+      "company": "WebSolutions Co.",
+      "location": "San Jose, CA",
+      "period": "2018-2020",
+      "description": "Developed and maintained multiple client websites and web applications using React and Node.js."
+    },
+    {
+      "title": "Frontend Developer Intern",
+      "company": "StartupHub",
+      "location": "Palo Alto, CA",
+      "period": "2017-2018",
+      "description": "Assisted in developing user interfaces for mobile-first web applications using React and Redux."
+    }
+  ]
+}
