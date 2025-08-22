@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Layout } from '@/components/layout';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
@@ -59,8 +60,15 @@ export default function ProjectsPage() {
           >
             <div className="relative overflow-hidden rounded-md">
               <div className="absolute inset-0 bg-AAprimary/80 group-hover:bg-AAprimary/50 transition-all duration-300 z-10"></div>
-              <div className="h-80 bg-gray-700 flex items-center justify-center">
-                <span className="text-gray-400">Project Image</span>
+              <div className="h-80 bg-gray-700 relative">
+                <Image
+                  src="/project-analytics.jpg"
+                  alt="Predictive Analytics Dashboard"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
+                />
               </div>
               <div className="absolute inset-0 flex flex-col justify-between p-8 z-20">
                 <div>
@@ -102,8 +110,14 @@ export default function ProjectsPage() {
           >
             <div className="relative overflow-hidden rounded-md w-full">
               <div className="absolute inset-0 bg-AAprimary/80 group-hover:bg-AAprimary/50 transition-all duration-300 z-10"></div>
-              <div className="h-80 bg-gray-700 flex items-center justify-center">
-                <span className="text-gray-400">Project Image</span>
+              <div className="h-80 bg-gray-700 relative">
+                <Image
+                  src="/project-nlp.jpg"
+                  alt="NLP Research Platform"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
               <div className="absolute inset-0 flex flex-col justify-between p-8 z-20 text-right">
                 <div>
@@ -145,8 +159,14 @@ export default function ProjectsPage() {
           >
             <div className="relative overflow-hidden rounded-md">
               <div className="absolute inset-0 bg-AAprimary/80 group-hover:bg-AAprimary/50 transition-all duration-300 z-10"></div>
-              <div className="h-80 bg-gray-700 flex items-center justify-center">
-                <span className="text-gray-400">Project Image</span>
+              <div className="h-80 bg-gray-700 relative">
+                <Image
+                  src="/project-vision.jpg"
+                  alt="Computer Vision System"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
               <div className="absolute inset-0 flex flex-col justify-between p-8 z-20">
                 <div>
@@ -188,8 +208,14 @@ export default function ProjectsPage() {
           >
             <div className="relative overflow-hidden rounded-md w-full">
               <div className="absolute inset-0 bg-AAprimary/80 group-hover:bg-AAprimary/50 transition-all duration-300 z-10"></div>
-              <div className="h-80 bg-gray-700 flex items-center justify-center">
-                <span className="text-gray-400">Project Image</span>
+              <div className="h-80 bg-gray-700 relative">
+                <Image
+                  src="/project-mobile.jpg"
+                  alt="Mobile App Development"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
               </div>
               <div className="absolute inset-0 flex flex-col justify-between p-8 z-20 text-right">
                 <div>

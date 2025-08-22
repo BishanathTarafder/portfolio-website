@@ -91,9 +91,14 @@ export default function AboutPage() {
               <div className="absolute inset-0 border-2 border-AAsecondary rounded translate-x-5 translate-y-5 group-hover:translate-x-4 group-hover:translate-y-4 transition-all duration-300"></div>
               <div className="absolute inset-0 bg-AAprimary/50 group-hover:bg-transparent transition-all duration-300 z-10"></div>
               <div className="relative w-64 h-64 bg-gray-700 rounded overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center text-gray-400">
-                  <span>Profile Image</span>
-                </div>
+                <Image 
+                  src="/profile-image.jpg" 
+                  alt="Saidul Mursalin Khan" 
+                  fill
+                  sizes="(max-width: 768px) 100vw, 256px"
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
           </motion.div>
