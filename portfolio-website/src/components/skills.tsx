@@ -43,38 +43,39 @@ const skillCategories: SkillCategory[] = [
 
 export function Skills() {
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <section id="skills" className="py-24 bg-AAprimary">
+      <div className="container mx-auto px-4 md:px-16 lg:px-32">
         <motion.h2 
-          className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8 sm:mb-12 text-center"
+          className="flex items-center font-mono text-AAsecondary text-2xl mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Skills & Expertise
+          <span className="text-AAsecondary mr-2">04.</span> Skills & Expertise
+          <div className="h-[1px] bg-gray-600 ml-6 w-32 md:w-96"></div>
         </motion.h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {skillCategories.map((category, index) => (
             <motion.div 
               key={index}
-              className="p-5 sm:p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
+              className="bg-gray-800/30 border border-gray-700 rounded-md p-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 * index }}
               whileHover={{ y: -5 }}
             >
-              <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-gray-900 dark:text-gray-100">{category.title}</h3>
-              <ul className="space-y-2 sm:space-y-3">
+              <h3 className="text-xl font-bold mb-4 text-AAsecondary font-mono">{category.title}</h3>
+              <ul className="space-y-2">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.li 
                     key={skillIndex} 
-                    className="flex items-center gap-2 sm:gap-3"
+                    className="flex items-center gap-2"
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.1 * skillIndex + 0.2 * index }}
                   >
-                    <span className="w-2 h-2 bg-AAsecondary rounded-full"></span>
-                    <span className="text-sm sm:text-base text-gray-700 dark:text-gray-300">{skill.name}</span>
+                    <span className="text-AAsecondary">▹</span>
+                    <span className="text-gray-300">{skill.name}</span>
                   </motion.li>
                 ))}
               </ul>

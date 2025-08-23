@@ -32,8 +32,15 @@ export function ContactCTA() {
           className="inline-block"
         >
           <Link 
-            href="/contact" 
+            href="#contact" 
             className="inline-block bg-white text-AAprimary hover:bg-gray-100 px-6 sm:px-8 py-2 sm:py-3 rounded-md font-medium transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+            onClick={(e) => {
+              e.preventDefault();
+              const contactSection = document.getElementById('contact');
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
             Get in Touch
           </Link>

@@ -4,58 +4,60 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 export function Hero() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="min-h-screen flex flex-col justify-center px-4 sm:px-8 md:px-16 lg:px-32 py-16 sm:py-20">
-      <div className="w-full max-w-4xl mx-auto">
-        <motion.div
+    <section id="home" className="hero">
+      <div className="container mx-auto px-6 md:px-12">
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-AAsecondary font-mono text-sm sm:text-base mb-2 sm:mb-4"
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         >
           Hi, my name is
-        </motion.div>
-        
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-200 mb-2 sm:mb-4"
-        >
-          Saidul Mursalin Khan.
         </motion.h1>
         
-        <motion.h2 
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-400 mb-4 sm:mb-8"
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+          className="name"
         >
-          I build things for the web.
-        </motion.h2>
+          Bishanath Tarafder
+        </motion.div>
+        
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.4 }}
+          className="tagline"
+        >
+          I build things for the web
+        </motion.div>
         
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-gray-400 max-w-xl mb-8 sm:mb-12 text-base sm:text-lg"
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.6 }}
         >
-          I&apos;m a software engineer specializing in building exceptional digital experiences. 
-          Currently, I&apos;m focused on building accessible, human-centered products 
-          in the javascript ecosystem and full stack applications.
+          I'm a software engineer specializing in building exceptional digital experiences. 
+          Currently, I'm focused on building accessible, human-centered products at a startup.
         </motion.p>
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.8 }}
+          className="hero-buttons"
         >
-          <Link 
-            href="/projects" 
-            className="inline-block border border-AAsecondary text-AAsecondary px-5 sm:px-7 py-3 sm:py-4 rounded hover:bg-AAsecondary hover:bg-opacity-10 transition duration-300 font-mono text-sm sm:text-base"
-          >
-            Check out my projects!
-          </Link>
+          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="bg-transparent border border-accent-color text-accent-color hover:bg-accent-color hover:text-white transition-all duration-300 py-3 px-6 rounded">
+            Check out my resume!
+          </a>
         </motion.div>
       </div>
     </section>

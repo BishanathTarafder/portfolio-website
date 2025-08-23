@@ -7,15 +7,48 @@ import { ThemeToggle } from './theme-toggle';
 import { CloseIcon } from './icons';
 
 const navItems = [
-  { name: 'About', number: '01', path: '/about' },
-  { name: 'Experience', number: '02', path: '/experience' },
-  { name: 'Work', number: '03', path: '/projects' },
-  { name: 'Resume', number: '04', path: '/resume' },
-  { name: 'Contact', number: '05', path: '/contact' },
+  { name: 'About', number: '01', path: '#about' },
+  { name: 'Experience', number: '02', path: '#experience' },
+  { name: 'Work', number: '03', path: '#projects' },
+  { name: 'Contact', number: '04', path: '#contact' },
 ];
 
 export function Header() {
   const pathname = usePathname();
+  const [currentHash, setCurrentHash] = useState('');
+  
+  // Update hash on client side only
+  useEffect(() => {
+    setCurrentHash(window.location.hash);
+    
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+    };
+    
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+  
+  // Function to handle smooth scrolling
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
+    
+    // Only apply smooth scrolling for hash links
+    if (path.startsWith('#')) {
+      const targetId = path.substring(1);
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        // Close mobile menu if open
+        if (mobileMenuOpen) {
+          setMobileMenuOpen(false);
+        }
+        
+        // Smooth scroll to the element
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
@@ -81,74 +114,56 @@ export function Header() {
     <header className={`
       fixed top-0 inset-x-0 z-[100] transition-all duration-300 will-change-transform
       ${hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}
-      ${atTop ? 'bg-transparent backdrop-blur-0 shadow-none' : 'bg-[rgba(17,25,40,0.75)] backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.18)]'}
+      ${atTop ? 'bg-transparent shadow-none' : 'bg-AAprimary shadow-md'}
     `}>
       <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4">
-        <div className="relative h-10 sm:h-12 w-8 sm:w-10">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative h-10 sm:h-12 w-8 sm:w-10 transition-transform duration-300 group-hover:scale-110">
-              <div className="absolute h-1 w-1/2 bg-AAsecondary"></div>
-              <div className="absolute h-full w-1 bg-AAsecondary"></div>
-              <div className="absolute bottom-0 h-1 w-full bg-AAsecondary"></div>
-              <div className="absolute right-0 bottom-0 h-6 w-1 bg-AAsecondary"></div>
-              <div className="absolute left-2 top-3 h-1.5 w-[3.5px] bg-AAsecondary"></div>
-              <div className="absolute right-2 top-3 h-1.5 w-[3.5px] bg-AAsecondary"></div>
-              <div className="absolute right-4 top-0 h-[18px] w-1 bg-AAsecondary"></div>
-              <div className="absolute right-0 top-[14px] h-1 w-4 bg-AAsecondary"></div>
-              <div className="absolute right-3 top-0 h-1 w-1 bg-AAsecondary"></div>
-              <div className="absolute right-0 top-[10px] h-1 w-1 bg-AAsecondary"></div>
-              <div className="absolute right-1 top-[7px] h-[4px] w-[4px] bg-AAsecondary"></div>
-              <div className="absolute right-2 top-[4px] h-[4px] w-[4px] bg-AAsecondary"></div>
-              <div className="absolute left-3 bottom-[10px] w-3 h-[3px] bg-AAsecondary"></div>
-              <div className="absolute left-[9px] bottom-[7px] w-[3px] h-[3px] bg-AAsecondary"></div>
-              <div className="absolute right-[9px] bottom-[7px] w-[3px] h-[3px] bg-AAsecondary"></div>
-              <span className="absolute font-bold text-AAsecondary text-xl sm:text-2xl" style={{transform: 'translateX(-13px) translateY(25px) sm:translateY(30px)'}}>S</span>
+        <div className="relative">
+          <Link href="/" className="logo">
+            <div className="logo-circle">
+              <span>BT</span>
             </div>
           </Link>
         </div>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex font-mono text-xs lg:text-sm items-center space-x-5 lg:space-x-8">
-          {navItems.map((item) => (
-            <div key={item.path} className="text-AAsecondary hover:translate-y-[-2px] transition-transform duration-200">
-              <Link href={item.path} className="group">
-                <span className="text-AAsecondary">&gt; {item.number}.{' '}</span>
-                <span className={`text-white group-hover:text-AAsecondary transition-colors duration-300 ${pathname === item.path ? 'text-AAsecondary' : ''}`}>
-                  {item.name}
-                </span>
+        <nav className="hidden md:flex items-center">
+          <div className="nav-links">
+            {navItems.map((item) => (
+              <Link 
+                key={item.path}
+                href={item.path} 
+                onClick={(e) => scrollToSection(e, item.path)}
+              >
+                {item.name}
               </Link>
-            </div>
-          ))}
-          <div className="flex items-center space-x-4">
+            ))}
             <Link 
               href="/resume.pdf" 
               target="_blank" 
               rel="noreferrer"
-              className="text-AAsecondary border border-AAsecondary py-2 px-3 rounded-md hover:bg-AAsecondary hover:bg-opacity-10 transition-all duration-300 text-xs lg:text-sm"
+              className="bg-transparent border border-accent-color text-accent-color hover:bg-accent-color hover:text-white transition-all duration-300 py-2 px-4 rounded"
             >
               Resume
             </Link>
-            <ThemeToggle />
           </div>
         </nav>
 
-        {/* Mobile Menu Button and Theme Toggle */}
-        <div className="md:hidden flex items-center space-x-3">
-          <ThemeToggle />
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex flex-col items-end p-1 focus:outline-none focus:ring-2 focus:ring-AAsecondary rounded"
+            className="flex flex-col items-end p-1 focus:outline-none focus:ring-2 focus:ring-accent-color rounded"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
-              <CloseIcon className="w-6 h-6 text-AAsecondary" />
+              <CloseIcon className="w-6 h-6 text-accent-color" />
             ) : (
               <div className="flex flex-col items-end space-y-1.5">
-                <div className="w-8 h-0.5 rounded bg-AAsecondary"></div>
-                <div className="w-6 h-0.5 rounded bg-AAsecondary"></div>
-                <div className="w-4 h-0.5 rounded bg-AAsecondary"></div>
+                <div className="w-8 h-0.5 rounded bg-accent-color"></div>
+                <div className="w-6 h-0.5 rounded bg-accent-color"></div>
+                <div className="w-4 h-0.5 rounded bg-accent-color"></div>
               </div>
             )}
           </button>
@@ -179,11 +194,13 @@ export function Header() {
               <Link 
                 key={item.path} 
                 href={item.path}
-                className="flex flex-col text-center space-y-1 group"
-                onClick={() => setMobileMenuOpen(false)}
+                className="text-center px-6 py-2 rounded-lg bg-opacity-10 hover:bg-white hover:bg-opacity-5 transition-all duration-300"
+                onClick={(e) => {
+                  scrollToSection(e, item.path);
+                  setMobileMenuOpen(false);
+                }}
               >
-                <span className="text-AAsecondary text-xs font-mono">{item.number}.</span>
-                <span className="text-white text-lg group-hover:text-AAsecondary transition-colors duration-300">
+                <span className="text-white text-lg hover:text-accent-color transition-colors duration-300">
                   {item.name}
                 </span>
               </Link>
@@ -193,7 +210,7 @@ export function Header() {
               target="_blank" 
               rel="noreferrer" 
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-6 inline-block border border-AAsecondary text-AAsecondary rounded-md py-3 px-8 hover:bg-AAsecondary hover:bg-opacity-10 transition-all duration-300"
+              className="mt-6 inline-block border border-accent-color text-accent-color rounded-md py-3 px-8 hover:bg-accent-color hover:text-white transition-all duration-300"
             >
               Resume
             </Link>

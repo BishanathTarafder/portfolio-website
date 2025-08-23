@@ -1,9 +1,6 @@
-# *
+# Allow all crawlers
 User-agent: *
 Allow: /
 
-# Host
-Host: https://portfolio-website.com
-
-# Sitemaps
+# Sitemap location
 Sitemap: https://portfolio-website.com/sitemap.xml
