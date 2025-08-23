@@ -12,7 +12,8 @@ interface ChatbotWidgetProps {
 const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({ 
   initialMessage = "Hello! I'm the portfolio assistant. How can I help you today?" 
 }) => {
-  const [apiAvailable, setApiAvailable] = useState<boolean | null>(null);
+  // We'll use setApiAvailable but not directly use apiAvailable since Chat handles fallback internally
+  const [, setApiAvailable] = useState<boolean | null>(null);
   const [loading, setLoading] = useState(true);
 
   // Check if the API is available on component mount

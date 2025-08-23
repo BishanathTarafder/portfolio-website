@@ -134,7 +134,7 @@ export function InstagramIcon(props: IconProps) {
   );
 }
 
-export function LinkedInIcon(props: IconProps) {
+export function LinkedInIconOutline(props: IconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

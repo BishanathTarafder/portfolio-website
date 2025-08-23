@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { ThemeToggle } from './theme-toggle';
-import { MenuIcon, CloseIcon } from './icons';
+import { CloseIcon } from './icons';
 
 const navItems = [
   { name: 'About', number: '01', path: '/about' },
@@ -38,8 +38,12 @@ export function Header() {
         // Update atTop state
         setAtTop(y <= 8);
         
+        // Don't hide header when mobile menu is open
+        if (mobileMenuOpen) {
+          setHidden(false);
+        }
         // Hide header when scrolling down past threshold
-        if (y > lastY.current && y > 80) {
+        else if (y > lastY.current && y > 80) {
           setHidden(true);
         } 
         // Show header when scrolling up
@@ -54,13 +58,23 @@ export function Header() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
-  // Force navbar visible when mobile menu is open
+  // Force navbar visible when mobile menu is open and handle body scroll locking
   useEffect(() => {
     if (mobileMenuOpen) {
       setHidden(false);
+      // Prevent body scrolling when mobile menu is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Re-enable body scrolling when mobile menu is closed
+      document.body.style.overflow = '';
     }
+    
+    // Cleanup function to ensure body scroll is restored when component unmounts
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [mobileMenuOpen]);
   
   return (
@@ -123,8 +137,10 @@ export function Header() {
           <ThemeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex flex-col items-end p-1"
-            aria-label="Toggle menu"
+            className="flex flex-col items-end p-1 focus:outline-none focus:ring-2 focus:ring-AAsecondary rounded"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
               <CloseIcon className="w-6 h-6 text-AAsecondary" />
@@ -142,13 +158,21 @@ export function Header() {
       {/* Mobile Navigation */}
       <div 
         className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ${mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        aria-hidden={!mobileMenuOpen}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
       >
         <div 
           className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" 
           onClick={() => setMobileMenuOpen(false)}
+          aria-label="Close menu"
+          role="button"
+          tabIndex={mobileMenuOpen ? 0 : -1}
         ></div>
         <div 
           className={`absolute right-0 top-0 h-screen w-3/4 max-w-sm bg-AAprimary shadow-xl transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          role="menu"
         >
           <div className="flex flex-col h-full justify-center items-center space-y-8 py-8">
             {navItems.map((item) => (

@@ -1,6 +1,6 @@
 'use client';
 
-import { Layout } from '@/components/layout';
+import Layout from '@/components/layout';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
@@ -44,7 +44,7 @@ export default function ResumePage() {
               Download Resume
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -223,7 +223,7 @@ export default function ResumePage() {
               <p className="text-gray-600 dark:text-gray-300">Created an optimized object detection system for deployment on resource-constrained edge devices.</p>
             </div>
           </div>
-        </div>
+        </motion.div>
         
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -233,7 +233,7 @@ export default function ResumePage() {
         >
           <h2 className="text-3xl font-bold mb-6 text-gray-200">Interested in working together?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-400">
-            I'm currently available for freelance projects, full-time positions, and consulting work.
+            I&apos;m currently available for freelance projects, full-time positions, and consulting work.
           </p>
           <Link 
             href="/contact" 

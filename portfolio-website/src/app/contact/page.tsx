@@ -1,21 +1,67 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Layout } from '@/components/layout';
+import { useState } from 'react';
+import Layout from '@/components/layout';
 import { GithubIcon, LinkedInIcon, TwitterIcon, InstagramIcon } from '@/components/icons';
 import { motion } from 'framer-motion';
 
+type FormData = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+type FormErrors = {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+};
+
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
   
+  const [formErrors, setFormErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  
+  const validateForm = (): boolean => {
+    const errors: FormErrors = {};
+    let isValid = true;
+
+    if (!formData.name.trim()) {
+      errors.name = 'Name is required';
+      isValid = false;
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = 'Email is required';
+      isValid = false;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errors.email = 'Please enter a valid email address';
+      isValid = false;
+    }
+
+    if (!formData.subject.trim()) {
+      errors.subject = 'Subject is required';
+      isValid = false;
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = 'Message is required';
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
+  };
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -23,10 +69,24 @@ export default function ContactPage() {
       ...prev,
       [name]: value
     }));
+    
+    // Clear error for this field when user starts typing
+    if (formErrors[name as keyof FormErrors]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }));
+    }
   };
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form before submission
+    if (!validateForm()) {
+      return;
+    }
+    
     setIsSubmitting(true);
     setSubmitSuccess(false);
     setSubmitError('');
@@ -44,6 +104,7 @@ export default function ContactPage() {
         subject: '',
         message: ''
       });
+      setFormErrors({});
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitError('There was an error submitting your message. Please try again.');
@@ -61,7 +122,7 @@ export default function ContactPage() {
           transition={{ duration: 0.5 }}
           className="flex items-center font-mono text-AAsecondary text-2xl mb-16"
         >
-          <span className="text-AAsecondary mr-2">04.</span> What's Next?
+          <span className="text-AAsecondary mr-2">04.</span> What&apos;s Next?
           <div className="h-[1px] bg-gray-600 ml-6 w-32 md:w-96"></div>
         </motion.h1>
         
@@ -80,7 +141,7 @@ export default function ContactPage() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="max-w-2xl mx-auto text-center mb-16 text-gray-400 text-lg"
         >
-          <p>I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+          <p>I&apos;m currently looking for new opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!</p>
         </motion.div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -94,7 +155,7 @@ export default function ContactPage() {
               
               {submitSuccess ? (
                 <div className="bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 p-4 rounded-lg mb-6">
-                  <p>Thank you for your message! I'll get back to you as soon as possible.</p>
+                  <p>Thank you for your message! I&apos;ll get back to you as soon as possible.</p>
                 </div>
               ) : null}
               
@@ -116,9 +177,13 @@ export default function ContactPage() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-700 rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300"
-                      required
+                      className={`w-full px-4 py-3 border ${formErrors.name ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300`}
+                      aria-invalid={!!formErrors.name}
+                      aria-describedby={formErrors.name ? 'name-error' : undefined}
                     />
+                    {formErrors.name && (
+                      <p id="name-error" className="mt-1 text-sm text-red-500">{formErrors.name}</p>
+                    )}
                   </div>
                   
                   <div>
@@ -131,9 +196,13 @@ export default function ContactPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-700 rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300"
-                      required
+                      className={`w-full px-4 py-3 border ${formErrors.email ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300`}
+                      aria-invalid={!!formErrors.email}
+                      aria-describedby={formErrors.email ? 'email-error' : undefined}
                     />
+                    {formErrors.email && (
+                      <p id="email-error" className="mt-1 text-sm text-red-500">{formErrors.email}</p>
+                    )}
                   </div>
                 </div>
                 
@@ -147,9 +216,13 @@ export default function ContactPage() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-700 rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300"
-                    required
+                    className={`w-full px-4 py-3 border ${formErrors.subject ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300`}
+                    aria-invalid={!!formErrors.subject}
+                    aria-describedby={formErrors.subject ? 'subject-error' : undefined}
                   />
+                  {formErrors.subject && (
+                    <p id="subject-error" className="mt-1 text-sm text-red-500">{formErrors.subject}</p>
+                  )}
                 </div>
                 
                 <div className="mb-6">
@@ -162,9 +235,13 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-700 rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300"
-                    required
+                    className={`w-full px-4 py-3 border ${formErrors.message ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300`}
+                    aria-invalid={!!formErrors.message}
+                    aria-describedby={formErrors.message ? 'message-error' : undefined}
                   ></textarea>
+                  {formErrors.message && (
+                    <p id="message-error" className="mt-1 text-sm text-red-500">{formErrors.message}</p>
+                  )}
                 </div>
                 
                 <button
@@ -176,7 +253,7 @@ export default function ContactPage() {
                 </button>
               </form>
             </div>
-          </div>
+          </motion.div>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -260,7 +337,7 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
         
         <motion.div

@@ -40,8 +40,8 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-gray-400 max-w-xl mb-8 sm:mb-12 text-base sm:text-lg"
         >
-          I'm a software engineer specializing in building exceptional digital experiences. 
-          Currently, I'm focused on building accessible, human-centered products 
+          I&apos;m a software engineer specializing in building exceptional digital experiences. 
+          Currently, I&apos;m focused on building accessible, human-centered products 
           in the javascript ecosystem and full stack applications.
         </motion.p>
         

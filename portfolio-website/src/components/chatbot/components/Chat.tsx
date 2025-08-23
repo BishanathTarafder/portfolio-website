@@ -29,11 +29,16 @@ const Chat: React.FC<ChatProps> = ({ initialMessage = "Hello! I'm the portfolio 
   // Check API availability and set fallback mode
   useEffect(() => {
     const checkApi = async () => {
-      const isAvailable = await checkApiAvailability();
-      setUsesFallback(!isAvailable);
-      
-      if (!isAvailable) {
-        console.log('API not available, using fallback mode');
+      try {
+        const isAvailable = await checkApiAvailability();
+        setUsesFallback(!isAvailable);
+        
+        if (!isAvailable) {
+          console.log('API not available, using fallback mode');
+        }
+      } catch (error) {
+        console.error('Error checking API availability:', error);
+        setUsesFallback(true); // Default to fallback mode on error
       }
     };
     
@@ -78,7 +83,13 @@ const Chat: React.FC<ChatProps> = ({ initialMessage = "Hello! I'm the portfolio 
     // Simulate typing delay for better UX
     const typingDelay = usesFallback ? 500 : 0;
     
+    // Track if component is still mounted
+    let isMounted = true;
+    
     setTimeout(async () => {
+      // Don't proceed if component unmounted during the delay
+      if (!isMounted) return;
+      
       try {
         if (usesFallback) {
           // Use fallback mode with predefined responses
@@ -90,8 +101,11 @@ const Chat: React.FC<ChatProps> = ({ initialMessage = "Hello! I'm the portfolio 
             { role: 'assistant', content: fallbackResponse },
           ]);
         } else {
-          // Try to use the API
+          // Try to use the API with a timeout
           const data = await sendApiMessage(content, sessionId);
+          
+          // Don't update state if component unmounted during API call
+          if (!isMounted) return;
           
           // Save session ID for future requests
           if (data.session_id) {
@@ -101,28 +115,49 @@ const Chat: React.FC<ChatProps> = ({ initialMessage = "Hello! I'm the portfolio 
           // Add assistant response to chat
           setMessages((prev) => [
             ...prev,
-            { role: 'assistant', content: data.message },
+            { role: 'assistant', content: data.message || 'Sorry, I received an empty response. Please try again.' },
           ]);
         }
       } catch (error) {
+        // Don't update state if component unmounted during API call
+        if (!isMounted) return;
+        
         console.error('Error sending message:', error);
         
         // Switch to fallback mode if API fails
         setUsesFallback(true);
         
-        // Try to get a fallback response
-        const fallbackResponse = getResponseForMessage(content);
-        
-        // Add fallback response to chat
+        // Add error message to chat
         setMessages((prev) => [
           ...prev,
-          { role: 'assistant', content: fallbackResponse },
+          { 
+            role: 'assistant', 
+            content: 'Sorry, I encountered an error connecting to my knowledge base. I\'ll switch to offline mode for now.' 
+          },
         ]);
+        
+        // Try to get a fallback response after showing the error
+        setTimeout(() => {
+          if (isMounted) {
+            const fallbackResponse = getResponseForMessage(content);
+            setMessages((prev) => [
+              ...prev,
+              { role: 'assistant', content: fallbackResponse },
+            ]);
+          }
+        }, 1000);
       } finally {
-        // Hide typing indicator
-        setIsTyping(false);
+        // Hide typing indicator if component is still mounted
+        if (isMounted) {
+          setIsTyping(false);
+        }
       }
     }, typingDelay);
+    
+    // Cleanup function to prevent state updates if component unmounts
+    return () => {
+      isMounted = false;
+    };
   };
 
   return (

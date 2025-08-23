@@ -2,11 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  // Explicitly set server configuration
-  server: {
-    port: 8080,
-    host: 'localhost'
-  },
+  // Server configuration should be set in package.json scripts
+  // or environment variables, not in next.config.js
+  
   // Image optimization configuration
   images: {
     domains: [],

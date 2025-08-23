@@ -21,7 +21,7 @@ export function ContactCTA() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          I'm currently available for freelance projects, full-time positions, and consulting work.
+          I&apos;m currently available for freelance projects, full-time positions, and consulting work.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

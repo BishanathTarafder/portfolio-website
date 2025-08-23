@@ -1,9 +1,9 @@
-import { Layout } from '@/components/layout';
+'use client';
+
+import Layout from '@/components/layout';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-
-'use client';
 
 export default function AboutPage() {
   return (
@@ -28,13 +28,13 @@ export default function AboutPage() {
           >
             <div className="prose dark:prose-invert max-w-none mb-8">
               <p>
-                Hello! I'm Saidul, a software engineer who enjoys creating things that live on the internet. 
+                Hello! I&apos;m Saidul, a software engineer who enjoys creating things that live on the internet. 
                 My interest in web development started back in 2012 when I decided to try editing custom Tumblr themes — 
                 turns out hacking together a custom reblog button taught me a lot about HTML & CSS!
               </p>
               
               <p>
-                Fast-forward to today, and I've had the privilege of working at an advertising agency, a start-up, 
+                Fast-forward to today, and I&apos;ve had the privilege of working at an advertising agency, a start-up, 
                 a huge corporation, and a student-led design studio. My main focus these days is building accessible, 
                 inclusive products and digital experiences at Upstatement for a variety of clients.
               </p>
@@ -45,7 +45,7 @@ export default function AboutPage() {
               </p>
 
               <p>
-                Here are a few technologies I've been working with recently:
+                Here are a few technologies I&apos;ve been working with recently:
               </p>
 
               <div className="grid grid-cols-2 gap-2 mt-6">
@@ -104,41 +104,39 @@ export default function AboutPage() {
           </motion.div>
         </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-              <div>
-                <h3 className="text-xl font-bold mb-3">Education</h3>
-                <ul className="space-y-4">
-                  <li>
-                    <div className="font-medium">M.S. in Computer Science</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Stanford University, 2018-2020</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Specialization in Artificial Intelligence</div>
-                  </li>
-                  <li>
-                    <div className="font-medium">B.S. in Computer Engineering</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">MIT, 2014-2018</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Minor in Mathematics</div>
-                  </li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-bold mb-3">Work Experience</h3>
-                <ul className="space-y-4">
-                  <li>
-                    <div className="font-medium">Senior AI Engineer</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">TechInnovate AI, 2022-Present</div>
-                  </li>
-                  <li>
-                    <div className="font-medium">Machine Learning Engineer</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">DataSmart Solutions, 2020-2022</div>
-                  </li>
-                  <li>
-                    <div className="font-medium">AI Research Intern</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">Google AI, Summer 2019</div>
-                  </li>
-                </ul>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+          <div>
+            <h3 className="text-xl font-bold mb-3">Education</h3>
+            <ul className="space-y-4">
+              <li>
+                <div className="font-medium">M.S. in Computer Science</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Stanford University, 2018-2020</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Specialization in Artificial Intelligence</div>
+              </li>
+              <li>
+                <div className="font-medium">B.S. in Computer Engineering</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">MIT, 2014-2018</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Minor in Mathematics</div>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 className="text-xl font-bold mb-3">Work Experience</h3>
+            <ul className="space-y-4">
+              <li>
+                <div className="font-medium">Senior AI Engineer</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">TechInnovate AI, 2022-Present</div>
+              </li>
+              <li>
+                <div className="font-medium">Machine Learning Engineer</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">DataSmart Solutions, 2020-2022</div>
+              </li>
+              <li>
+                <div className="font-medium">AI Research Intern</div>
+                <div className="text-sm text-gray-600 dark:text-gray-300">Google AI, Summer 2019</div>
+              </li>
+            </ul>
           </div>
         </div>
         
@@ -301,10 +299,10 @@ export default function AboutPage() {
           className="text-center"
         >
           <h2 className="flex items-center justify-center font-mono text-AAsecondary text-2xl mb-6">
-            <span className="text-AAsecondary mr-2">03.</span> Let's Work Together
+            <span className="text-AAsecondary mr-2">03.</span> Let&apos;s Work Together
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-400">
-            I'm currently available for freelance projects, full-time positions, and consulting work.
+            I&apos;m currently available for freelance projects, full-time positions, and consulting work.
           </p>
           <Link 
             href="/contact" 
