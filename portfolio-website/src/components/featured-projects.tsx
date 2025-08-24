@@ -1,7 +1,6 @@
 'use client';
 
 import { ProjectCard } from './project-card';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { GithubIcon, ExternalLinkIcon } from './icons';
@@ -41,15 +40,16 @@ const featuredProjects = [
 
 export function FeaturedProjects() {
   return (
-    <div className="w-full">
+    <div className="w-full projects" id="projects">
+      <div className="section-title mb-12">
+        <h2 className="text-3xl font-bold mb-4 opacity-0">Featured Projects</h2>
+        <p className="text-gray-400 opacity-0">Some of my recent work</p>
+      </div>
       <div className="grid grid-cols-1 gap-24">
         {featuredProjects.map((project, index) => (
-          <motion.div 
+          <div 
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`relative grid grid-cols-1 md:grid-cols-12 gap-4 items-center ${index % 2 === 0 ? '' : 'md:text-right'}`}
+            className={`project-card opacity-0 relative grid grid-cols-1 md:grid-cols-12 gap-4 items-center ${index % 2 === 0 ? '' : 'md:text-right'}`}
           >
             {/* Project Image (Left for even, Right for odd) */}
             <div className={`md:col-span-7 relative ${index % 2 === 0 ? 'md:order-1' : 'md:order-2'}`}>
@@ -94,23 +94,18 @@ export function FeaturedProjects() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
       
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="mt-16 text-center"
-      >
+      <div className="mt-16 text-center project-card opacity-0">
         <Link 
           href="#projects" 
           className="border border-AAsecondary text-AAsecondary px-6 py-3 rounded hover:bg-AAsecondary hover:bg-opacity-10 transition duration-300 font-mono text-sm"
         >
           View More Projects
         </Link>
-      </motion.div>
+      </div>
     </div>
   );
 }

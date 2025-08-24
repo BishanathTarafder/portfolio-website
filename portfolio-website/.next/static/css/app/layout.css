@@ -882,9 +882,6 @@ video {
 .mt-16 {
   margin-top: 4rem;
 }
-.mt-3 {
-  margin-top: 0.75rem;
-}
 .mt-4 {
   margin-top: 1rem;
 }
@@ -1111,11 +1108,6 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.25rem * var(--tw-space-x-reverse));
   margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
-}
-.space-x-5 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(1.25rem * var(--tw-space-x-reverse));
-  margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1385,10 +1377,6 @@ video {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
 }
-.py-6 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
@@ -1534,10 +1522,6 @@ video {
 .filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
-.backdrop-blur-md {
-  --tw-backdrop-blur: blur(12px);
-  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-}
 .backdrop-blur-sm {
   --tw-backdrop-blur: blur(4px);
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
@@ -1628,11 +1612,75 @@ body {
   background: var(--accent-color);
 }
 
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', sans-serif;
   letter-spacing: -0.025em;
   line-height: 1.2;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 0;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: 1.25rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) forwards;
+}
+
+.hero .name {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) 0.2s forwards;
+}
+
+.hero .tagline {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--secondary-text);
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) 0.4s forwards;
+}
+
+.hero p {
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  color: var(--secondary-text);
+  font-size: 1.125rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) 0.6s forwards;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) 0.8s forwards;
 }
 
 /* Logo */
@@ -1764,7 +1812,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 8px 16px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
   margin: 0 4px;
   border: 1px solid transparent;
   letter-spacing: 0.5px;
@@ -1773,6 +1820,36 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-links a::before {
   content: '';
+}
+
+/* Footer */
+footer {
+  background-color: var(--background-color);
+  color: var(--secondary-text);
+  padding: 20px 0;
+  text-align: center;
+  /* Remove border to make it blend seamlessly */
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  transition: color var(--transition-duration) var(--animation-timing);
+  /* Add subtle styling to make it appear as a natural continuation */
+  opacity: 0.8;
+}
+
+.footer-content p:hover {
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+.nav-links a::before {
   position: absolute;
   top: 0;
   left: -100%;
@@ -1820,6 +1897,12 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Animation Classes */
+.fadeInUp {
+  animation: fadeInUp 0.6s var(--animation-timing) forwards;
+  opacity: 1 !important; /* Ensure elements are visible after animation */
 }
 
 @keyframes pulse {
@@ -1916,6 +1999,11 @@ h1, h2, h3, h4, h5, h6 {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.hover\:-translate-y-2:hover {
+  --tw-translate-y: -0.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
@@ -1955,10 +2043,6 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgb(254 202 202 / var(--tw-bg-opacity, 1));
 }
 
-.hover\:bg-transparent:hover {
-  background-color: transparent;
-}
-
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(226 232 240 / var(--tw-bg-opacity, 1));
@@ -1970,11 +2054,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .hover\:bg-opacity-5:hover {
   --tw-bg-opacity: 0.05;
-}
-
-.hover\:text-AAprimary:hover {
-  --tw-text-opacity: 1;
-  color: rgb(15 23 42 / var(--tw-text-opacity, 1));
 }
 
 .hover\:text-AAsecondary:hover {
@@ -2017,6 +2096,12 @@ h1, h2, h3, h4, h5, h6 {
 .focus\:ring-AAsecondary:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(56 189 248 / var(--tw-ring-opacity, 1));
+}
+
+.active\:scale-95:active {
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .group:hover .group-hover\:translate-x-4 {
@@ -2127,20 +2212,12 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 640px) {
 
-  .sm\:mb-4 {
-    margin-bottom: 1rem;
-  }
-
   .sm\:mb-6 {
     margin-bottom: 1.5rem;
   }
 
   .sm\:mb-8 {
     margin-bottom: 2rem;
-  }
-
-  .sm\:mt-4 {
-    margin-top: 1rem;
   }
 
   .sm\:h-14 {
@@ -2151,16 +2228,8 @@ h1, h2, h3, h4, h5, h6 {
     height: 13rem;
   }
 
-  .sm\:h-6 {
-    height: 1.5rem;
-  }
-
   .sm\:w-14 {
     width: 3.5rem;
-  }
-
-  .sm\:w-6 {
-    width: 1.5rem;
   }
 
   .sm\:max-w-2xl {
@@ -2173,12 +2242,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .sm\:gap-2 {
     gap: 0.5rem;
-  }
-
-  .sm\:space-x-6 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(1.5rem * var(--tw-space-x-reverse));
-    margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .sm\:p-5 {
@@ -2208,11 +2271,6 @@ h1, h2, h3, h4, h5, h6 {
   .sm\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
-  }
-
-  .sm\:py-8 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
   }
 
   .sm\:text-3xl {
@@ -2327,11 +2385,6 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1.5rem;
   }
 
-  .md\:px-12 {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-
   .md\:px-16 {
     padding-left: 4rem;
     padding-right: 4rem;
@@ -2371,10 +2424,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .lg\:col-span-1 {
     grid-column: span 1 / span 1;
-  }
-
-  .lg\:hidden {
-    display: none;
   }
 
   .lg\:grid-cols-2 {

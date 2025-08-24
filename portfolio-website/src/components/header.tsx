@@ -34,6 +34,17 @@ export function Header() {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
     
+    // Special case for home - scroll to top
+    if (path === '#home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Close mobile menu if open
+      if (mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+      return;
+    }
+    
     // Only apply smooth scrolling for hash links
     if (path.startsWith('#')) {
       const targetId = path.substring(1);
@@ -115,11 +126,14 @@ export function Header() {
     <header className={`
       fixed top-0 inset-x-0 z-[100] transition-all duration-300 will-change-transform
       ${hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}
-      ${atTop ? 'bg-transparent backdrop-blur-sm' : 'bg-opacity-70 bg-AAprimary backdrop-blur-md shadow-lg'}
+      ${atTop ? 'bg-transparent' : 'bg-opacity-70 bg-AAprimary shadow-lg'}
     `}>
       <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4">
         <div className="relative">
-          <Link href="/" className="logo">
+          <Link href="#home" onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }} className="logo" aria-label="Home">
             <div className="logo-circle">
               <span>BT</span>
             </div>
@@ -139,11 +153,15 @@ export function Header() {
               </Link>
             ))}
             <Link 
-              href="https://drive.google.com/file/d/1234567890/view" 
-              target="_blank" 
+              href="/resume.pdf" 
+              target="_blank"
               rel="noreferrer"
-              className="btn btn-outline ml-4 bg-transparent border-2 border-AAsecondary text-AAsecondary hover:bg-AAsecondary hover:text-AAprimary transition-all duration-300 py-2 px-6 rounded-md font-semibold relative overflow-hidden"
+              className="ml-4 btn btn-outline flex items-center gap-2"
+              download
             >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
               Resume
             </Link>
           </div>
@@ -207,13 +225,17 @@ export function Header() {
               </Link>
             ))}
             <Link 
-              href="https://drive.google.com/file/d/1234567890/view" 
+              href="/resume.pdf" 
               target="_blank" 
               rel="noreferrer" 
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-6 inline-block border-2 border-AAsecondary text-AAsecondary rounded-md py-3 px-8 hover:bg-AAsecondary hover:text-AAprimary transition-all duration-300 font-semibold relative overflow-hidden"
+              className="mt-6 inline-block btn btn-outline flex items-center gap-2"
+              download
             >
-              Resume
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+              <span>Resume</span>
             </Link>
           </div>
         </div>

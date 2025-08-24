@@ -1,35 +1,25 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 export function ContactCTA() {
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-AAprimary to-AAsecondary text-white">
+    <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-AAprimary to-AAsecondary text-white contact">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl text-center">
-        <motion.h2 
-          className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          Interested in working together?
-        </motion.h2>
-        <motion.p 
-          className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-xl sm:max-w-2xl mx-auto opacity-90"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          I&apos;m currently available for freelance projects, full-time positions, and consulting work.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="inline-block"
+        <div className="section-title">
+          <h2 
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 opacity-0"
+          >
+            Interested in working together?
+          </h2>
+          <p 
+            className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-xl sm:max-w-2xl mx-auto opacity-90 opacity-0"
+          >
+            I&apos;m currently available for freelance projects, full-time positions, and consulting work.
+          </p>
+        </div>
+        <div
+          className="inline-block opacity-0 hover:scale-105 active:scale-95 transition-transform duration-300"
         >
           <Link 
             href="#contact" 
@@ -44,7 +34,7 @@ export function ContactCTA() {
           >
             Get in Touch
           </Link>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

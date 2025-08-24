@@ -52,11 +52,75 @@ body {
   background: var(--accent-color);
 }
 
+/* Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Calibre', 'Inter', 'San Francisco', 'SF Pro Text', sans-serif;
   letter-spacing: -0.025em;
   line-height: 1.2;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 0;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: 1.25rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+  font-weight: 500;
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) forwards;
+}
+
+.hero .name {
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) 0.2s forwards;
+}
+
+.hero .tagline {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--secondary-text);
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) 0.4s forwards;
+}
+
+.hero p {
+  max-width: 600px;
+  margin-bottom: 2.5rem;
+  color: var(--secondary-text);
+  font-size: 1.125rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) 0.6s forwards;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s var(--animation-timing) 0.8s forwards;
 }
 
 /* Logo */
@@ -188,7 +252,6 @@ h1, h2, h3, h4, h5, h6 {
   padding: 8px 16px;
   border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(5px);
   margin: 0 4px;
   border: 1px solid transparent;
   letter-spacing: 0.5px;
@@ -197,6 +260,36 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-links a::before {
   content: '';
+}
+
+/* Footer */
+footer {
+  background-color: var(--background-color);
+  color: var(--secondary-text);
+  padding: 20px 0;
+  text-align: center;
+  /* Remove border to make it blend seamlessly */
+}
+
+.footer-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+  transition: color var(--transition-duration) var(--animation-timing);
+  /* Add subtle styling to make it appear as a natural continuation */
+  opacity: 0.8;
+}
+
+.footer-content p:hover {
+  color: var(--accent-color);
+  opacity: 1;
+}
+
+.nav-links a::before {
   position: absolute;
   top: 0;
   left: -100%;
@@ -244,6 +337,12 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Animation Classes */
+.fadeInUp {
+  animation: fadeInUp 0.6s var(--animation-timing) forwards;
+  opacity: 1 !important; /* Ensure elements are visible after animation */
 }
 
 @keyframes pulse {

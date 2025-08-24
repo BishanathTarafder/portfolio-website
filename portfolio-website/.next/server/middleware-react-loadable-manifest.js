@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"components\\\\chatbot\\\\index.tsx -> ./ChatbotWidget\":{\"id\":\"components\\\\chatbot\\\\index.tsx -> ./ChatbotWidget\",\"files\":[\"static/css/_app-pages-browser_src_components_chatbot_ChatbotWidget_tsx.css\",\"static/chunks/_app-pages-browser_src_components_chatbot_ChatbotWidget_tsx.js\"]},\"components\\\\layout.tsx -> ./chatbot\":{\"id\":\"components\\\\layout.tsx -> ./chatbot\",\"files\":[\"static/chunks/_app-pages-browser_src_components_chatbot_index_tsx.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{}"
