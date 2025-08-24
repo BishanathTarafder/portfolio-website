@@ -7,6 +7,7 @@ import { ThemeToggle } from './theme-toggle';
 import { CloseIcon } from './icons';
 
 const navItems = [
+  { name: 'Home', number: '00', path: '#home' },
   { name: 'About', number: '01', path: '#about' },
   { name: 'Experience', number: '02', path: '#experience' },
   { name: 'Work', number: '03', path: '#projects' },
@@ -114,7 +115,7 @@ export function Header() {
     <header className={`
       fixed top-0 inset-x-0 z-[100] transition-all duration-300 will-change-transform
       ${hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}
-      ${atTop ? 'bg-transparent shadow-none' : 'bg-AAprimary shadow-md'}
+      ${atTop ? 'bg-transparent backdrop-blur-sm' : 'bg-opacity-70 bg-AAprimary backdrop-blur-md shadow-lg'}
     `}>
       <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4">
         <div className="relative">
@@ -138,10 +139,10 @@ export function Header() {
               </Link>
             ))}
             <Link 
-              href="/resume.pdf" 
+              href="https://drive.google.com/file/d/1234567890/view" 
               target="_blank" 
               rel="noreferrer"
-              className="bg-transparent border border-accent-color text-accent-color hover:bg-accent-color hover:text-white transition-all duration-300 py-2 px-4 rounded"
+              className="btn btn-outline ml-4 bg-transparent border-2 border-AAsecondary text-AAsecondary hover:bg-AAsecondary hover:text-AAprimary transition-all duration-300 py-2 px-6 rounded-md font-semibold relative overflow-hidden"
             >
               Resume
             </Link>
@@ -152,18 +153,18 @@ export function Header() {
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex flex-col items-end p-1 focus:outline-none focus:ring-2 focus:ring-accent-color rounded"
+            className="flex flex-col items-end p-1 focus:outline-none focus:ring-2 focus:ring-AAsecondary rounded"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
-              <CloseIcon className="w-6 h-6 text-accent-color" />
+              <CloseIcon className="w-6 h-6 text-AAsecondary" />
             ) : (
               <div className="flex flex-col items-end space-y-1.5">
-                <div className="w-8 h-0.5 rounded bg-accent-color"></div>
-                <div className="w-6 h-0.5 rounded bg-accent-color"></div>
-                <div className="w-4 h-0.5 rounded bg-accent-color"></div>
+                <div className="w-8 h-0.5 rounded bg-AAsecondary"></div>
+                <div className="w-6 h-0.5 rounded bg-AAsecondary"></div>
+                <div className="w-4 h-0.5 rounded bg-AAsecondary"></div>
               </div>
             )}
           </button>
@@ -200,17 +201,17 @@ export function Header() {
                   setMobileMenuOpen(false);
                 }}
               >
-                <span className="text-white text-lg hover:text-accent-color transition-colors duration-300">
+                <span className="text-white text-lg hover:text-AAsecondary transition-colors duration-300">
                   {item.name}
                 </span>
               </Link>
             ))}
             <Link 
-              href="/resume.pdf" 
+              href="https://drive.google.com/file/d/1234567890/view" 
               target="_blank" 
               rel="noreferrer" 
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-6 inline-block border border-accent-color text-accent-color rounded-md py-3 px-8 hover:bg-accent-color hover:text-white transition-all duration-300"
+              className="mt-6 inline-block border-2 border-AAsecondary text-AAsecondary rounded-md py-3 px-8 hover:bg-AAsecondary hover:text-AAprimary transition-all duration-300 font-semibold relative overflow-hidden"
             >
               Resume
             </Link>

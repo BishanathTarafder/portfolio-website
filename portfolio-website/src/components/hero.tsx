@@ -55,8 +55,23 @@ export function Hero() {
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.8 }}
           className="hero-buttons"
         >
-          <a href="/resume.pdf" target="_blank" rel="noreferrer" className="bg-transparent border border-accent-color text-accent-color hover:bg-accent-color hover:text-white transition-all duration-300 py-3 px-6 rounded">
-            Check out my resume!
+          <a 
+            href="#projects" 
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('projects');
+            }}
+            className="btn bg-AAsecondary text-AAprimary border-2 border-AAsecondary hover:bg-transparent hover:text-AAsecondary transition-all duration-300 py-3 px-6 rounded-md font-semibold relative overflow-hidden"
+          >
+            Check out my work
+          </a>
+          <a 
+            href="https://drive.google.com/file/d/1234567890/view" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="btn-outline bg-transparent border-2 border-AAsecondary text-AAsecondary hover:bg-AAsecondary hover:text-AAprimary transition-all duration-300 py-3 px-6 rounded-md font-semibold relative overflow-hidden"
+          >
+            Resume
           </a>
         </motion.div>
       </div>
