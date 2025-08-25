@@ -122,6 +122,59 @@ export function Header() {
     };
   }, [mobileMenuOpen]);
   
+  // Animation for navbar buttons
+  useEffect(() => {
+    // Wait for hero section animations to complete before animating navbar
+    // Hero animations complete at 0.8s + 0.6s = 1.4s (last animation start + duration)
+    const heroAnimationCompleteDelay = 1600; // 1.4s + 200ms buffer
+    
+    // Animate desktop navbar buttons after hero animations complete
+    const desktopNavLinks = document.querySelectorAll('.nav-links a');
+    desktopNavLinks.forEach((link, index) => {
+      if (link instanceof HTMLElement && link.getAttribute('data-animated') === 'false') {
+        setTimeout(() => {
+          link.classList.remove('opacity-0');
+          link.classList.add('fadeInUp');
+          link.setAttribute('data-animated', 'true');
+        }, heroAnimationCompleteDelay + (index * 100)); // Staggered delay after hero animations
+      }
+    });
+    
+    // Animate desktop resume button after hero animations complete
+    const desktopResumeBtn = document.querySelector('.nav-links .btn-outline');
+    if (desktopResumeBtn && desktopResumeBtn.getAttribute('data-animated') === 'false') {
+      setTimeout(() => {
+        desktopResumeBtn.classList.remove('opacity-0');
+        desktopResumeBtn.classList.add('fadeInUp');
+        desktopResumeBtn.setAttribute('data-animated', 'true');
+      }, heroAnimationCompleteDelay + 600); // Appear after other nav items
+    }
+
+    // Animate mobile menu items when mobile menu opens
+    if (mobileMenuOpen) {
+      const mobileNavLinks = document.querySelectorAll('.flex-col.h-full a:not(.btn-outline)');
+      mobileNavLinks.forEach((link, index) => {
+        if (link instanceof HTMLElement && link.getAttribute('data-animated') === 'false') {
+          setTimeout(() => {
+            link.classList.remove('opacity-0');
+            link.classList.add('fadeInUp');
+            link.setAttribute('data-animated', 'true');
+          }, 300 + (index * 100)); // Staggered delay for mobile menu items
+        }
+      });
+      
+      // Animate mobile resume button when mobile menu opens
+      const mobileResumeBtn = document.querySelector('.mt-6.btn-outline');
+      if (mobileResumeBtn && mobileResumeBtn.getAttribute('data-animated') === 'false') {
+        setTimeout(() => {
+          mobileResumeBtn.classList.remove('opacity-0');
+          mobileResumeBtn.classList.add('fadeInUp');
+          mobileResumeBtn.setAttribute('data-animated', 'true');
+        }, 800); // Appear after other mobile menu items
+      }
+    }
+  }, [mobileMenuOpen]);
+  
   return (
     <header className={`
       fixed top-0 inset-x-0 z-[100] transition-all duration-300 will-change-transform
@@ -143,11 +196,14 @@ export function Header() {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center">
           <div className="nav-links">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <Link 
                 key={item.path}
                 href={item.path} 
                 onClick={(e) => scrollToSection(e, item.path)}
+                className="opacity-0"
+                data-animated="false"
+                data-index={index}
               >
                 {item.name}
               </Link>
@@ -156,8 +212,9 @@ export function Header() {
               href="/resume.pdf" 
               target="_blank"
               rel="noreferrer"
-              className="ml-4 btn btn-outline flex items-center gap-2"
+              className="ml-4 btn btn-outline flex items-center gap-2 opacity-0"
               download
+              data-animated="false"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -209,11 +266,13 @@ export function Header() {
           role="menu"
         >
           <div className="flex flex-col h-full justify-center items-center space-y-8 py-8">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <Link 
                 key={item.path} 
                 href={item.path}
-                className="text-center px-6 py-2 rounded-lg bg-opacity-10 hover:bg-white hover:bg-opacity-5 transition-all duration-300"
+                className="text-center px-6 py-2 rounded-lg bg-opacity-10 hover:bg-white hover:bg-opacity-5 transition-all duration-300 opacity-0"
+                data-animated="false"
+                data-index={index}
                 onClick={(e) => {
                   scrollToSection(e, item.path);
                   setMobileMenuOpen(false);
@@ -229,8 +288,9 @@ export function Header() {
               target="_blank" 
               rel="noreferrer" 
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-6 inline-block btn btn-outline flex items-center gap-2"
+              className="mt-6 inline-block btn btn-outline flex items-center gap-2 opacity-0"
               download
+              data-animated="false"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />

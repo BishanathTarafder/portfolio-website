@@ -16,7 +16,7 @@ import { GithubIcon, LinkedInIcon, TwitterIcon, InstagramIcon } from '@/componen
 export default function HomePage() {
   useEffect(() => {
     // Helper function to animate elements
-    const animateElement = (element: Element, animation: string, delay: number = 0) => {
+    const animateElement = (element: Element, animation: string, delay: number) => {
       if (!element) return; // Skip if element doesn't exist
       
       // Mark this element as being animated to prevent duplicate animations
@@ -37,105 +37,55 @@ export default function HomePage() {
       }, delay);
     };
 
-    // Create an observer with options
+    // Create an observer with options - using a moderate threshold for better visibility
     const observerOptions = {
       root: null, // viewport is the root
-      rootMargin: '-200px', // Only trigger when element is 200px into the viewport
-      threshold: 0.8 // trigger when at least 80% of the element is visible
+      rootMargin: '0px', // No margin
+      threshold: 0.3 // trigger when at least 30% of the element is visible
     };
 
     // Track which elements have already been animated
     const animatedElements = new Set();
 
+    // Find all elements with opacity-0 class to observe individually
+    const elementsToObserve = document.querySelectorAll('.opacity-0');
+    
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // Only animate elements that haven't been animated yet
+        // Only animate elements that haven't been animated yet and are intersecting
         if (entry.isIntersecting && !animatedElements.has(entry.target)) {
           animatedElements.add(entry.target);
           
-          // First, make the section itself visible
-          entry.target.classList.remove('opacity-0');
-          entry.target.classList.add('fadeInUp');
-          
-          // Hero section animations are handled by CSS
-          
-          // Projects section animations
-          if (entry.target.id === 'projects' || entry.target.classList.contains('projects')) {
-            const title = entry.target.querySelector('.section-title h2');
-            const subtitle = entry.target.querySelector('.section-title p');
-            const cards = entry.target.querySelectorAll('.project-card');
+          // Determine delay based on siblings with same parent
+          const parent = entry.target.parentElement;
+          if (parent) {
+            const siblings = Array.from(parent.querySelectorAll('.opacity-0'));
+            const index = siblings.indexOf(entry.target as Element);
             
-            if (title) animateElement(title, 'fadeInUp', 0);
-            if (subtitle) animateElement(subtitle, 'fadeInUp', 200);
+            // Use longer delays for non-hero sections
+            const isHeroSection = parent.closest('.hero') !== null || entry.target.closest('.hero') !== null;
+            const baseDelay = isHeroSection ? 200 : 300; // Longer base delay for non-hero sections
+            const delay = index > -1 ? index * baseDelay : 0;
             
-            cards.forEach((card, index) => {
-              animateElement(card, 'fadeInUp', 300 + (index * 200));
-            });
+            // Animate the element
+            animateElement(entry.target, 'fadeInUp', delay);
+          } else {
+            // If no parent or siblings, just animate with no delay
+            animateElement(entry.target, 'fadeInUp', 0);
           }
-          
-          // About section animations
-          else if (entry.target.id === 'about' || entry.target.classList.contains('about')) {
-            const title = entry.target.querySelector('h2');
-            const paragraphs = entry.target.querySelectorAll('p');
-            const skills = entry.target.querySelector('.skills');
-            
-            if (title) animateElement(title, 'fadeInUp', 0);
-            
-            paragraphs.forEach((p, index) => {
-              animateElement(p, 'fadeInUp', 200 + (index * 100));
-            });
-            
-            if (skills) animateElement(skills, 'fadeInUp', 500);
-          }
-          
-          // Contact section animations
-          else if (entry.target.id === 'contact' || entry.target.classList.contains('contact')) {
-            const title = entry.target.querySelector('.section-title h2');
-            const subtitle = entry.target.querySelector('.section-title p');
-            const form = entry.target.querySelector('form');
-            const info = entry.target.querySelector('.contact-info');
-            
-            if (title) animateElement(title, 'fadeInUp', 0);
-            if (subtitle) animateElement(subtitle, 'fadeInUp', 200);
-            if (info) animateElement(info, 'fadeInUp', 300);
-            if (form) animateElement(form, 'fadeInUp', 400);
-          }
-          
-          // Make all opacity-0 elements within this section visible
-          entry.target.querySelectorAll('.opacity-0').forEach(element => {
-            animateElement(element, 'fadeInUp', 100);
-          });
         }
       });
     }, observerOptions);
-
-    // Observe all sections
-    document.querySelectorAll('section').forEach(section => {
-      // Initially hide all sections except hero
-      if (section.id !== 'hero' && !section.classList.contains('hero')) {
-        section.classList.add('opacity-0');
+    
+    // Observe each element individually
+    elementsToObserve.forEach(element => {
+      // Skip elements that have already been animated
+      if (element.getAttribute('data-animated') !== 'true') {
+        observer.observe(element);
       }
-      observer.observe(section);
     });
     
-    // Make sure all sections and their children become visible even if animation fails
-    setTimeout(() => {
-      document.querySelectorAll('.opacity-0').forEach(element => {
-        element.classList.remove('opacity-0');
-        element.classList.add('fadeInUp');
-      });
-    }, 3000); // Fallback after 3 seconds
-    
-    // Additional safety check after page is fully loaded
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.querySelectorAll('.opacity-0').forEach(element => {
-          element.classList.remove('opacity-0');
-          element.classList.add('fadeInUp');
-        });
-      }, 1000);
-    });
-
+    // Cleanup function to disconnect observer when component unmounts
     return () => {
       observer.disconnect();
     };
