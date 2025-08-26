@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -11,46 +12,68 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="hero">
-      <div className="container">
-        <h1 className="opacity-0">Hi, my name is</h1>
+    <section id="home" className="hero">
+      <div className="container mx-auto px-6 md:px-12">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+        >
+          Hi, my name is
+        </motion.h1>
         
-        <h2 className="name opacity-0">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
+          className="name"
+        >
           Bishanath Tarafder
-        </h2>
+        </motion.div>
         
-        <h3 className="tagline opacity-0">
-          I make ideas & things alive.
-        </h3>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.4 }}
+          className="tagline"
+        >
+          I build things for the web
+        </motion.div>
         
-        <p className="opacity-0">
-          I'm a software engineer, I possess strong problem-solving skills and specialize in crafting exceptional digital experiences. 
-          My current area of focus is in the javascript ecosystem, where I actively engage in developing and designing immersive full stack applications. 
-          This involves working with Backend and Frontend of Web & Mobile Applications.
-        </p>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.6 }}
+        >
+          I'm a software engineer specializing in building exceptional digital experiences. 
+          Currently, I'm focused on building accessible, human-centered products at a startup.
+        </motion.p>
         
-        <div className="hero-buttons opacity-0">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.8 }}
+          className="hero-buttons"
+        >
           <a 
             href="#projects" 
             onClick={(e) => {
               e.preventDefault();
               scrollToSection('projects');
             }}
-            className="btn"
+            className="btn bg-accent-color text-background-color border-2 border-accent-color hover:bg-transparent hover:text-accent-color transition-all duration-300 py-3 px-6 rounded-md font-semibold relative overflow-hidden"
           >
-            View My Work
+            Check out my work
           </a>
           <a 
-            href="#contact" 
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection('contact');
-            }}
-            className="btn btn-outline"
+            href="https://drive.google.com/file/d/1234567890/view" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="btn-outline bg-transparent border-2 border-accent-color text-accent-color hover:bg-accent-color hover:text-background-color transition-all duration-300 py-3 px-6 rounded-md font-semibold relative overflow-hidden"
           >
-            Get in Touch
+            Resume
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

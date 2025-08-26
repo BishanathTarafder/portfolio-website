@@ -1,0 +1,150 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/NavButton.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+/* NavButton Module CSS */
+
+.NavButton_navButton__Q1_wh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #6049ea;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #6049ea;
+  position: relative;
+  overflow: hidden;
+}
+
+.NavButton_navButton__Q1_wh:hover {
+  background-color: #6049ea;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px #6049ea;
+}
+
+.NavButton_navButton__Q1_wh::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.NavButton_navButton__Q1_wh:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.NavButton_navButtonActive__a7eGx {
+  background-color: #6049ea;
+  color: white;
+}
+
+/* Mobile nav button styles */
+.NavButton_mobileNavButton__zMqJS {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #6049ea;
+  border: 2px solid #6049ea;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.NavButton_mobileNavButton__zMqJS:hover {
+  background-color: #6049ea;
+  color: white;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/SocialIcon.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+/* SocialIcon Module CSS */
+
+.SocialIcon_socialIcon__zh33L {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  fill: currentColor;
+  cursor: pointer;
+}
+
+.SocialIcon_socialIcon__zh33L:hover {
+  color: #6049ea;
+  filter: drop-shadow(0 0 8px #6049ea);
+  transform: translateY(-2px);
+}
+
+.SocialIcon_socialIconContainer__a6y3K {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Dark mode specific styles */
+.SocialIcon_darkSocialIcon__DGRqX {
+  color: #e2e8f0;
+}
+
+.SocialIcon_darkSocialIcon__DGRqX:hover {
+  color: #6049ea;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ContactButton.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/* ContactButton Module CSS */
+
+.ContactButton_contactButton__KIVNv {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6049ea;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #6049ea;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(96, 73, 234, 0.2);
+}
+
+.ContactButton_contactButton__KIVNv:hover {
+  background-color: transparent;
+  color: #6049ea;
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px #6049ea;
+}
+
+.ContactButton_contactButton__KIVNv::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.ContactButton_contactButton__KIVNv:hover::before {
+  width: 300px;
+  height: 300px;
+}

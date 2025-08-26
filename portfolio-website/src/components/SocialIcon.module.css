@@ -1,0 +1,31 @@
+/* SocialIcon Module CSS */
+
+.socialIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  fill: currentColor;
+  cursor: pointer;
+}
+
+.socialIcon:hover {
+  color: #6049ea;
+  filter: drop-shadow(0 0 8px #6049ea);
+  transform: translateY(-2px);
+}
+
+.socialIconContainer {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Dark mode specific styles */
+.darkSocialIcon {
+  color: #e2e8f0;
+}
+
+.darkSocialIcon:hover {
+  color: #6049ea;
+}

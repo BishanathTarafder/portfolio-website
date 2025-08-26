@@ -87,7 +87,7 @@ export function GithubIcon(props: IconProps) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className="w-6 h-6 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"
+      className="w-6 h-6 text-white hover:text-[#6049ea] hover:shadow-[0_0_8px_#6049ea] transition-all duration-300 fill-current hover:cursor-pointer"
       {...props}
     >
       <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
@@ -98,7 +98,7 @@ export function GithubIcon(props: IconProps) {
 export function LinkedInIcon(props: IconProps) {
   return (
     <svg
-      className="w-6 h-6 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"
+      className="w-6 h-6 text-white hover:text-[#6049ea] hover:shadow-[0_0_8px_#6049ea] transition-all duration-300 fill-current hover:cursor-pointer"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
       {...props}
@@ -111,7 +111,7 @@ export function LinkedInIcon(props: IconProps) {
 export function TwitterIcon(props: IconProps) {
   return (
     <svg
-      className="w-6 h-6 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"
+      className="w-6 h-6 text-white hover:text-[#6049ea] hover:shadow-[0_0_8px_#6049ea] transition-all duration-300 fill-current hover:cursor-pointer"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       {...props}
@@ -121,10 +121,23 @@ export function TwitterIcon(props: IconProps) {
   );
 }
 
+export function KaggleIcon(props: IconProps) {
+  return (
+    <svg
+      className="w-6 h-6 text-white hover:text-[#6049ea] hover:shadow-[0_0_8px_#6049ea] transition-all duration-300 fill-current hover:cursor-pointer"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 320 512"
+      {...props}
+    >
+      <path d="M304.2 501.5L158.4 320.3 298.2 185c2.6-2.7 1.7-10.5-5.3-10.5h-69.2c-3.5 0-7 1.8-10.5 5.3L80.9 313.5V7.5q0-7.5-7.5-7.5H21.5Q14 0 14 7.5v497q0 7.5 7.5 7.5h51.9q7.5 0 7.5-7.5v-109l30.8-29.3 110.5 140.6c3 3.5 6.5 5.3 10.5 5.3h66.9q5.25 0 6-3z"/>
+    </svg>
+  );
+}
+
 export function InstagramIcon(props: IconProps) {
   return (
     <svg
-      className="w-6 h-6 text-gray-400 hover:text-AAsecondary fill-current hover:cursor-pointer"
+      className="w-6 h-6 text-white hover:text-[#6049ea] hover:shadow-[0_0_8px_#6049ea] transition-all duration-300 fill-current hover:cursor-pointer"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 448 512"
       {...props}

@@ -5,13 +5,13 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { ThemeToggle } from './theme-toggle';
 import { CloseIcon } from './icons';
+import styles from './NavButton.module.css';
 
 const navItems = [
   { name: 'Home', number: '00', path: '#home' },
   { name: 'About', number: '01', path: '#about' },
-  { name: 'Experience', number: '02', path: '#experience' },
-  { name: 'Work', number: '03', path: '#projects' },
-  { name: 'Contact', number: '04', path: '#contact' },
+  { name: 'Work', number: '02', path: '#projects' },
+  { name: 'Contact', number: '03', path: '#contact' },
 ];
 
 export function Header() {
@@ -30,13 +30,16 @@ export function Header() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
   
-  // Function to handle smooth scrolling
+  // Function to handle smooth scrolling with easing
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
     
     // Special case for home - scroll to top
     if (path === '#home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
       
       // Close mobile menu if open
       if (mobileMenuOpen) {
@@ -56,8 +59,28 @@ export function Header() {
           setMobileMenuOpen(false);
         }
         
-        // Smooth scroll to the element
-        targetElement.scrollIntoView({ behavior: 'smooth' });
+        // Get the target position with offset for header
+        const headerOffset = 100; // Increased offset for better spacing
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        // Custom smooth scroll with improved easing
+        const scrollOptions = {
+          left: 0,
+          top: offsetPosition,
+          behavior: 'smooth' as ScrollBehavior
+        };
+        
+        // Force style priority with !important by using scrollIntoView with custom options
+        setTimeout(() => {
+          window.scrollTo(scrollOptions);
+          
+          // Update hash after scrolling completes
+          setTimeout(() => {
+            window.history.pushState(null, '', path);
+            setCurrentHash(path);
+          }, 800);
+        }, 10);
       }
     }
   };
@@ -179,7 +202,7 @@ export function Header() {
     <header className={`
       fixed top-0 inset-x-0 z-[100] transition-all duration-300 will-change-transform
       ${hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}
-      ${atTop ? 'bg-transparent' : 'bg-opacity-70 bg-AAprimary shadow-lg'}
+      ${atTop ? 'bg-transparent' : 'bg-opacity-70 bg-black shadow-lg'}
     `}>
       <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4">
         <div className="relative">
@@ -201,9 +224,10 @@ export function Header() {
                 key={item.path}
                 href={item.path} 
                 onClick={(e) => scrollToSection(e, item.path)}
-                className="opacity-0"
+                className={`${styles.navButton} opacity-0 mr-4`}
                 data-animated="false"
                 data-index={index}
+                data-testid={`nav-${item.name.toLowerCase()}`}
               >
                 {item.name}
               </Link>
@@ -212,9 +236,10 @@ export function Header() {
               href="/resume.pdf" 
               target="_blank"
               rel="noreferrer"
-              className="ml-4 btn btn-outline flex items-center gap-2 opacity-0"
+              className={`${styles.navButton} ${styles.navButtonActive} opacity-0 flex items-center gap-2`}
               download
               data-animated="false"
+              data-testid="nav-resume"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -228,18 +253,18 @@ export function Header() {
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex flex-col items-end p-1 focus:outline-none focus:ring-2 focus:ring-AAsecondary rounded"
+            className="flex flex-col items-end p-1 focus:outline-none focus:ring-2 focus:ring-[#6049ea] rounded-lg"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
           >
             {mobileMenuOpen ? (
-              <CloseIcon className="w-6 h-6 text-AAsecondary" />
+              <CloseIcon className="w-6 h-6 text-[#6049ea]" />
             ) : (
               <div className="flex flex-col items-end space-y-1.5">
-                <div className="w-8 h-0.5 rounded bg-AAsecondary"></div>
-                <div className="w-6 h-0.5 rounded bg-AAsecondary"></div>
-                <div className="w-4 h-0.5 rounded bg-AAsecondary"></div>
+                <div className="w-8 h-0.5 rounded bg-[#6049ea]"></div>
+                <div className="w-6 h-0.5 rounded bg-[#6049ea]"></div>
+                <div className="w-4 h-0.5 rounded bg-[#6049ea]"></div>
               </div>
             )}
           </button>
@@ -262,7 +287,7 @@ export function Header() {
           tabIndex={mobileMenuOpen ? 0 : -1}
         ></div>
         <div 
-          className={`absolute right-0 top-0 h-screen w-3/4 max-w-sm bg-AAprimary shadow-xl transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`absolute right-0 top-0 h-screen w-3/4 max-w-sm bg-black shadow-xl transform transition-transform duration-300 ease-in-out ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
           role="menu"
         >
           <div className="flex flex-col h-full justify-center items-center space-y-8 py-8">
@@ -270,17 +295,16 @@ export function Header() {
               <Link 
                 key={item.path} 
                 href={item.path}
-                className="text-center px-6 py-2 rounded-lg bg-opacity-10 hover:bg-white hover:bg-opacity-5 transition-all duration-300 opacity-0"
+                className={`${styles.mobileNavButton} opacity-0`}
                 data-animated="false"
                 data-index={index}
+                data-testid={`mobile-nav-${item.name.toLowerCase()}`}
                 onClick={(e) => {
                   scrollToSection(e, item.path);
                   setMobileMenuOpen(false);
                 }}
               >
-                <span className="text-white text-lg hover:text-AAsecondary transition-colors duration-300">
-                  {item.name}
-                </span>
+                {item.name}
               </Link>
             ))}
             <Link 
@@ -288,9 +312,10 @@ export function Header() {
               target="_blank" 
               rel="noreferrer" 
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-6 inline-block btn btn-outline flex items-center gap-2 opacity-0"
+              className={`${styles.navButton} ${styles.navButtonActive} mt-6 inline-flex items-center gap-2 opacity-0`}
               download
               data-animated="false"
+              data-testid="mobile-nav-resume"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />

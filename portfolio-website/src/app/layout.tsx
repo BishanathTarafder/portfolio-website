@@ -51,9 +51,9 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#0f172a" />
+        <meta name="theme-color" content="#000000" />
       </head>
-      <body className={`${inter.variable} ${firaCode.variable} font-sans bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100`}>
+      <body className={`${inter.variable} ${firaCode.variable} font-sans bg-black text-white`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>

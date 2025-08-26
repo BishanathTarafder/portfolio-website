@@ -11,7 +11,9 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 
 // Import content from other pages
-import { GithubIcon, LinkedInIcon, TwitterIcon, InstagramIcon } from '@/components/icons';
+import { GithubIcon, LinkedInIcon, TwitterIcon, KaggleIcon } from '@/components/icons';
+import socialStyles from '@/components/SocialIcon.module.css';
+import contactStyles from '@/components/ContactButton.module.css';
 
 export default function HomePage() {
   useEffect(() => {
@@ -189,107 +191,12 @@ export default function HomePage() {
         </div>
       </section>
       
-      {/* Experience Section */}
-      <section id="experience" className="py-24 bg-black">
-        <div className="container mx-auto px-4 md:px-16 lg:px-32">
-          <h2 
-            className="flex items-center font-mono text-AAsecondary text-2xl mb-12 opacity-0"
-          >
-            <span className="text-AAsecondary mr-2">02.</span> Experience
-            <div className="h-[1px] bg-gray-600 ml-6 w-32 md:w-96"></div>
-          </h2>
-          
-          <div className="mb-12 opacity-0">
-            <div className="bg-gray-800/50 rounded-md border border-gray-700 p-8 mb-12">
-              <div className="mb-8">
-                <div className="mb-8">
-                  <h3 className="text-lg font-bold mb-4 pb-2 border-b border-gray-700 text-AAsecondary font-mono">Work Experience</h3>
-                  
-                  <div className="mb-6">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                      <h4 className="text-xl font-bold text-gray-200">Senior AI Engineer</h4>
-                      <div className="flex items-center gap-2 text-sm">
-                        <span className="text-AAsecondary">TechCorp Inc.</span>
-                        <span className="text-white">|</span>
-                        <span className="text-white">2021 - Present</span>
-                      </div>
-                    </div>
-                    <ul className="list-disc list-inside text-white space-y-2 ml-4">
-                      <li>Led the development of computer vision algorithms for autonomous systems</li>
-                      <li>Designed and implemented deep learning models for real-time object detection</li>
-                      <li>Optimized ML pipelines for production environments, reducing inference time by 40%</li>
-                    </ul>
-                  </div>
-                  
-                  <div className="mb-6">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                      <h4 className="text-xl font-bold text-gray-200">Machine Learning Engineer</h4>
-                      <div className="flex items-center gap-2 text-sm">
-                        <span className="text-AAsecondary">AI Solutions Ltd</span>
-                        <span className="text-white">|</span>
-                        <span className="text-white">2019 - 2021</span>
-                      </div>
-                    </div>
-                    <ul className="list-disc list-inside text-white space-y-2 ml-4">
-                      <li>Developed NLP models for sentiment analysis and text classification</li>
-                      <li>Built recommendation systems using collaborative filtering techniques</li>
-                      <li>Collaborated with cross-functional teams to integrate ML solutions into production systems</li>
-                    </ul>
-                  </div>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-bold mb-4 pb-2 border-b border-gray-700 text-AAsecondary font-mono">Education</h3>
-                  
-                  <div className="mb-6">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                      <h4 className="text-xl font-bold text-gray-200">M.S. in Computer Science</h4>
-                      <div className="flex items-center gap-2 text-sm">
-                        <span className="text-AAsecondary">Stanford University</span>
-                        <span className="text-gray-400">|</span>
-                        <span className="text-gray-400">2018 - 2020</span>
-                      </div>
-                    </div>
-                    <p className="text-gray-400">Specialization in Artificial Intelligence • GPA: 3.9/4.0</p>
-                  </div>
-                  
-                  <div>
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
-                      <h4 className="text-xl font-bold text-gray-200">B.S. in Computer Engineering</h4>
-                      <div className="flex items-center gap-2 text-sm">
-                        <span className="text-AAsecondary">MIT</span>
-                        <span className="text-gray-400">|</span>
-                        <span className="text-gray-400">2014 - 2018</span>
-                      </div>
-                    </div>
-                    <p className="text-gray-400">Minor in Mathematics • Magna Cum Laude • GPA: 3.8/4.0</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="flex justify-center">
-                <Link 
-                  href="/resume.pdf" 
-                  target="_blank"
-                  rel="noreferrer"
-                  className="border border-AAsecondary text-AAsecondary px-5 py-3 rounded hover:bg-AAsecondary hover:bg-opacity-10 transition duration-300 font-mono flex items-center gap-2"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                  Download Resume
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       
       {/* Projects Section */}
       <section id="projects" className="py-24 bg-black projects">
         <div className="container mx-auto px-4 md:px-16 lg:px-32">
           <h2 className="flex items-center font-mono text-AAsecondary text-2xl mb-12 opacity-0">
-            <span className="text-AAsecondary mr-2">03.</span> Some Things I&apos;ve Built
+            <span className="text-AAsecondary mr-2">02.</span> Some Things I&apos;ve Built
             <div className="h-[1px] bg-gray-600 ml-6 w-32 md:w-96"></div>
           </h2>
           
@@ -303,8 +210,8 @@ export default function HomePage() {
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-black contact">
         <div className="container mx-auto px-4 md:px-16 lg:px-32">
-          <h2 className="flex items-center font-mono text-AAsecondary text-2xl mb-12 justify-center opacity-0">
-            <span className="text-AAsecondary mr-2">04.</span> Get In Touch
+          <h2 className="flex items-center font-mono text-[#6049ea] text-2xl mb-12 justify-center opacity-0">
+            <span className="text-[#6049ea] mr-2">03.</span> Get In Touch
           </h2>
           
           <div className="max-w-2xl mx-auto text-center mb-12 opacity-0">
@@ -316,25 +223,26 @@ export default function HomePage() {
             <div className="flex justify-center">
               <Link 
                 href="mailto:saidulmursalinkhan@gmail.com" 
-                className="border border-AAsecondary text-AAsecondary px-8 py-4 rounded hover:bg-AAsecondary hover:bg-opacity-10 transition duration-300 font-mono text-lg"
+                className={contactStyles.contactButton}
+                data-testid="home-contact-button"
               >
                 Say Hello
               </Link>
             </div>
           </div>
           
-          <div className="flex justify-center space-x-8 mt-12 opacity-0">
-            <Link href="https://github.com/Saidul-M-Khan" target="_blank" rel="noreferrer" className="transition-transform duration-200 hover:-translate-y-1">
-              <GithubIcon className="w-6 h-6 hover:text-AAsecondary transition-colors duration-200" />
+          <div className={socialStyles.socialIconContainer}>
+            <Link href="https://github.com/Saidul-M-Khan" target="_blank" rel="noreferrer" data-testid="home-social-github">
+              <GithubIcon className={socialStyles.socialIcon} />
             </Link>
-            <Link href="https://linkedin.com/in/saidul-m-khan" target="_blank" rel="noreferrer" className="transition-transform duration-200 hover:-translate-y-1">
-              <LinkedInIcon className="w-6 h-6 hover:text-AAsecondary transition-colors duration-200" />
+            <Link href="https://linkedin.com/in/saidul-m-khan" target="_blank" rel="noreferrer" data-testid="home-social-linkedin">
+              <LinkedInIcon className={socialStyles.socialIcon} />
             </Link>
-            <Link href="https://twitter.com" target="_blank" rel="noreferrer" className="transition-transform duration-200 hover:-translate-y-1">
-              <TwitterIcon className="w-6 h-6 hover:text-AAsecondary transition-colors duration-200" />
+            <Link href="https://twitter.com" target="_blank" rel="noreferrer" data-testid="home-social-twitter">
+              <TwitterIcon className={socialStyles.socialIcon} />
             </Link>
-            <Link href="https://instagram.com" target="_blank" rel="noreferrer" className="transition-transform duration-200 hover:-translate-y-1">
-              <InstagramIcon className="w-6 h-6 hover:text-AAsecondary transition-colors duration-200" />
+            <Link href="https://kaggle.com" target="_blank" rel="noreferrer" data-testid="home-social-kaggle">
+              <KaggleIcon className={socialStyles.socialIcon} />
             </Link>
           </div>
         </div>

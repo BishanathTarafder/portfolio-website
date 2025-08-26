@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { GithubIcon, LinkedInIcon, TwitterIcon, InstagramIcon } from './icons';
+import { GithubIcon, LinkedInIcon, TwitterIcon, KaggleIcon } from './icons';
 
 export function Footer() {
   return (

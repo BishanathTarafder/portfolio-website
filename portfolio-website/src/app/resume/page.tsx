@@ -237,7 +237,7 @@ export default function ResumePage() {
           </p>
           <Link 
             href="/contact" 
-            className="border border-AAsecondary text-AAsecondary px-8 py-4 rounded hover:bg-AAsecondary hover:bg-opacity-10 transition duration-300 font-mono"
+            className="bg-[#6049ea] text-white px-8 py-4 rounded-xl hover:bg-[#7059fa] hover:shadow-[0_0_12px_#6049ea] transition-all duration-300 font-mono"
           >
             Get in Touch
           </Link>

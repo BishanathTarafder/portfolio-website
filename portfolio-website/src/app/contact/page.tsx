@@ -2,8 +2,10 @@
 
 import { useState } from 'react';
 import Layout from '@/components/layout';
-import { GithubIcon, LinkedInIcon, TwitterIcon, InstagramIcon } from '@/components/icons';
+import { GithubIcon, LinkedInIcon, TwitterIcon, KaggleIcon } from '@/components/icons';
 import { motion } from 'framer-motion';
+import socialStyles from '@/components/SocialIcon.module.css';
+import contactStyles from '@/components/ContactButton.module.css';
 
 type FormData = {
   name: string;
@@ -294,45 +296,45 @@ export default function ContactPage() {
               
               <div>
                 <h3 className="font-medium text-gray-200 mb-4 font-mono">Social Media</h3>
-                <div className="flex gap-6">
+                <div className={socialStyles.socialIconContainer}>
                   <a 
                     href="https://github.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-AAsecondary transition-colors"
                     aria-label="GitHub"
+                    data-testid="social-github"
                   >
-                    <GithubIcon className="w-6 h-6" />
+                    <GithubIcon className={socialStyles.socialIcon} />
                   </a>
                   
                   <a 
                     href="https://linkedin.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-AAsecondary transition-colors"
                     aria-label="LinkedIn"
+                    data-testid="social-linkedin"
                   >
-                    <LinkedInIcon className="w-6 h-6" />
+                    <LinkedInIcon className={socialStyles.socialIcon} />
                   </a>
                   
                   <a 
                     href="https://twitter.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-AAsecondary transition-colors"
                     aria-label="Twitter"
+                    data-testid="social-twitter"
                   >
-                    <TwitterIcon className="w-6 h-6" />
+                    <TwitterIcon className={socialStyles.socialIcon} />
                   </a>
                   
                   <a 
-                    href="https://instagram.com" 
+                    href="https://kaggle.com" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-AAsecondary transition-colors"
-                    aria-label="Instagram"
+                    aria-label="Kaggle"
+                    data-testid="social-kaggle"
                   >
-                    <InstagramIcon className="w-6 h-6" />
+                    <KaggleIcon className={socialStyles.socialIcon} />
                   </a>
                 </div>
               </div>
@@ -348,7 +350,8 @@ export default function ContactPage() {
         >
           <a 
             href="mailto:saidulmursalinkhan@gmail.com" 
-            className="border border-AAsecondary text-AAsecondary px-8 py-5 rounded hover:bg-AAsecondary hover:bg-opacity-10 transition duration-300 font-mono text-lg"
+            className={contactStyles.contactButton}
+            data-testid="contact-button"
           >
             Say Hello
           </a>

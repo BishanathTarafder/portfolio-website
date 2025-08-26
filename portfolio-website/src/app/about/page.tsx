@@ -298,15 +298,15 @@ export default function AboutPage() {
           transition={{ duration: 0.5, delay: 0.8 }}
           className="text-center"
         >
-          <h2 className="flex items-center justify-center font-mono text-AAsecondary text-2xl mb-6">
-            <span className="text-AAsecondary mr-2">03.</span> Let&apos;s Work Together
+          <h2 className="flex items-center justify-center font-mono text-[#6049ea] text-2xl mb-6">
+            <span className="text-[#6049ea] mr-2">03.</span> Let&apos;s Work Together
           </h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto text-gray-400">
             I&apos;m currently available for freelance projects, full-time positions, and consulting work.
           </p>
           <Link 
             href="/contact" 
-            className="border border-AAsecondary text-AAsecondary px-7 py-4 rounded hover:bg-AAsecondary hover:bg-opacity-10 transition duration-300 font-mono"
+            className="bg-[#6049ea] text-white px-7 py-4 rounded-xl hover:bg-[#7059fa] hover:shadow-[0_0_12px_#6049ea] transition-all duration-300 font-mono"
           >
             Get in Touch
           </Link>
