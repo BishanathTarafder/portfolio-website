@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 import socialStyles from '@/components/SocialIcon.module.css';
 import contactStyles from '@/components/ContactButton.module.css';
 import Link from 'next/link';
+import { useIntersectionObserver } from '@/utils/useIntersectionObserver';
 
 type FormData = {
   name: string;
@@ -25,6 +26,12 @@ type FormErrors = {
 };
 
 export default function ContactPage() {
+  // Initialize intersection observer for social icons
+  const [socialIconsRef, socialIconsVisible] = useIntersectionObserver({
+    threshold: 0.3,
+    triggerOnce: true
+  });
+  
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -299,11 +306,14 @@ export default function ContactPage() {
               
               <div>
                 <h3 className="font-medium text-gray-200 mb-4 font-mono">Social Media</h3>
-                <motion.div 
+                <div 
+                  ref={socialIconsRef}
                   className={socialStyles.socialIconContainer}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 1.0 }}
+                  style={{
+                    opacity: socialIconsVisible ? 1 : 0,
+                    transform: socialIconsVisible ? 'translateY(0)' : 'translateY(20px)',
+                    transition: 'opacity 0.6s ease, transform 0.6s ease'
+                  }}
                 >
                   <a 
                     href="https://github.com" 
@@ -344,7 +354,7 @@ export default function ContactPage() {
                   >
                     <KaggleIcon className={socialStyles.socialIcon} />
                   </a>
-                </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>

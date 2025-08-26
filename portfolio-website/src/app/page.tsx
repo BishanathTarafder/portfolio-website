@@ -11,12 +11,21 @@ import Link from 'next/link';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+// Import custom hooks
+import { useIntersectionObserver } from '@/utils/useIntersectionObserver';
+
 // Import content from other pages
 import { GithubIcon, LinkedInIcon, TwitterIcon, KaggleIcon } from '@/components/icons';
 import socialStyles from '@/components/SocialIcon.module.css';
 import contactStyles from '@/components/ContactButton.module.css';
 
 export default function HomePage() {
+  // Initialize intersection observer for social icons
+  const [socialIconsRef, socialIconsVisible] = useIntersectionObserver({
+    threshold: 0.3,
+    triggerOnce: true
+  });
+  
   useEffect(() => {
     // Helper function to animate elements
     const animateElement = (element: Element, animation: string, delay: number) => {
@@ -232,11 +241,14 @@ export default function HomePage() {
             </div>
           </div>
           
-          <motion.div 
+          <div 
             className={socialStyles.socialIconContainer}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 1.0 }}
+            ref={socialIconsRef as React.RefObject<HTMLDivElement>}
+            style={{ 
+              opacity: socialIconsVisible ? 1 : 0,
+              transform: socialIconsVisible ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
           >
             <Link href="https://github.com/Saidul-M-Khan" target="_blank" rel="noreferrer" data-testid="home-social-github">
               <GithubIcon className={socialStyles.socialIcon} />
@@ -250,7 +262,7 @@ export default function HomePage() {
             <Link href="https://kaggle.com" target="_blank" rel="noreferrer" data-testid="home-social-kaggle">
               <KaggleIcon className={socialStyles.socialIcon} />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
         </ErrorBoundary>

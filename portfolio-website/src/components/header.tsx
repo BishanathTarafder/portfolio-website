@@ -157,18 +157,14 @@ export function Header() {
     `}>
       <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4">
         <div className="relative">
-          <ScrollLink 
-            to="home"
-            spy={true}
-            smooth={true}
-            duration={1000}
-            className="logo cursor-pointer"
-            aria-label="Home"
-          >
+          <Link href="#home" onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }} className="logo" aria-label="Home">
             <div className="logo-circle">
               <span>BT</span>
             </div>
-          </ScrollLink>
+          </Link>
         </div>
         
         {/* Desktop Navigation */}

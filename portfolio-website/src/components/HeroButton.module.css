@@ -1,29 +1,29 @@
 /* HeroButton Module CSS */
 
 .heroButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #6049ea;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid #6049ea;
-  position: relative;
-  overflow: hidden;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #6049ea !important;
+  color: white !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 0.375rem !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 2px solid #6049ea !important;
+  position: relative !important;
+  overflow: hidden !important;
   opacity: 0;
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.6s ease-out forwards !important;
 }
 
 .heroButton:hover {
-  background-color: transparent;
-  color: #6049ea;
-  transform: translateY(-3px);
-  box-shadow: 0 0 12px #6049ea;
+  background-color: transparent !important;
+  color: #6049ea !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 0 12px #6049ea !important;
 }
 
 .heroButton::before {
@@ -46,26 +46,26 @@
 
 /* Mobile hero button styles */
 .mobileHeroButton {
-  display: block;
-  width: 100%;
-  background-color: #6049ea;
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.375rem;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem;
-  text-align: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid #6049ea;
-  margin-bottom: 0.75rem;
+  display: block !important;
+  width: 100% !important;
+  background-color: #6049ea !important;
+  color: white !important;
+  padding: 0.75rem 1.5rem !important;
+  border-radius: 0.375rem !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  text-align: center !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 2px solid #6049ea !important;
+  margin-bottom: 0.75rem !important;
   opacity: 0;
 }
 
 .mobileHeroButton:hover {
-  background-color: transparent;
-  color: #6049ea;
-  box-shadow: 0 0 12px #6049ea;
+  background-color: transparent !important;
+  color: #6049ea !important;
+  box-shadow: 0 0 12px #6049ea !important;
 }
 
 /* Animation keyframes */
