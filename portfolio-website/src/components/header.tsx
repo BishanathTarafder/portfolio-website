@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import { Link as ScrollLink } from 'react-scroll';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { ThemeToggle } from './theme-toggle';
 import { CloseIcon } from './icons';
-import styles from './NavButton.module.css';
+import heroStyles from './HeroButton.module.css';
 
 const navItems = [
   { name: 'Home', number: '00', path: '#home' },
@@ -30,60 +31,10 @@ export function Header() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
   
-  // Function to handle smooth scrolling with easing
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
-    e.preventDefault();
-    
-    // Special case for home - scroll to top
-    if (path === '#home') {
-      window.scrollTo({ 
-        top: 0, 
-        behavior: 'smooth' 
-      });
-      
-      // Close mobile menu if open
-      if (mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-      return;
-    }
-    
-    // Only apply smooth scrolling for hash links
-    if (path.startsWith('#')) {
-      const targetId = path.substring(1);
-      const targetElement = document.getElementById(targetId);
-      
-      if (targetElement) {
-        // Close mobile menu if open
-        if (mobileMenuOpen) {
-          setMobileMenuOpen(false);
-        }
-        
-        // Get the target position with offset for header
-        const headerOffset = 100; // Increased offset for better spacing
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        
-        // Custom smooth scroll with improved easing
-        const scrollOptions = {
-          left: 0,
-          top: offsetPosition,
-          behavior: 'smooth' as ScrollBehavior
-        };
-        
-        // Force style priority with !important by using scrollIntoView with custom options
-        setTimeout(() => {
-          window.scrollTo(scrollOptions);
-          
-          // Update hash after scrolling completes
-          setTimeout(() => {
-            window.history.pushState(null, '', path);
-            setCurrentHash(path);
-          }, 800);
-        }, 10);
-      }
-    }
-  };
+  // We're now using react-scroll for smooth scrolling
+  // This function is kept for reference but no longer used
+  // const scrollToSection = () => {};
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
@@ -206,46 +157,38 @@ export function Header() {
     `}>
       <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4">
         <div className="relative">
-          <Link href="#home" onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }} className="logo" aria-label="Home">
+          <ScrollLink 
+            to="home"
+            spy={true}
+            smooth={true}
+            duration={1000}
+            className="logo cursor-pointer"
+            aria-label="Home"
+          >
             <div className="logo-circle">
               <span>BT</span>
             </div>
-          </Link>
+          </ScrollLink>
         </div>
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center">
           <div className="nav-links">
             {navItems.map((item, index) => (
-              <Link 
+              <ScrollLink 
                 key={item.path}
-                href={item.path} 
-                onClick={(e) => scrollToSection(e, item.path)}
-                className={`${styles.navButton} opacity-0 mr-4`}
-                data-animated="false"
-                data-index={index}
+                to={item.path.substring(1)} // Remove the # from the path
+                spy={true}
+                smooth={true}
+                offset={-100} // Offset for header height
+                duration={1000} // Animation duration in ms
+                className={`${heroStyles.heroButton} mr-4`}
+                style={{ animationDelay: `${0.2 + (index * 0.1)}s` }}
                 data-testid={`nav-${item.name.toLowerCase()}`}
               >
                 {item.name}
-              </Link>
+              </ScrollLink>
             ))}
-            <Link 
-              href="/resume.pdf" 
-              target="_blank"
-              rel="noreferrer"
-              className={`${styles.navButton} ${styles.navButtonActive} opacity-0 flex items-center gap-2`}
-              download
-              data-animated="false"
-              data-testid="nav-resume"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-              Resume
-            </Link>
           </div>
         </nav>
 
@@ -292,36 +235,21 @@ export function Header() {
         >
           <div className="flex flex-col h-full justify-center items-center space-y-8 py-8">
             {navItems.map((item, index) => (
-              <Link 
-                key={item.path} 
-                href={item.path}
-                className={`${styles.mobileNavButton} opacity-0`}
-                data-animated="false"
-                data-index={index}
+              <ScrollLink 
+                key={item.path}
+                to={item.path.substring(1)} // Remove the # from the path
+                spy={true}
+                smooth={true}
+                offset={-100} // Offset for header height
+                duration={1000} // Animation duration in ms
+                onClick={() => setMobileMenuOpen(false)} // Close menu after click
+                className={`${heroStyles.mobileHeroButton}`}
+                style={{ animationDelay: `${0.2 + (index * 0.1)}s` }}
                 data-testid={`mobile-nav-${item.name.toLowerCase()}`}
-                onClick={(e) => {
-                  scrollToSection(e, item.path);
-                  setMobileMenuOpen(false);
-                }}
               >
                 {item.name}
-              </Link>
+              </ScrollLink>
             ))}
-            <Link 
-              href="/resume.pdf" 
-              target="_blank" 
-              rel="noreferrer" 
-              onClick={() => setMobileMenuOpen(false)}
-              className={`${styles.navButton} ${styles.navButtonActive} mt-6 inline-flex items-center gap-2 opacity-0`}
-              download
-              data-animated="false"
-              data-testid="mobile-nav-resume"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
-              <span>Resume</span>
-            </Link>
           </div>
         </div>
       </div>

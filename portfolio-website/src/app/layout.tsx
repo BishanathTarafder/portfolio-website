@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Fira_Code } from 'next/font/google';
 import '../styles/globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
+import Chatbot from '@/components/chatbot';
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -56,6 +57,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${firaCode.variable} font-sans bg-black text-white`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+          <Chatbot />
         </ThemeProvider>
       </body>
     </html>

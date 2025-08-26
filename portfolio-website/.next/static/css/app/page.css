@@ -1,33 +1,34 @@
-/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/NavButton.module.css ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************/
-/* NavButton Module CSS */
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ProjectButton.module.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/* ProjectButton Module CSS */
 
-.NavButton_navButton__Q1_wh {
+.ProjectButton_projectButton__lLh6U {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  color: #6049ea;
-  padding: 0.5rem 1rem;
+  background-color: #6049ea;
+  color: white;
+  padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid #6049ea;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 10px rgba(96, 73, 234, 0.2);
 }
 
-.NavButton_navButton__Q1_wh:hover {
-  background-color: #6049ea;
-  color: white;
+.ProjectButton_projectButton__lLh6U:hover {
+  background-color: transparent;
+  color: #6049ea;
   transform: translateY(-3px);
   box-shadow: 0 0 12px #6049ea;
 }
 
-.NavButton_navButton__Q1_wh::before {
+.ProjectButton_projectButton__lLh6U::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -40,32 +41,111 @@
   transition: width 0.5s, height 0.5s;
 }
 
-.NavButton_navButton__Q1_wh:hover::before {
+.ProjectButton_projectButton__lLh6U:hover::before {
   width: 300px;
   height: 300px;
 }
 
-.NavButton_navButtonActive__a7eGx {
-  background-color: #6049ea;
-  color: white;
+/* Animation for the button */
+@keyframes ProjectButton_fadeInUp__tuLAW {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Mobile nav button styles */
-.NavButton_mobileNavButton__zMqJS {
-  display: block;
-  padding: 0.75rem 1rem;
-  color: #6049ea;
-  border: 2px solid #6049ea;
-  border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
+.ProjectButton_animated__vt5Y7 {
+  animation: ProjectButton_fadeInUp__tuLAW 0.5s ease-out forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/HeroButton.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+/* HeroButton Module CSS */
+
+.HeroButton_heroButton__hA19Z {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6049ea;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
   font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #6049ea;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: HeroButton_fadeInUp__LttoY 0.6s ease-out forwards;
+}
+
+.HeroButton_heroButton__hA19Z:hover {
+  background-color: transparent;
+  color: #6049ea;
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px #6049ea;
+}
+
+.HeroButton_heroButton__hA19Z::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.HeroButton_heroButton__hA19Z:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Mobile hero button styles */
+.HeroButton_mobileHeroButton__jsm71 {
+  display: block;
+  width: 100%;
+  background-color: #6049ea;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
   text-align: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid #6049ea;
+  margin-bottom: 0.75rem;
+  opacity: 0;
 }
 
-.NavButton_mobileNavButton__zMqJS:hover {
-  background-color: #6049ea;
-  color: white;
+.HeroButton_mobileHeroButton__jsm71:hover {
+  background-color: transparent;
+  color: #6049ea;
+  box-shadow: 0 0 12px #6049ea;
+}
+
+/* Animation keyframes */
+@keyframes HeroButton_fadeInUp__LttoY {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 /*!********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/SocialIcon.module.css ***!
@@ -79,18 +159,28 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   fill: currentColor;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .SocialIcon_socialIcon__zh33L:hover {
   color: #6049ea;
   filter: drop-shadow(0 0 8px #6049ea);
-  transform: translateY(-2px);
+  transform: translateY(-5px);
 }
 
 .SocialIcon_socialIconContainer__a6y3K {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  opacity: 0;
+  animation: SocialIcon_fadeInUp__yBAZI 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.2s;
+  position: relative;
+  z-index: 10;
 }
 
 /* Dark mode specific styles */
@@ -100,6 +190,43 @@
 
 .SocialIcon_darkSocialIcon__DGRqX:hover {
   color: #6049ea;
+}
+
+/* Animation keyframes */
+@keyframes SocialIcon_fadeInUp__yBAZI {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Individual icon animations */
+.SocialIcon_socialIconContainer__a6y3K a:nth-child(1) .SocialIcon_socialIcon__zh33L {
+  animation: SocialIcon_fadeInUp__yBAZI 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+.SocialIcon_socialIconContainer__a6y3K a:nth-child(2) .SocialIcon_socialIcon__zh33L {
+  animation: SocialIcon_fadeInUp__yBAZI 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.3s;
+  opacity: 0;
+}
+
+.SocialIcon_socialIconContainer__a6y3K a:nth-child(3) .SocialIcon_socialIcon__zh33L {
+  animation: SocialIcon_fadeInUp__yBAZI 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.4s;
+  opacity: 0;
+}
+
+.SocialIcon_socialIconContainer__a6y3K a:nth-child(4) .SocialIcon_socialIcon__zh33L {
+  animation: SocialIcon_fadeInUp__yBAZI 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.5s;
+  opacity: 0;
 }
 /*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ContactButton.module.css ***!

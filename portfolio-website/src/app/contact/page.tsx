@@ -1,11 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import Layout from '@/components/layout';
+import { Header } from '@/components/header';
+import { Footer } from '@/components/footer';
+import { ContactForm } from '@/components/contact-form';
 import { GithubIcon, LinkedInIcon, TwitterIcon, KaggleIcon } from '@/components/icons';
 import { motion } from 'framer-motion';
 import socialStyles from '@/components/SocialIcon.module.css';
 import contactStyles from '@/components/ContactButton.module.css';
+import Link from 'next/link';
 
 type FormData = {
   name: string;
@@ -296,7 +299,12 @@ export default function ContactPage() {
               
               <div>
                 <h3 className="font-medium text-gray-200 mb-4 font-mono">Social Media</h3>
-                <div className={socialStyles.socialIconContainer}>
+                <motion.div 
+                  className={socialStyles.socialIconContainer}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 1.0 }}
+                >
                   <a 
                     href="https://github.com" 
                     target="_blank" 
@@ -336,7 +344,7 @@ export default function ContactPage() {
                   >
                     <KaggleIcon className={socialStyles.socialIcon} />
                   </a>
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>

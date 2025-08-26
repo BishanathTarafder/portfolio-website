@@ -7,18 +7,28 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   fill: currentColor;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .socialIcon:hover {
   color: #6049ea;
   filter: drop-shadow(0 0 8px #6049ea);
-  transform: translateY(-2px);
+  transform: translateY(-5px);
 }
 
 .socialIconContainer {
   display: flex;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  opacity: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.2s;
+  position: relative;
+  z-index: 10;
 }
 
 /* Dark mode specific styles */
@@ -28,4 +38,41 @@
 
 .darkSocialIcon:hover {
   color: #6049ea;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Individual icon animations */
+.socialIconContainer a:nth-child(1) .socialIcon {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.2s;
+  opacity: 0;
+}
+
+.socialIconContainer a:nth-child(2) .socialIcon {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.3s;
+  opacity: 0;
+}
+
+.socialIconContainer a:nth-child(3) .socialIcon {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.4s;
+  opacity: 0;
+}
+
+.socialIconContainer a:nth-child(4) .socialIcon {
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: 1.5s;
+  opacity: 0;
 }

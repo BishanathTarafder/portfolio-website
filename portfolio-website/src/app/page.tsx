@@ -9,6 +9,7 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 // Import content from other pages
 import { GithubIcon, LinkedInIcon, TwitterIcon, KaggleIcon } from '@/components/icons';
@@ -231,7 +232,12 @@ export default function HomePage() {
             </div>
           </div>
           
-          <div className={socialStyles.socialIconContainer}>
+          <motion.div 
+            className={socialStyles.socialIconContainer}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 1.0 }}
+          >
             <Link href="https://github.com/Saidul-M-Khan" target="_blank" rel="noreferrer" data-testid="home-social-github">
               <GithubIcon className={socialStyles.socialIcon} />
             </Link>
@@ -244,7 +250,7 @@ export default function HomePage() {
             <Link href="https://kaggle.com" target="_blank" rel="noreferrer" data-testid="home-social-kaggle">
               <KaggleIcon className={socialStyles.socialIcon} />
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
         </ErrorBoundary>

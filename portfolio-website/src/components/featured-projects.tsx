@@ -4,6 +4,7 @@ import { ProjectCard } from './project-card';
 import Link from 'next/link';
 import Image from 'next/image';
 import { GithubIcon, ExternalLinkIcon } from './icons';
+import projectStyles from './ProjectButton.module.css';
 
 const featuredProjects = [
   {
@@ -101,7 +102,7 @@ export function FeaturedProjects() {
       <div className="mt-16 text-center project-card opacity-0">
         <Link 
           href="#projects" 
-          className="border border-AAsecondary text-AAsecondary px-6 py-3 rounded hover:bg-AAsecondary hover:bg-opacity-10 transition duration-300 font-mono text-sm"
+          className={`${projectStyles.projectButton} ${projectStyles.animated}`}
         >
           View More Projects
         </Link>
