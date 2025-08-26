@@ -24,14 +24,14 @@
 
 /* Chat header styles */
 .chatHeader {
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%); /* Gradient from blue-600 to blue-500 */
+  background: linear-gradient(135deg, #6049ea 0%, #7a6af0 100%); /* Gradient from primary to secondary purple */
   color: white;
   padding: 1rem;
   font-weight: 500;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(96, 73, 234, 0.2);
 }
 
 /* Fallback badge styles */
@@ -62,7 +62,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
-  background-color: #2563eb; /* Tailwind blue-600 */
+  background-color: #6049ea; /* Pastel purple */
   color: white;
   padding: 0.75rem;
   border-radius: 9999px;

@@ -3,22 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #0070f3;
-  --secondary-color: #0366d6;
-  --background-color: #0f172a;
-  --text-color: #e2e8f0;
-  --card-background: #1e293b;
-  --border-color: #334155;
-  --accent-color: #38bdf8;
-  --secondary-text: #94a3b8;
+  --primary-color: #6049ea;
+  --secondary-color: #7a6af0;
+  --background-color: #000000;
+  --text-color: #ffffff;
+  --card-background: #111111;
+  --border-color: #333333;
+  --accent-color: #6049ea;
+  --secondary-text: #cccccc;
   --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-duration: 0.3s;
 }
 
 .dark {
   --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 10, 10, 20;
-  --background-end-rgb: 20, 20, 30;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 }
 
 body {
@@ -157,7 +157,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--accent-color);
   color: var(--background-color);
   padding: 10px 20px;
-  border-radius: 4px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
@@ -165,6 +165,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 2px solid var(--accent-color);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 10px rgba(96, 73, 234, 0.2);
 }
 
 .btn::before {
@@ -189,7 +190,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: transparent;
   color: var(--accent-color);
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(96, 73, 234, 0.3);
 }
 
 .btn-outline {
@@ -202,7 +203,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--accent-color);
   color: var(--background-color);
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 20px rgba(96, 73, 234, 0.3);
 }
 
 .logo-circle {
@@ -372,7 +373,7 @@ footer {
 .hero {
   padding: 0;
   text-align: left;
-  background-color: var(--background-color);
+  background-color: #000000;
   position: relative;
   overflow: hidden;
   margin-top: 0;
@@ -390,7 +391,7 @@ footer {
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(15, 23, 42, 0) 70%);
+  background: radial-gradient(circle, rgba(96, 73, 234, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
   z-index: 0;
   animation: pulse 8s infinite alternate;
 }
@@ -452,7 +453,7 @@ footer {
   }
   
   .btn {
-    @apply px-4 py-2 rounded-md font-medium transition-colors;
+    @apply px-4 py-2 rounded-lg font-medium transition-colors shadow-md;
   }
   
   .btn-primary {
@@ -460,11 +461,11 @@ footer {
   }
   
   .btn-secondary {
-    @apply btn bg-AAsecondary text-white hover:bg-AAsecondary hover:opacity-90;
+    @apply btn bg-AAsecondary text-white hover:bg-AAsecondary hover:opacity-90 shadow-[0_4px_10px_rgba(96,73,234,0.2)];
   }
   
   .btn-outline {
-    @apply btn border border-AAsecondary text-AAsecondary hover:bg-AAsecondary hover:text-AAprimary;
+    @apply btn border-2 border-AAsecondary text-AAsecondary hover:bg-AAsecondary hover:text-white hover:shadow-[0_10px_20px_rgba(96,73,234,0.3)];
   }
   
   .card {

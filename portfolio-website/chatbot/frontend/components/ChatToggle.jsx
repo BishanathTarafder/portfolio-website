@@ -5,7 +5,7 @@ const ChatToggle = ({ isOpen, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`w-14 h-14 rounded-full bg-blue-600 text-white shadow-lg flex items-center justify-center hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 ${isOpen ? 'scale-0 opacity-0' : `scale-100 opacity-100 ${styles.pulse}`}`}
+      className={`w-14 h-14 rounded-full bg-[#6049ea] text-white shadow-lg flex items-center justify-center hover:bg-[#7a6af0] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6049ea] transition-all duration-300 ${isOpen ? 'scale-0 opacity-0' : `scale-100 opacity-100 ${styles.pulse}`}`}
       aria-label={isOpen ? 'Close chat' : 'Open chat'}
     >
       {!isOpen && (

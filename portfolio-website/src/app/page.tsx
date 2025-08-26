@@ -102,7 +102,7 @@ export default function HomePage() {
           <Hero />
       
       {/* About Section */}
-      <section id="about" className="py-24 bg-gray-50 dark:bg-gray-900 about">
+      <section id="about" className="py-24 bg-black about">
         <div className="container mx-auto px-4 md:px-16 lg:px-32">
           <h2 
             className="flex items-center font-mono text-AAsecondary text-2xl mb-8 opacity-0"
@@ -112,7 +112,7 @@ export default function HomePage() {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-            <div className="md:col-span-2 text-gray-400 opacity-0">
+            <div className="md:col-span-2 text-white opacity-0">
 
               <div className="prose dark:prose-invert max-w-none mb-8">
                 <p>
@@ -190,7 +190,7 @@ export default function HomePage() {
       </section>
       
       {/* Experience Section */}
-      <section id="experience" className="py-24 bg-gray-50 dark:bg-gray-900">
+      <section id="experience" className="py-24 bg-black">
         <div className="container mx-auto px-4 md:px-16 lg:px-32">
           <h2 
             className="flex items-center font-mono text-AAsecondary text-2xl mb-12 opacity-0"
@@ -210,11 +210,11 @@ export default function HomePage() {
                       <h4 className="text-xl font-bold text-gray-200">Senior AI Engineer</h4>
                       <div className="flex items-center gap-2 text-sm">
                         <span className="text-AAsecondary">TechCorp Inc.</span>
-                        <span className="text-gray-400">|</span>
-                        <span className="text-gray-400">2021 - Present</span>
+                        <span className="text-white">|</span>
+                        <span className="text-white">2021 - Present</span>
                       </div>
                     </div>
-                    <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+                    <ul className="list-disc list-inside text-white space-y-2 ml-4">
                       <li>Led the development of computer vision algorithms for autonomous systems</li>
                       <li>Designed and implemented deep learning models for real-time object detection</li>
                       <li>Optimized ML pipelines for production environments, reducing inference time by 40%</li>
@@ -226,11 +226,11 @@ export default function HomePage() {
                       <h4 className="text-xl font-bold text-gray-200">Machine Learning Engineer</h4>
                       <div className="flex items-center gap-2 text-sm">
                         <span className="text-AAsecondary">AI Solutions Ltd</span>
-                        <span className="text-gray-400">|</span>
-                        <span className="text-gray-400">2019 - 2021</span>
+                        <span className="text-white">|</span>
+                        <span className="text-white">2019 - 2021</span>
                       </div>
                     </div>
-                    <ul className="list-disc list-inside text-gray-400 space-y-2 ml-4">
+                    <ul className="list-disc list-inside text-white space-y-2 ml-4">
                       <li>Developed NLP models for sentiment analysis and text classification</li>
                       <li>Built recommendation systems using collaborative filtering techniques</li>
                       <li>Collaborated with cross-functional teams to integrate ML solutions into production systems</li>
@@ -286,7 +286,7 @@ export default function HomePage() {
       </section>
       
       {/* Projects Section */}
-      <section id="projects" className="py-24 bg-gray-50 dark:bg-gray-900 projects">
+      <section id="projects" className="py-24 bg-black projects">
         <div className="container mx-auto px-4 md:px-16 lg:px-32">
           <h2 className="flex items-center font-mono text-AAsecondary text-2xl mb-12 opacity-0">
             <span className="text-AAsecondary mr-2">03.</span> Some Things I&apos;ve Built
@@ -301,14 +301,14 @@ export default function HomePage() {
       <Skills />
       
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-gray-50 dark:bg-gray-900 contact">
+      <section id="contact" className="py-24 bg-black contact">
         <div className="container mx-auto px-4 md:px-16 lg:px-32">
           <h2 className="flex items-center font-mono text-AAsecondary text-2xl mb-12 justify-center opacity-0">
             <span className="text-AAsecondary mr-2">04.</span> Get In Touch
           </h2>
           
           <div className="max-w-2xl mx-auto text-center mb-12 opacity-0">
-            <p className="text-gray-400 mb-8">
+            <p className="text-white mb-8">
               I&apos;m currently looking for new opportunities. Whether you have a question, project proposal, or just want to say hi, 
               my inbox is always open. I&apos;ll do my best to get back to you as soon as possible!
             </p>

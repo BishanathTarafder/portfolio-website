@@ -120,9 +120,9 @@ export default function ContactPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center font-mono text-AAsecondary text-2xl mb-16"
+          className="flex items-center font-mono text-[#6049ea] text-2xl mb-16"
         >
-          <span className="text-AAsecondary mr-2">04.</span> What&apos;s Next?
+          <span className="text-[#6049ea] mr-2">04.</span> What&apos;s Next?
           <div className="h-[1px] bg-gray-600 ml-6 w-32 md:w-96"></div>
         </motion.h1>
         
@@ -177,7 +177,7 @@ export default function ContactPage() {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 border ${formErrors.name ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300`}
+                      className={`w-full px-4 py-3 border ${formErrors.name ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-[#6049ea] focus:border-[#6049ea] bg-gray-900/50 text-gray-300`}
                       aria-invalid={!!formErrors.name}
                       aria-describedby={formErrors.name ? 'name-error' : undefined}
                     />
@@ -196,7 +196,7 @@ export default function ContactPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 border ${formErrors.email ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300`}
+                      className={`w-full px-4 py-3 border ${formErrors.email ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-[#6049ea] focus:border-[#6049ea] bg-gray-900/50 text-gray-300`}
                       aria-invalid={!!formErrors.email}
                       aria-describedby={formErrors.email ? 'email-error' : undefined}
                     />
@@ -216,7 +216,7 @@ export default function ContactPage() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className={`w-full px-4 py-3 border ${formErrors.subject ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300`}
+                    className={`w-full px-4 py-3 border ${formErrors.subject ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-[#6049ea] focus:border-[#6049ea] bg-gray-900/50 text-gray-300`}
                     aria-invalid={!!formErrors.subject}
                     aria-describedby={formErrors.subject ? 'subject-error' : undefined}
                   />
@@ -235,7 +235,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={6}
-                    className={`w-full px-4 py-3 border ${formErrors.message ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-AAsecondary focus:border-AAsecondary bg-gray-900/50 text-gray-300`}
+                    className={`w-full px-4 py-3 border ${formErrors.message ? 'border-red-500' : 'border-gray-700'} rounded-md focus:ring-2 focus:ring-[#6049ea] focus:border-[#6049ea] bg-gray-900/50 text-gray-300`}
                     aria-invalid={!!formErrors.message}
                     aria-describedby={formErrors.message ? 'message-error' : undefined}
                   ></textarea>
@@ -246,7 +246,7 @@ export default function ContactPage() {
                 
                 <button
                   type="submit"
-                  className="border border-AAsecondary text-AAsecondary px-7 py-4 rounded hover:bg-AAsecondary hover:bg-opacity-10 transition duration-300 font-mono w-full md:w-auto"
+                  className="border-2 border-[#6049ea] text-[#6049ea] px-7 py-4 rounded-lg hover:bg-[#6049ea] hover:bg-opacity-10 hover:shadow-[0_10px_20px_rgba(96,73,234,0.3)] transition duration-300 font-mono w-full md:w-auto"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}

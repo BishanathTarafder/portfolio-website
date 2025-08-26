@@ -41,7 +41,7 @@ const skillCategories: SkillCategory[] = [
 
 export function Skills() {
   return (
-    <section id="skills" className="py-24 bg-AAprimary about" >
+    <section id="skills" className="py-24 bg-black about" >
       <div className="container mx-auto px-4 md:px-16 lg:px-32">
         <h2 
           className="flex items-center font-mono text-AAsecondary text-2xl mb-12 opacity-0"
@@ -63,7 +63,7 @@ export function Skills() {
                     className="flex items-center gap-2"
                   >
                     <span className="text-AAsecondary">▹</span>
-                    <span className="text-gray-300">{skill.name}</span>
+                    <span className="text-white">{skill.name}</span>
                   </li>
                 ))}
               </ul>

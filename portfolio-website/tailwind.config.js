@@ -9,12 +9,12 @@ module.exports = {
     extend: {
       colors: {
         AAprimary: '#0f172a',
-        AAsecondary: '#38bdf8',
+        AAsecondary: '#6049ea',
         AAtertiary: '#112340',
-        ResumeButtonHover: 'rgba(56,189,248,0.1)',
+        ResumeButtonHover: 'rgba(96,73,234,0.1)',
         MobileNavBarColor: '#1e293b',
         MobileNavColor: 'rgba(15,23,42,0.85)',
-        'accent-color': '#38bdf8',
+        'accent-color': '#6049ea',
         white: '#e2e8f0',
         gray: {
           300: '#e2e8f0',
@@ -23,7 +23,7 @@ module.exports = {
           600: '#475569',
         },
         blue: {
-          500: '#38bdf8',
+          500: '#6049ea',
         },
       },
       fontFamily: {

@@ -97,9 +97,9 @@ export default function ProjectsPage() {
               <button 
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 rounded border font-mono text-sm transition-all duration-300 ${activeFilter === filter 
-                  ? 'border-AAsecondary text-AAsecondary bg-AAsecondary bg-opacity-10' 
-                  : 'border-gray-600 text-gray-400 hover:border-AAsecondary hover:text-AAsecondary'}`}
+                className={`px-4 py-2 rounded-lg border-2 font-mono text-sm transition-all duration-300 ${activeFilter === filter 
+                  ? 'border-[#6049ea] text-[#6049ea] bg-[#6049ea] bg-opacity-10 shadow-[0_4px_10px_rgba(96,73,234,0.2)]' 
+                  : 'border-gray-600 text-white hover:border-[#6049ea] hover:text-[#6049ea]'}`}
               >
                 {filter}
               </button>
