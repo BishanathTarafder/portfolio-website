@@ -18,6 +18,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+          style={{ willChange: 'transform, opacity' }}
         >
           Hi, my name is
         </motion.h1>
@@ -27,6 +28,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
           className="name"
+          style={{ willChange: 'transform, opacity' }}
         >
           Bishanath Tarafder
         </motion.div>
@@ -36,6 +38,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.4 }}
           className="tagline"
+          style={{ willChange: 'transform, opacity' }}
         >
           I build things for the web
         </motion.div>
@@ -44,6 +47,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.6 }}
+          style={{ willChange: 'transform, opacity' }}
         >
           I'm a software engineer specializing in building exceptional digital experiences. 
           Currently, I'm focused on building accessible, human-centered products at a startup.
@@ -54,6 +58,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.8 }}
           className="hero-buttons"
+          style={{ willChange: 'transform, opacity' }}
         >
           <a 
             href="#projects" 

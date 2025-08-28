@@ -242,13 +242,8 @@ export default function HomePage() {
           </div>
           
           <div 
-            className={socialStyles.socialIconContainer}
+            className={`${socialStyles.socialIconContainer} ${socialIconsVisible ? socialStyles.visible : ''}`}
             ref={socialIconsRef as React.RefObject<HTMLDivElement>}
-            style={{ 
-              opacity: socialIconsVisible ? 1 : 0,
-              transform: socialIconsVisible ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'
-            }}
           >
             <Link href="https://github.com/Saidul-M-Khan" target="_blank" rel="noreferrer" data-testid="home-social-github">
               <GithubIcon className={socialStyles.socialIcon} />

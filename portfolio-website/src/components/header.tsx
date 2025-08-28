@@ -151,11 +151,11 @@ export function Header() {
   
   return (
     <header className={`
-      fixed top-0 inset-x-0 z-[100] transition-all duration-300 will-change-transform
+      fixed top-0 inset-x-0 z-[100] transition-all duration-300 will-change-transform w-full
       ${hidden ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}
-      ${atTop ? 'bg-transparent' : 'bg-opacity-70 bg-black shadow-lg'}
+      ${atTop ? 'bg-transparent' : 'bg-opacity-70 bg-black shadow-lg '}
     `}>
-      <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 py-3 sm:py-4 flex items-center justify-between">
         <div className="relative">
           <Link href="#home" onClick={(e) => {
             e.preventDefault();

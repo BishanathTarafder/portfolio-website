@@ -308,12 +308,7 @@ export default function ContactPage() {
                 <h3 className="font-medium text-gray-200 mb-4 font-mono">Social Media</h3>
                 <div 
                   ref={socialIconsRef}
-                  className={socialStyles.socialIconContainer}
-                  style={{
-                    opacity: socialIconsVisible ? 1 : 0,
-                    transform: socialIconsVisible ? 'translateY(0)' : 'translateY(20px)',
-                    transition: 'opacity 0.6s ease, transform 0.6s ease'
-                  }}
+                  className={`${socialStyles.socialIconContainer} ${socialIconsVisible ? socialStyles.visible : ''}`}
                 >
                   <a 
                     href="https://github.com" 
