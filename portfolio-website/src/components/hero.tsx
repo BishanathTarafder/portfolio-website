@@ -1,9 +1,31 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { useRef, useEffect } from 'react';
+import { useIntersectionObserver } from '@/utils/useIntersectionObserver';
 
 export function Hero() {
+  // Use intersection observer for viewport-based animation
+  const [heroRef, heroVisible] = useIntersectionObserver({
+    threshold: 0.1,
+    triggerOnce: true
+  });
+
+  // Apply staggered animations when hero section becomes visible
+  useEffect(() => {
+    if (heroVisible) {
+      const heroElements = document.querySelectorAll('.hero [data-delay]');
+      
+      heroElements.forEach(element => {
+        const delay = parseInt(element.getAttribute('data-delay') || '0');
+        
+        setTimeout(() => {
+          element.classList.add('fadeInUp');
+        }, delay);
+      });
+    }
+  }, [heroVisible]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -12,53 +34,41 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="hero">
+    <section 
+      id="home" 
+      className="hero" 
+      ref={heroRef as React.RefObject<HTMLElement>}
+    >
       <div className="container mx-auto px-6 md:px-12">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-          style={{ willChange: 'transform, opacity' }}
-        >
+        <h1 className={`opacity-0 ${heroVisible ? 'fadeInUp' : ''}`} data-delay="0">
           Hi, my name is
-        </motion.h1>
+        </h1>
         
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
-          className="name"
-          style={{ willChange: 'transform, opacity' }}
+        <div 
+          className={`name opacity-0 ${heroVisible ? 'fadeInUp' : ''}`}
+          data-delay="200"
         >
           Bishanath Tarafder
-        </motion.div>
+        </div>
         
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.4 }}
-          className="tagline"
-          style={{ willChange: 'transform, opacity' }}
+        <div 
+          className={`tagline opacity-0 ${heroVisible ? 'fadeInUp' : ''}`}
+          data-delay="400"
         >
           I build things for the web
-        </motion.div>
+        </div>
         
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.6 }}
-          style={{ willChange: 'transform, opacity' }}
+        <p 
+          className={`opacity-0 ${heroVisible ? 'fadeInUp' : ''}`}
+          data-delay="600"
         >
           I'm a software engineer specializing in building exceptional digital experiences. 
           Currently, I'm focused on building accessible, human-centered products at a startup.
-        </motion.p>
+        </p>
         
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.8 }}
-          className="hero-buttons"
-          style={{ willChange: 'transform, opacity' }}
+        <div
+          className={`hero-buttons opacity-0 ${heroVisible ? 'fadeInUp' : ''}`}
+          data-delay="800"
         >
           <a 
             href="#projects" 
@@ -78,7 +88,7 @@ export function Hero() {
           >
             Resume
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

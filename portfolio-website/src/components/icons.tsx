@@ -1,6 +1,9 @@
 import React from 'react';
+import RobotIcon from './icons/RobotIcon';
 
 type IconProps = React.SVGProps<SVGSVGElement>;
+
+export { RobotIcon };
 
 export function SunIcon(props: IconProps) {
   return (

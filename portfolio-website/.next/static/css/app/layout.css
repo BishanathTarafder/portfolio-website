@@ -1887,8 +1887,6 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, textarea, select, li {
   color: var(--accent-color);
   margin-bottom: 10px;
   font-weight: 500;
-  opacity: 0;
-  animation: fadeInUp 0.6s var(--animation-timing) forwards;
 }
 
 .hero .name {
@@ -1897,8 +1895,6 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, textarea, select, li {
   margin: 0 0 10px;
   color: var(--text-color);
   line-height: 1.1;
-  opacity: 0;
-  animation: fadeInUp 0.6s var(--animation-timing) 0.2s forwards;
 }
 
 .hero .tagline {
@@ -1907,8 +1903,6 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, textarea, select, li {
   margin: 0 0 20px;
   color: var(--secondary-text);
   line-height: 1.1;
-  opacity: 0;
-  animation: fadeInUp 0.6s var(--animation-timing) 0.4s forwards;
 }
 
 .hero p {
@@ -1916,15 +1910,11 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, textarea, select, li {
   max-width: 600px;
   margin: 0 0 30px;
   color: var(--secondary-text);
-  opacity: 0;
-  animation: fadeInUp 0.6s var(--animation-timing) 0.6s forwards;
 }
 
 .hero-buttons {
   display: flex;
   gap: 1.5rem;
-  opacity: 0;
-  animation: fadeInUp 0.5s var(--animation-timing) 0.8s forwards;
 }
 
 /* Logo */
@@ -2053,31 +2043,17 @@ h1, h2, h3, h4, h5, h6, p, a, span, div, button, input, textarea, select, li {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 500;
-  transition: all var(--transition-duration) var(--animation-timing);
+  transition: color var(--transition-duration) var(--animation-timing);
   position: relative;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.05);
-  margin: 0 4px;
-  border: 1px solid transparent;
   letter-spacing: 0.5px;
-  overflow: hidden;
 }
 
-.nav-links a:not(.btn-outline):hover {
-  color: var(--accent-color);
-  background-color: rgba(255, 255, 255, 0.05);
-  border-color: var(--accent-color);
-  transform: translateY(-2px);
-  box-shadow: 0 0 8px var(--accent-color);
+.nav-links a:hover {
+  color: var(--accent-color) !important;
 }
 
-.nav-links a:not(.btn-outline) {
+.nav-links a {
   position: relative;
-}
-
-.nav-links a:not(.btn-outline)::before {
-  content: '';
 }
 
 /* Footer */
@@ -2192,8 +2168,6 @@ footer {
   font-weight: 500;
   position: relative;
   z-index: 1;
-  animation: fadeInUp 0.6s var(--animation-timing) forwards;
-  opacity: 0;
 }
 
 .hero .name {
@@ -2204,8 +2178,6 @@ footer {
   line-height: 1.1;
   position: relative;
   z-index: 1;
-  animation: fadeInUp 0.6s var(--animation-timing) 0.2s forwards;
-  opacity: 0;
 }
 
 .hero .tagline {
@@ -2216,8 +2188,6 @@ footer {
   line-height: 1.1;
   position: relative;
   z-index: 1;
-  animation: fadeInUp 0.6s var(--animation-timing) 0.4s forwards;
-  opacity: 0;
 }
 
 .hero p {
@@ -2227,8 +2197,6 @@ footer {
   color: var(--secondary-text);
   position: relative;
   z-index: 1;
-  animation: fadeInUp 0.6s var(--animation-timing) 0.6s forwards;
-  opacity: 0;
 }
 
 .hero-buttons {
@@ -2371,15 +2339,6 @@ footer {
   --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.hover\:drop-shadow-\[0_0_8px_\#6049ea\]:hover {
-  --tw-drop-shadow: drop-shadow(0 0 8px #6049ea);
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
-}
-
-.hover\:filter:hover {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .focus\:border-\[\#6049ea\]:focus {

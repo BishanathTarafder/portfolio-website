@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { ThemeToggle } from './theme-toggle';
 import { CloseIcon } from './icons';
-import heroStyles from './HeroButton.module.css';
+// No module styles import needed
 
 const navItems = [
   { name: 'Home', number: '00', path: '#home' },
@@ -178,7 +178,7 @@ export function Header() {
                 smooth={true}
                 offset={-100} // Offset for header height
                 duration={1000} // Animation duration in ms
-                className={`${heroStyles.heroButton} mr-4`}
+                className="text-accent-color font-semibold mr-4"
                 style={{ animationDelay: `${0.2 + (index * 0.1)}s` }}
                 data-testid={`nav-${item.name.toLowerCase()}`}
               >
@@ -239,7 +239,7 @@ export function Header() {
                 offset={-100} // Offset for header height
                 duration={1000} // Animation duration in ms
                 onClick={() => setMobileMenuOpen(false)} // Close menu after click
-                className={`${heroStyles.mobileHeroButton}`}
+                className="text-accent-color font-semibold"
                 style={{ animationDelay: `${0.2 + (index * 0.1)}s` }}
                 data-testid={`mobile-nav-${item.name.toLowerCase()}`}
               >
