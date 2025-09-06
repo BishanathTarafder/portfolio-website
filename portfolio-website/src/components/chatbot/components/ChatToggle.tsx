@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RobotIcon } from '../../icons';
 
 interface ChatToggleProps {
@@ -7,14 +7,24 @@ interface ChatToggleProps {
 }
 
 const ChatToggle: React.FC<ChatToggleProps> = ({ isOpen, onClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <button
       onClick={onClick}
-      className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="text-white shadow-lg flex items-center justify-center w-20 h-24 focus:outline-none transition-all duration-300"
       aria-label={isOpen ? 'Close chat' : 'Open chat'}
+      style={{
+        transform: isHovered && !isOpen ? 'scale(1.1)' : 'scale(1)',
+        boxShadow: isHovered && !isOpen ? '0 8px 16px rgba(96, 73, 234, 0.3)' : '0 4px 12px rgba(96, 73, 234, 0.25)',
+        background: 'transparent',
+        border: 'none',
+      }}
     >
       {!isOpen && (
-        <RobotIcon className="h-6 w-6" />
+        <RobotIcon className={`h-20 w-20 transition-all duration-300 ${isHovered ? 'rotate-12' : ''}`} />
       )}
     </button>
   );
