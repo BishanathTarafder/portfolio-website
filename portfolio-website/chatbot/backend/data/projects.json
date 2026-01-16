@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Portfolio Website",
+    "description": "A personal portfolio website built with Next.js and FastAPI, featuring a chatbot assistant powered by LangGraph and RAG.",
+    "technologies": ["Next.js", "React", "FastAPI", "LangGraph", "RAG", "Groq"],
+    "github": "https://github.com/username/portfolio-website",
+    "live": "https://portfolio.example.com",
+    "highlights": [
+      "Implemented a conversational AI assistant using LangGraph for structured conversation flow",
+      "Created a RAG system to provide context-aware responses based on resume content",
+      "Built a responsive UI with Next.js and Tailwind CSS"
+    ]
+  },
+  {
+    "name": "E-commerce Platform",
+    "description": "A full-stack e-commerce platform with product management, cart functionality, and payment processing.",
+    "technologies": ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
+    "github": "https://github.com/username/ecommerce-platform",
+    "live": "https://shop.example.com",
+    "highlights": [
+      "Implemented secure user authentication and authorization",
+      "Integrated Stripe payment processing with webhook support",
+      "Built a responsive admin dashboard for product and order management"
+    ]
+  },
+  {
+    "name": "Task Management App",
+    "description": "A collaborative task management application with real-time updates and team features.",
+    "technologies": ["Vue.js", "Firebase", "Firestore", "Tailwind CSS"],
+    "github": "https://github.com/username/task-manager",
+    "live": "https://tasks.example.com",
+    "highlights": [
+      "Implemented real-time updates using Firebase Firestore",
+      "Created a drag-and-drop interface for task organization",
+      "Built team collaboration features including comments and assignments"
+    ]
+  },
+  {
+    "name": "Weather Dashboard",
+    "description": "A weather dashboard that displays current conditions and forecasts for multiple locations.",
+    "technologies": ["JavaScript", "OpenWeather API", "Chart.js", "HTML/CSS"],
+    "github": "https://github.com/username/weather-dashboard",
+    "live": "https://weather.example.com",
+    "highlights": [
+      "Integrated with OpenWeather API for accurate weather data",
+      "Implemented location search with autocomplete",
+      "Created interactive charts for temperature and precipitation forecasts"
+    ]
+  },
+  {
+    "name": "Recipe Finder",
+    "description": "A recipe search application that allows users to find recipes based on ingredients they have.",
+    "technologies": ["React Native", "Expo", "Spoonacular API", "AsyncStorage"],
+    "github": "https://github.com/username/recipe-finder",
+    "live": "https://apps.example.com/recipe-finder",
+    "highlights": [
+      "Built cross-platform mobile app using React Native",
+      "Implemented ingredient-based recipe search using Spoonacular API",
+      "Created favorite recipe storage with AsyncStorage"
+    ]
+  }
+]

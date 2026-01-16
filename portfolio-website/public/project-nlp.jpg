@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#1e293b" />
+  
+  <!-- Background grid -->
+  <g stroke="#334155" stroke-width="1" opacity="0.2">
+    <line x1="0" y1="50" x2="800" y2="50" />
+    <line x1="0" y1="100" x2="800" y2="100" />
+    <line x1="0" y1="150" x2="800" y2="150" />
+    <line x1="0" y1="200" x2="800" y2="200" />
+    <line x1="0" y1="250" x2="800" y2="250" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="350" x2="800" y2="350" />
+    <line x1="0" y1="400" x2="800" y2="400" />
+    <line x1="0" y1="450" x2="800" y2="450" />
+    <line x1="0" y1="500" x2="800" y2="500" />
+    <line x1="0" y1="550" x2="800" y2="550" />
+    
+    <line x1="50" y1="0" x2="50" y2="600" />
+    <line x1="100" y1="0" x2="100" y2="600" />
+    <line x1="150" y1="0" x2="150" y2="600" />
+    <line x1="200" y1="0" x2="200" y2="600" />
+    <line x1="250" y1="0" x2="250" y2="600" />
+    <line x1="300" y1="0" x2="300" y2="600" />
+    <line x1="350" y1="0" x2="350" y2="600" />
+    <line x1="400" y1="0" x2="400" y2="600" />
+    <line x1="450" y1="0" x2="450" y2="600" />
+    <line x1="500" y1="0" x2="500" y2="600" />
+    <line x1="550" y1="0" x2="550" y2="600" />
+    <line x1="600" y1="0" x2="600" y2="600" />
+    <line x1="650" y1="0" x2="650" y2="600" />
+    <line x1="700" y1="0" x2="700" y2="600" />
+    <line x1="750" y1="0" x2="750" y2="600" />
+  </g>
+  
+  <!-- Word cloud -->
+  <g font-family="Arial, sans-serif">
+    <text x="400" y="200" font-size="48" fill="#38bdf8" text-anchor="middle">NLP</text>
+    <text x="250" y="150" font-size="32" fill="#f472b6" text-anchor="middle">Sentiment</text>
+    <text x="550" y="150" font-size="32" fill="#a3e635" text-anchor="middle">Analysis</text>
+    <text x="200" y="250" font-size="28" fill="#fbbf24" text-anchor="middle">Machine</text>
+    <text x="600" y="250" font-size="28" fill="#f472b6" text-anchor="middle">Learning</text>
+    <text x="300" y="300" font-size="24" fill="#38bdf8" text-anchor="middle">Classification</text>
+    <text x="500" y="300" font-size="24" fill="#a3e635" text-anchor="middle">Tokenization</text>
+    <text x="200" y="350" font-size="20" fill="#f472b6" text-anchor="middle">Vectors</text>
+    <text x="400" y="350" font-size="20" fill="#fbbf24" text-anchor="middle">Embeddings</text>
+    <text x="600" y="350" font-size="20" fill="#38bdf8" text-anchor="middle">Transformers</text>
+    <text x="250" y="400" font-size="18" fill="#a3e635" text-anchor="middle">BERT</text>
+    <text x="400" y="400" font-size="18" fill="#f472b6" text-anchor="middle">GPT</text>
+    <text x="550" y="400" font-size="18" fill="#fbbf24" text-anchor="middle">RoBERTa</text>
+    <text x="300" y="450" font-size="16" fill="#38bdf8" text-anchor="middle">Attention</text>
+    <text x="500" y="450" font-size="16" fill="#a3e635" text-anchor="middle">Fine-tuning</text>
+  </g>
+  
+  <!-- Text processing visualization -->
+  <g transform="translate(100, 500)">
+    <!-- Original text -->
+    <rect x="0" y="0" width="600" height="30" rx="5" ry="5" fill="#334155" />
+    <text x="10" y="20" font-family="Arial, sans-serif" font-size="14" fill="white">"The quick brown fox jumps over the lazy dog."</text>
+    
+    <!-- Tokenization arrows -->
+    <line x1="50" y1="35" x2="50" y2="55" stroke="#f472b6" stroke-width="2" />
+    <line x1="100" y1="35" x2="100" y2="55" stroke="#f472b6" stroke-width="2" />
+    <line x1="150" y1="35" x2="150" y2="55" stroke="#f472b6" stroke-width="2" />
+    <line x1="200" y1="35" x2="200" y2="55" stroke="#f472b6" stroke-width="2" />
+    <line x1="250" y1="35" x2="250" y2="55" stroke="#f472b6" stroke-width="2" />
+    <line x1="300" y1="35" x2="300" y2="55" stroke="#f472b6" stroke-width="2" />
+    <line x1="350" y1="35" x2="350" y2="55" stroke="#f472b6" stroke-width="2" />
+    <line x1="400" y1="35" x2="400" y2="55" stroke="#f472b6" stroke-width="2" />
+    <line x1="450" y1="35" x2="450" y2="55" stroke="#f472b6" stroke-width="2" />
+    
+    <!-- Tokenized words -->
+    <rect x="25" y="60" width="50" height="25" rx="5" ry="5" fill="#38bdf8" />
+    <rect x="85" y="60" width="50" height="25" rx="5" ry="5" fill="#38bdf8" />
+    <rect x="145" y="60" width="50" height="25" rx="5" ry="5" fill="#38bdf8" />
+    <rect x="205" y="60" width="50" height="25" rx="5" ry="5" fill="#38bdf8" />
+    <rect x="265" y="60" width="50" height="25" rx="5" ry="5" fill="#38bdf8" />
+    <rect x="325" y="60" width="50" height="25" rx="5" ry="5" fill="#38bdf8" />
+    <rect x="385" y="60" width="50" height="25" rx="5" ry="5" fill="#38bdf8" />
+    <rect x="445" y="60" width="50" height="25" rx="5" ry="5" fill="#38bdf8" />
+    <rect x="505" y="60" width="50" height="25" rx="5" ry="5" fill="#38bdf8" />
+    
+    <text x="50" y="77" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">The</text>
+    <text x="110" y="77" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">quick</text>
+    <text x="170" y="77" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">brown</text>
+    <text x="230" y="77" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">fox</text>
+    <text x="290" y="77" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">jumps</text>
+    <text x="350" y="77" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">over</text>
+    <text x="410" y="77" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">the</text>
+    <text x="470" y="77" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">lazy</text>
+    <text x="530" y="77" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">dog</text>
+  </g>
+  
+  <!-- Neural network visualization -->
+  <g transform="translate(400, 100)">
+    <!-- Network nodes -->
+    <circle cx="-200" cy="-50" r="15" fill="#f472b6" />
+    <circle cx="-200" cy="0" r="15" fill="#f472b6" />
+    <circle cx="-200" cy="50" r="15" fill="#f472b6" />
+    
+    <circle cx="-100" cy="-75" r="15" fill="#38bdf8" />
+    <circle cx="-100" cy="-25" r="15" fill="#38bdf8" />
+    <circle cx="-100" cy="25" r="15" fill="#38bdf8" />
+    <circle cx="-100" cy="75" r="15" fill="#38bdf8" />
+    
+    <circle cx="0" cy="-60" r="15" fill="#a3e635" />
+    <circle cx="0" cy="-20" r="15" fill="#a3e635" />
+    <circle cx="0" cy="20" r="15" fill="#a3e635" />
+    <circle cx="0" cy="60" r="15" fill="#a3e635" />
+    
+    <circle cx="100" cy="-25" r="15" fill="#fbbf24" />
+    <circle cx="100" cy="25" r="15" fill="#fbbf24" />
+    
+    <circle cx="200" cy="0" r="15" fill="#f472b6" />
+    
+    <!-- Network connections -->
+    <g stroke="#475569" stroke-width="1.5">
+      <!-- Layer 1 to 2 -->
+      <line x1="-185" y1="-50" x2="-115" y2="-75" />
+      <line x1="-185" y1="-50" x2="-115" y2="-25" />
+      <line x1="-185" y1="-50" x2="-115" y2="25" />
+      <line x1="-185" y1="-50" x2="-115" y2="75" />
+      
+      <line x1="-185" y1="0" x2="-115" y2="-75" />
+      <line x1="-185" y1="0" x2="-115" y2="-25" />
+      <line x1="-185" y1="0" x2="-115" y2="25" />
+      <line x1="-185" y1="0" x2="-115" y2="75" />
+      
+      <line x1="-185" y1="50" x2="-115" y2="-75" />
+      <line x1="-185" y1="50" x2="-115" y2="-25" />
+      <line x1="-185" y1="50" x2="-115" y2="25" />
+      <line x1="-185" y1="50" x2="-115" y2="75" />
+      
+      <!-- Layer 2 to 3 -->
+      <line x1="-85" y1="-75" x2="-15" y2="-60" />
+      <line x1="-85" y1="-75" x2="-15" y2="-20" />
+      <line x1="-85" y1="-75" x2="-15" y2="20" />
+      <line x1="-85" y1="-75" x2="-15" y2="60" />
+      
+      <line x1="-85" y1="-25" x2="-15" y2="-60" />
+      <line x1="-85" y1="-25" x2="-15" y2="-20" />
+      <line x1="-85" y1="-25" x2="-15" y2="20" />
+      <line x1="-85" y1="-25" x2="-15" y2="60" />
+      
+      <line x1="-85" y1="25" x2="-15" y2="-60" />
+      <line x1="-85" y1="25" x2="-15" y2="-20" />
+      <line x1="-85" y1="25" x2="-15" y2="20" />
+      <line x1="-85" y1="25" x2="-15" y2="60" />
+      
+      <line x1="-85" y1="75" x2="-15" y2="-60" />
+      <line x1="-85" y1="75" x2="-15" y2="-20" />
+      <line x1="-85" y1="75" x2="-15" y2="20" />
+      <line x1="-85" y1="75" x2="-15" y2="60" />
+      
+      <!-- Layer 3 to 4 -->
+      <line x1="15" y1="-60" x2="85" y2="-25" />
+      <line x1="15" y1="-60" x2="85" y2="25" />
+      
+      <line x1="15" y1="-20" x2="85" y2="-25" />
+      <line x1="15" y1="-20" x2="85" y2="25" />
+      
+      <line x1="15" y1="20" x2="85" y2="-25" />
+      <line x1="15" y1="20" x2="85" y2="25" />
+      
+      <line x1="15" y1="60" x2="85" y2="-25" />
+      <line x1="15" y1="60" x2="85" y2="25" />
+      
+      <!-- Layer 4 to 5 -->
+      <line x1="115" y1="-25" x2="185" y2="0" />
+      <line x1="115" y1="25" x2="185" y2="0" />
+    </g>
+  </g>
+</svg>

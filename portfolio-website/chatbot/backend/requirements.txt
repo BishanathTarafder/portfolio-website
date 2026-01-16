@@ -1,0 +1,29 @@
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.4.2
+python-dotenv==1.0.0
+langchain
+langchain-core
+langchain-community
+langchain-openai
+langchain-experimental
+langchain-text-splitters
+# langchain-chroma==0.0.1
+# langchain-groq==0.0.1
+# langchain-mistralai==0.0.1
+# langchain-huggingface==0.0.1
+# langchain-fireworks==0.0.1
+# langchain-together==0.0.1
+# langchain-cohere==0.0.1
+# langchain-google-genai  # Deprecated in favor of google-genai SDK v1
+google-genai>=1.0.0
+python-multipart==0.0.6
+requests==2.31.0
+cors==1.0.1
+python-jose==3.3.0
+passlib==1.7.4
+bcrypt==4.0.1
+langgraph
+faiss-cpu==1.7.4
+pypdf
+sentence-transformers>=3.0.0
