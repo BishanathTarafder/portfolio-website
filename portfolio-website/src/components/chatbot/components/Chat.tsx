@@ -83,18 +83,14 @@ const Chat: React.FC = () => {
         <div className="
           flex flex-col
           w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-6rem)]
-          sm:w-[400px] sm:h-[600px]
+          sm:w-[480px] sm:h-[650px]
           bg-white dark:bg-zinc-950
           border border-zinc-200 dark:border-zinc-800
           rounded-2xl shadow-2xl overflow-hidden
           mb-4 animate-in fade-in slide-in-from-bottom-10 duration-300
         ">
           {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm sticky top-0 z-10">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100">AI Chatbot</span>
-            </div>
+          <div className="absolute top-0 right-0 p-4 z-20">
             <button 
               onClick={() => setIsOpen(false)}
               className="p-1 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-400 transition-colors"

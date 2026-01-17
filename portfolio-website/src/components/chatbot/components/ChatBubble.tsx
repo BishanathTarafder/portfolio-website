@@ -16,7 +16,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ message }) => {
 
   if (isUser) {
     return (
-      <div className="flex justify-end w-full pl-8">
+      <div className="flex justify-end w-full pl-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
         <div className="bg-zinc-950 dark:bg-white text-white dark:text-zinc-950 px-4 py-2 rounded-3xl max-w-[85%] text-sm leading-6">
           {message.content}
         </div>
