@@ -25,12 +25,9 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ message }) => {
   }
 
   return (
-    <div className="flex w-full gap-4 pr-8">
-      <div className="flex-shrink-0 w-8 h-8 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 flex items-center justify-center">
-        <IconBot className="w-5 h-5 text-zinc-900 dark:text-zinc-100" />
-      </div>
-      <div className="flex-1 space-y-2">
-        <div className="prose prose-sm dark:prose-invert max-w-none text-zinc-800 dark:text-zinc-200 leading-6 bg-zinc-50 dark:bg-zinc-900/50 px-4 py-2 rounded-2xl">
+    <div className="flex w-full pr-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
+      <div className="flex-1">
+        <div className="prose prose-sm dark:prose-invert max-w-none text-zinc-800 dark:text-zinc-200 leading-6 bg-transparent px-4 py-2">
           <ReactMarkdown
             components={{
               // Override default elements to match Vercel style
