@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 interface SuggestionGridProps {
   onSelect: (text: string) => void;
@@ -29,7 +30,12 @@ const SUGGESTIONS = [
 
 const SuggestionGrid: React.FC<SuggestionGridProps> = ({ onSelect }) => {
   return (
-    <div className="flex flex-col items-center justify-center h-full px-4 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="flex flex-col items-center justify-center h-full px-4 pb-12"
+    >
       <div className="mb-8 text-center space-y-2">
         <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
           How can I help you?
@@ -52,7 +58,7 @@ const SuggestionGrid: React.FC<SuggestionGridProps> = ({ onSelect }) => {
           </button>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -110,13 +110,12 @@ const Chat: React.FC = () => {
                   <ChatBubble key={msg.id} message={msg} />
                 ))}
                 {isLoading && (
-                   <div className="flex w-full gap-4 pr-8 animate-pulse">
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 ml-4" />
-                      <div className="space-y-2 flex-1 py-2">
-                        <div className="h-4 bg-zinc-100 dark:bg-zinc-800 rounded w-3/4" />
-                        <div className="h-4 bg-zinc-100 dark:bg-zinc-800 rounded w-1/2" />
-                      </div>
-                   </div>
+                  <div className="flex w-full pr-8 animate-pulse">
+                    <div className="flex-1 py-2 pl-4 space-y-2">
+                      <div className="h-4 bg-zinc-100 dark:bg-zinc-800 rounded w-3/4" />
+                      <div className="h-4 bg-zinc-100 dark:bg-zinc-800 rounded w-1/2" />
+                    </div>
+                  </div>
                 )}
                 <div ref={messagesEndRef} className="h-1" />
               </div>

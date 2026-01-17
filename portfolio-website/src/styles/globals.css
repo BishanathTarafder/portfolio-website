@@ -82,17 +82,38 @@ body {
   animation: fadeIn 0.6s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
-/* Hero section specific animations - smoother and more elegant */
-.hero .fadeInUp {
-  animation-duration: 0.7s;
-  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+/* Chatbot Specific Animations (Vercel-like) */
+@keyframes enter {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), 1) rotate(var(--tw-enter-rotate, 0));
+  }
 }
 
-/* Non-hero section animations - slower and smoother */
-section:not(.hero) .fadeInUp,
-section:not(.hero) .opacity-0.fadeInUp {
-  animation-duration: 0.8s;
-  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+.animate-in {
+  animation-name: enter;
+  animation-duration: 0.3s;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+
+.fade-in {
+  --tw-enter-opacity: 0;
+}
+
+.slide-in-from-bottom-2 {
+  --tw-enter-translate-y: 0.5rem;
+}
+
+.slide-in-from-bottom-4 {
+  --tw-enter-translate-y: 1rem;
+}
+
+.slide-in-from-bottom-10 {
+  --tw-enter-translate-y: 2.5rem;
 }
 
 /* Typography */
@@ -325,26 +346,6 @@ footer {
   opacity: 1;
 }
 
-/* Animations */
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Animation Classes */
-.fadeInUp {
-  animation: fadeInUp 0.6s var(--animation-timing) forwards;
-  opacity: 1 !important; /* Ensure elements are visible after animation */
-}
-
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -354,95 +355,6 @@ footer {
     transform: scale(1.5);
     opacity: 0.2;
   }
-}
-
-/* Hero Section */
-.hero {
-  padding: 0;
-  text-align: left;
-  background-color: #000000;
-  position: relative;
-  overflow: hidden;
-  margin-top: 0;
-  height: 100vh; /* Full viewport height */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Projects */
-.projects {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  padding: 100px 0;
-}
-
-.project-card {
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(96, 73, 234, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
-  z-index: 0;
-  animation: pulse 8s infinite alternate;
-}
-
-.hero h1 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  color: var(--accent-color);
-  font-weight: 500;
-  position: relative;
-  z-index: 1;
-}
-
-.hero .name {
-  font-size: 4rem;
-  font-weight: 700;
-  margin: 0 0 10px;
-  color: var(--text-color);
-  line-height: 1.1;
-  position: relative;
-  z-index: 1;
-}
-
-.hero .tagline {
-  font-size: 3rem;
-  font-weight: 600;
-  margin: 0 0 20px;
-  color: var(--secondary-text);
-  line-height: 1.1;
-  position: relative;
-  z-index: 1;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin: 0 0 30px;
-  color: var(--secondary-text);
-  position: relative;
-  z-index: 1;
-}
-
-.hero-buttons {
-  display: flex;
-  gap: 15px;
 }
 
 @layer components {
@@ -455,7 +367,7 @@ footer {
   }
   
   .btn-primary {
-    @apply btn bg-primary-600 text-white hover:bg-primary-700;
+    @apply btn bg-blue-500 text-white hover:bg-blue-600;
   }
   
   .btn-secondary {
