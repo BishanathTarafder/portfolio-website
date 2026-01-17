@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import ChatBubble from './ChatBubble';
 import ChatInput from './ChatInput';
 import ChatToggle from './ChatToggle';
@@ -79,53 +80,61 @@ const Chat: React.FC = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end font-sans">
-      {/* Chat Window */}
-      {isOpen && (
-        <div className="
-          flex flex-col
-          w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-6rem)]
-          sm:w-[480px] sm:h-[650px]
-          bg-white dark:bg-zinc-950
-          border border-zinc-200 dark:border-zinc-800
-          rounded-2xl shadow-2xl overflow-hidden
-          mb-4 animate-in fade-in slide-in-from-bottom-10 duration-300
-        ">
-          {/* Header */}
-          <div className="absolute top-0 right-0 p-4 z-20">
-            <button 
-              onClick={() => setIsOpen(false)}
-              className="p-1 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-400 transition-colors"
-            >
-              <IconMinus className="w-5 h-5" />
-            </button>
-          </div>
+      <AnimatePresence mode="wait">
+        {isOpen && (
+          <motion.div
+            key="chat-window"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="
+              flex flex-col
+              w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-6rem)]
+              sm:w-[480px] sm:h-[650px]
+              bg-white dark:bg-zinc-950
+              border border-zinc-200 dark:border-zinc-800
+              rounded-2xl shadow-2xl overflow-hidden
+              mb-4
+            "
+          >
+            {/* Header */}
+            <div className="absolute top-0 right-0 p-4 z-20">
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="p-1 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-400 transition-colors"
+              >
+                <IconMinus className="w-5 h-5" />
+              </button>
+            </div>
 
-          {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto scroll-smooth bg-white dark:bg-zinc-950">
-            {messages.length === 0 ? (
-              <SuggestionGrid onSelect={handleSendMessage} />
-            ) : (
-              <div className="py-6 space-y-6">
-                {messages.map((msg) => (
-                  <ChatBubble key={msg.id} message={msg} />
-                ))}
-                {isLoading && (
-                  <div className="flex w-full pr-8 animate-pulse">
-                    <div className="flex-1 py-2 pl-4 space-y-2">
-                      <div className="h-4 bg-zinc-100 dark:bg-zinc-800 rounded w-3/4" />
-                      <div className="h-4 bg-zinc-100 dark:bg-zinc-800 rounded w-1/2" />
+            {/* Messages Area */}
+            <div className="flex-1 overflow-y-auto scroll-smooth bg-white dark:bg-zinc-950">
+              {messages.length === 0 ? (
+                <SuggestionGrid onSelect={handleSendMessage} />
+              ) : (
+                <div className="py-6 space-y-6">
+                  {messages.map((msg) => (
+                    <ChatBubble key={msg.id} message={msg} />
+                  ))}
+                  {isLoading && (
+                    <div className="flex w-full pr-8 animate-pulse">
+                      <div className="flex-1 py-2 pl-4 space-y-2">
+                        <div className="h-4 bg-zinc-100 dark:bg-zinc-800 rounded w-3/4" />
+                        <div className="h-4 bg-zinc-100 dark:bg-zinc-800 rounded w-1/2" />
+                      </div>
                     </div>
-                  </div>
-                )}
-                <div ref={messagesEndRef} className="h-1" />
-              </div>
-            )}
-          </div>
+                  )}
+                  <div ref={messagesEndRef} className="h-1" />
+                </div>
+              )}
+            </div>
 
-          {/* Input Area */}
-          <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
-        </div>
-      )}
+            {/* Input Area */}
+            <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Toggle Button */}
       {!isOpen && <ChatToggle isOpen={isOpen} onClick={() => setIsOpen(true)} />}
