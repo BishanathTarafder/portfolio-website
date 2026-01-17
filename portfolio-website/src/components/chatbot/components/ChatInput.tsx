@@ -1,96 +1,79 @@
-'use client';
-
 import React, { useState, useRef, useEffect } from 'react';
+import { IconArrowUp, IconSpinner } from './icons';
 
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
-  isTyping?: boolean;
+  isLoading: boolean;
 }
 
-const MAX_CHARS = 1000;
-
-const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isTyping = false }) => {
-  const [message, setMessage] = useState('');
-  const [charCount, setCharCount] = useState(0);
+const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
+  const [input, setInput] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Auto-resize textarea as user types
   useEffect(() => {
     if (textareaRef.current) {
-      // Reset height to auto to get the correct scrollHeight
       textareaRef.current.style.height = 'auto';
-      // Set the height to scrollHeight to fit content
-      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 150)}px`;
+      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 200)}px`;
     }
-    // Update character count
-    setCharCount(message.length);
-  }, [message]);
+  }, [input]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (message.trim() && !isTyping) {
-      onSendMessage(message);
-      setMessage('');
-      // Reset textarea height
-      if (textareaRef.current) {
-        textareaRef.current.style.height = 'auto';
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (input.trim() && !isLoading) {
+        onSendMessage(input);
+        setInput('');
       }
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    // Send on Enter (without Shift)
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSubmit(e as unknown as React.FormEvent);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (input.trim() && !isLoading) {
+      onSendMessage(input);
+      setInput('');
     }
   };
 
   return (
-    <div className="w-full relative">
-      <form onSubmit={handleSubmit} className="relative flex items-end w-full p-2 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-sm focus-within:ring-2 focus-within:ring-blue-500/20 focus-within:border-blue-500/50 transition-all">
+    <div className="p-4 border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950">
+      <form
+        onSubmit={handleSubmit}
+        className="relative flex items-end w-full p-2 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 shadow-sm focus-within:ring-2 focus-within:ring-zinc-950 dark:focus-within:ring-zinc-300 transition-all"
+      >
         <textarea
           ref={textareaRef}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={handleKeyDown}
+          className="w-full max-h-[200px] min-h-[24px] bg-transparent border-none resize-none focus:ring-0 px-2 py-1.5 text-sm text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 scrollbar-hide"
           placeholder="Send a message..."
-          className="w-full bg-transparent border-0 focus:ring-0 resize-none py-2 pl-2 pr-10 min-h-[44px] max-h-[150px] text-sm text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 dark:placeholder-zinc-500 scrollbar-thin"
-          aria-label="Type a message"
-          maxLength={MAX_CHARS}
-          disabled={isTyping}
           rows={1}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          disabled={isLoading}
         />
-        
-        <div className="absolute right-2 bottom-2">
-            <button 
-              type="submit" 
-              className={`p-2 rounded-xl transition-all duration-200 flex items-center justify-center
-                ${!message.trim() || isTyping 
-                  ? 'bg-zinc-200 dark:bg-zinc-800 text-zinc-400 dark:text-zinc-600 cursor-not-allowed' 
-                  : 'bg-blue-600 hover:bg-blue-700 text-white shadow-sm'
-                }`}
-              disabled={!message.trim() || isTyping}
-              aria-label="Send message"
-              title="Send message"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-4 h-4"
-              >
-                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-              </svg>
-            </button>
-        </div>
+        <button
+          type="submit"
+          disabled={!input.trim() || isLoading}
+          className={`
+            ml-2 p-1.5 rounded-lg transition-colors flex-shrink-0
+            ${input.trim() && !isLoading
+              ? 'bg-zinc-950 dark:bg-zinc-100 text-white dark:text-zinc-950 hover:bg-zinc-800 dark:hover:bg-zinc-200'
+              : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-400 dark:text-zinc-500 cursor-not-allowed'
+            }
+          `}
+        >
+          {isLoading ? (
+            <IconSpinner className="w-4 h-4 animate-spin" />
+          ) : (
+            <IconArrowUp className="w-4 h-4" />
+          )}
+        </button>
       </form>
-      
-      {message.length > 0 && (
-        <div className={`absolute -bottom-5 right-2 text-[10px] ${charCount > MAX_CHARS * 0.9 ? 'text-red-500' : 'text-zinc-400'}`}>
-          {charCount}/{MAX_CHARS}
-        </div>
-      )}
+      <div className="text-center mt-2">
+        <p className="text-[10px] text-zinc-400 dark:text-zinc-500">
+          AI can make mistakes. Check important info.
+        </p>
+      </div>
     </div>
   );
 };
