@@ -7,28 +7,14 @@ interface ChatToggleProps {
 }
 
 const ChatToggle: React.FC<ChatToggleProps> = ({ isOpen, onClick }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <button
       onClick={onClick}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="chatbot-toggle text-white shadow-lg flex items-center justify-center focus:outline-none transition-all duration-300"
+      className="w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl flex items-center justify-center focus:outline-none transition-all duration-300 hover:scale-110 active:scale-95"
       aria-label={isOpen ? 'Close chat' : 'Open chat'}
-      style={{
-        transform: isHovered && !isOpen ? 'scale(1.1)' : 'scale(1)',
-        boxShadow: isHovered && !isOpen ? '0 8px 16px rgba(96, 73, 234, 0.3)' : '0 4px 12px rgba(96, 73, 234, 0.25)',
-        background: 'transparent',
-        border: 'none',
-        borderRadius: '50%',
-        width: '60px',
-        height: '60px',
-        aspectRatio: '1',
-      }}
     >
       {!isOpen && (
-        <RobotIcon className={`h-10 w-10 transition-all duration-300 ${isHovered ? 'rotate-12' : ''}`} />
+        <RobotIcon className="h-8 w-8" />
       )}
     </button>
   );

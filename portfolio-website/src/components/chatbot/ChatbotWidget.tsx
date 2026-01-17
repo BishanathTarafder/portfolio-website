@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Chat from './components/Chat';
 import { checkApiAvailability } from './utils/api';
-import styles from './ChatWidget.module.css';
 
 interface ChatbotWidgetProps {
   initialMessage?: string;
@@ -36,10 +35,10 @@ const ChatbotWidget: React.FC<ChatbotWidgetProps> = ({
   // Show loading state while checking API
   if (loading) {
     return (
-      <div className={styles.loadingContainer}>
-        <div className={styles.loadingDot}></div>
-        <div className={styles.loadingDot}></div>
-        <div className={styles.loadingDot}></div>
+      <div className="fixed bottom-4 right-4 flex items-center justify-center gap-1 bg-blue-600 text-white p-3 rounded-full shadow-lg z-50">
+        <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.32s]"></div>
+        <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:-0.16s]"></div>
+        <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
       </div>
     );
   }

@@ -7,7 +7,6 @@ import ChatToggle from './ChatToggle';
 import TypingIndicator from './TypingIndicator';
 import { sendMessage as sendApiMessage, checkApiAvailability, monitorBackendStatus } from '../utils/api';
 import { getResponseForMessage } from '../fallback-responses';
-import styles from '../ChatWidget.module.css';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -87,12 +86,12 @@ const Chat: React.FC<ChatProps> = ({ initialMessage = "Hello! I'm the portfolio 
     }
   }, [isOpen, messages.length, initialMessage]);
 
-  // Scroll to bottom when messages change
+  // Scroll to bottom when messages change or typing occurs
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [messages]);
+  }, [messages, typingMessage, isProcessing, isOpen]);
 
   // Toggle chat open/closed
   const toggleChat = () => {
@@ -258,62 +257,47 @@ const Chat: React.FC<ChatProps> = ({ initialMessage = "Hello! I'm the portfolio 
   };
 
   return (
-    <div className={`${styles.container} ${isOpen ? styles.mobileFullscreen : ''}`}>
-      {/* Chat toggle button */}
-      <ChatToggle isOpen={isOpen} onClick={toggleChat} />
+    <div className={`fixed bottom-4 right-4 z-50 flex flex-col items-end ${isOpen ? 'sm:static sm:z-auto sm:bottom-auto sm:right-auto' : ''}`}>
+      {/* Chat toggle button - Only show when closed */}
+      {!isOpen && <ChatToggle isOpen={isOpen} onClick={toggleChat} />}
 
       {/* Chat window */}
       {isOpen && (
-        <div className={`${styles.chatWindow} ${styles.fadeIn}`}>
+        <div className="w-full sm:w-[400px] h-[100dvh] sm:h-[600px] fixed sm:static inset-0 sm:inset-auto bg-white dark:bg-zinc-950 sm:rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-zinc-200 dark:border-zinc-800 transition-all duration-300 ease-in-out font-sans">
           {/* Chat header */}
-          <div className={styles.chatHeader}>
-            <div className={styles.headerLeft}>
-              <div className={styles.assistantAvatar}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={styles.avatarIcon}>
+          <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 z-10">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center border border-zinc-200 dark:border-zinc-700">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-zinc-900 dark:text-zinc-100">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
                 </svg>
               </div>
-              <div className={styles.headerInfo}>
-                <div className={styles.assistantName}>Portfolio Assistant</div>
-                <div className={styles.statusContainer}>
-                  <span className={`${styles.statusIndicator} ${isApiAvailable ? styles.online : styles.offline}`}></span>
-                  <span className={styles.statusText}>
-                    {isTyping ? 'Typing...' : (isApiAvailable ? 'Online' : 'Offline')}
-                  </span>
-                  {usesFallback && <span className={styles.fallbackBadge}>Fallback Mode</span>}
+              <div className="flex flex-col">
+                <div className="font-semibold text-sm text-zinc-900 dark:text-zinc-100">Portfolio Assistant</div>
+                <div className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
+                  <span className={`w-2 h-2 rounded-full ${isApiAvailable ? 'bg-emerald-500' : 'bg-red-500'}`}></span>
+                  <span>{isTyping ? 'Typing...' : (isApiAvailable ? 'Online' : 'Offline')}</span>
                 </div>
               </div>
             </div>
-            <div className={styles.headerControls}>
-              <button
-                onClick={toggleChat}
-                className={styles.closeButton}
-                aria-label="Close chat"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={styles.closeIcon}
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
+            <button
+              onClick={toggleChat}
+              className="p-2 text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
+              aria-label="Close chat"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+              </svg>
+            </button>
           </div>
 
           {/* Chat messages */}
-          <div className={styles.messagesContainer}>
+          <div className="flex-1 overflow-y-auto p-4 space-y-6 bg-white dark:bg-zinc-950 scroll-smooth">
             {messages.map((message, index) => (
               <ChatBubble
                 key={index}
                 message={{
                   ...message,
-                  // If this is the last assistant message and we're typing, show the typing message
                   content: 
                     isTyping && 
                     index === messages.length - 1 && 
@@ -325,32 +309,25 @@ const Chat: React.FC<ChatProps> = ({ initialMessage = "Hello! I'm the portfolio 
               />
             ))}
             {isProcessing && (
-              <div className={styles.aiThinkingIndicator}>
-                <div className={styles.thinkingAvatar}>
-                  <div className={styles.aiIcon}>AI</div>
+              <div className="flex items-start gap-3 animate-pulse">
+                <div className="w-8 h-8 rounded-full bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center border border-zinc-200 dark:border-zinc-700">
+                  <span className="text-xs font-bold text-zinc-500">AI</span>
                 </div>
-                <div className={styles.thinkingContent}>
-                  <div className={styles.thinkingText}>
-                    Portfolio Assistant is thinking...
-                  </div>
-                  <div className={styles.thinkingAnimation}>
-                    <span className={styles.thinkingDot}></span>
-                    <span className={styles.thinkingDot}></span>
-                    <span className={styles.thinkingDot}></span>
-                  </div>
+                <div className="flex flex-col gap-1">
+                   <div className="text-sm text-zinc-500 dark:text-zinc-400">Thinking...</div>
                 </div>
               </div>
             )}
             
             {/* Predefined questions */}
             {showSuggestions && messages.length === 1 && (
-              <div className={styles.suggestionsContainer}>
-                <div className={styles.suggestionsTitle}>Try asking:</div>
-                <div className={styles.suggestionsList}>
+              <div className="mt-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="text-xs font-medium text-zinc-400 dark:text-zinc-500 mb-3 px-1 uppercase tracking-wider">Suggested Questions</div>
+                <div className="grid grid-cols-1 gap-2">
                   {PREDEFINED_QUESTIONS.map((question) => (
                     <button
                       key={question.id}
-                      className={styles.suggestionChip}
+                      className="text-left px-4 py-3 text-sm text-zinc-700 dark:text-zinc-300 bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-zinc-200 dark:border-zinc-800 rounded-xl transition-all duration-200 hover:shadow-sm"
                       onClick={() => handleSuggestionClick(question.text)}
                     >
                       {question.text}
@@ -364,7 +341,14 @@ const Chat: React.FC<ChatProps> = ({ initialMessage = "Hello! I'm the portfolio 
           </div>
 
           {/* Chat input */}
-          <ChatInput onSendMessage={sendMessage} isTyping={isTyping} />
+          <div className="p-4 bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-800">
+            <ChatInput onSendMessage={sendMessage} isTyping={isTyping} />
+            <div className="text-center mt-2">
+                <p className="text-[10px] text-zinc-400 dark:text-zinc-600">
+                    AI can make mistakes. Please verify important information.
+                </p>
+            </div>
+          </div>
         </div>
       )}
     </div>
