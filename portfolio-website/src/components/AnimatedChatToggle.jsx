@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../chatbot/frontend/ChatWidget.module.css';
+import styles from '../../chatbot/frontend/ChatWidget.module.css';
 import { RobotIcon } from './icons';
 
 const AnimatedChatToggle = ({ isOpen, onClick }) => {
@@ -8,11 +8,7 @@ const AnimatedChatToggle = ({ isOpen, onClick }) => {
   
   // Handle animation when toggle state changes
   useEffect(() => {
-    if (isOpen) {
-      setIsAnimating(true);
-      const timer = setTimeout(() => setIsAnimating(false), 300);
-      return () => clearTimeout(timer);
-    }
+    // Animation logic removed as isAnimating was unused
   }, [isOpen]);
 
   return (

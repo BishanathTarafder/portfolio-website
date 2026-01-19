@@ -8,7 +8,6 @@ import { GithubIcon, LinkedInIcon, TwitterIcon, KaggleIcon } from '@/components/
 import { motion } from 'framer-motion';
 import socialStyles from '@/components/SocialIcon.module.css';
 import contactStyles from '@/components/ContactButton.module.css';
-import Link from 'next/link';
 import { useIntersectionObserver } from '@/utils/useIntersectionObserver';
 
 type FormData = {
@@ -126,10 +125,9 @@ export default function ContactPage() {
   };
   
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-24 md:px-16 lg:px-32">
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
+    <div className="container mx-auto px-4 py-24 md:px-16 lg:px-32">
+      <motion.h1 
+        initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="flex items-center font-mono text-[#6049ea] text-2xl mb-16"
@@ -369,7 +367,6 @@ export default function ContactPage() {
             Say Hello
           </a>
         </motion.div>
-      </div>
-    </Layout>
+    </div>
   );
 }

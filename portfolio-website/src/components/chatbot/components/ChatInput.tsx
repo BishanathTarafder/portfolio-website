@@ -39,7 +39,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, isLoading }) => {
     <div className="p-4 bg-white dark:bg-zinc-950">
       <form
         onSubmit={handleSubmit}
-        className="relative flex items-end w-full p-2 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 shadow-sm transition-colors"
+        className="relative flex items-end w-full p-2 border border-zinc-200 dark:border-zinc-800 rounded-xl bg-white dark:bg-zinc-950 shadow-sm transition-all duration-300 ease-in-out focus-within:border-zinc-400 dark:focus-within:border-zinc-600 focus-within:shadow-[0_0_0_2px_rgba(161,161,170,0.1)] dark:focus-within:shadow-[0_0_0_2px_rgba(113,113,122,0.1)]"
       >
         <textarea
           ref={textareaRef}

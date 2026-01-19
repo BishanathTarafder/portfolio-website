@@ -7,6 +7,7 @@ import SuggestionGrid from './SuggestionGrid';
 import { sendMessage, monitorBackendStatus } from '../utils/api';
 import { getResponseForMessage } from '../fallback-responses';
 import { IconMinus } from './icons';
+import { useChatSounds } from '../hooks/useChatSounds';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -22,6 +23,7 @@ const Chat: React.FC = () => {
   const [sessionId, setSessionId] = useState<string | null>(null);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { playSound } = useChatSounds();
 
   // Monitor backend status
   useEffect(() => {
@@ -38,7 +40,18 @@ const Chat: React.FC = () => {
     scrollToBottom();
   }, [messages, isOpen]);
 
+  const handleToggle = () => {
+    if (!isOpen) {
+      playSound('open');
+      setIsOpen(true);
+    } else {
+      playSound('close');
+      setIsOpen(false);
+    }
+  };
+
   const handleSendMessage = async (content: string) => {
+    playSound('send');
     // Add user message
     const userMsg: Message = { role: 'user', content, id: Date.now().toString() };
     setMessages((prev) => [...prev, userMsg]);
@@ -65,6 +78,7 @@ const Chat: React.FC = () => {
         id: (Date.now() + 1).toString() 
       };
       setMessages((prev) => [...prev, assistantMsg]);
+      playSound('reply');
     } catch (error) {
       console.error('Failed to send message:', error);
       // Error message
@@ -81,13 +95,13 @@ const Chat: React.FC = () => {
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end font-sans">
       <AnimatePresence mode="wait">
-        {isOpen && (
+        {isOpen ? (
           <motion.div
             key="chat-window"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 16 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 16, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="
               flex flex-col
               w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-6rem)]
@@ -101,7 +115,7 @@ const Chat: React.FC = () => {
             {/* Header */}
             <div className="absolute top-0 right-0 p-4 z-20">
               <button 
-                onClick={() => setIsOpen(false)}
+                onClick={handleToggle}
                 className="p-1 rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-500 dark:text-zinc-400 transition-colors"
               >
                 <IconMinus className="w-5 h-5" />
@@ -131,13 +145,18 @@ const Chat: React.FC = () => {
             </div>
 
             {/* Input Area */}
-            <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: messages.length === 0 ? 0.6 : 0.1, duration: 0.4, ease: "easeOut" }}
+            >
+              <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+            </motion.div>
           </motion.div>
+        ) : (
+          <ChatToggle key="chat-toggle" isOpen={isOpen} onClick={handleToggle} />
         )}
       </AnimatePresence>
-
-      {/* Toggle Button */}
-      {!isOpen && <ChatToggle isOpen={isOpen} onClick={() => setIsOpen(true)} />}
     </div>
   );
 };

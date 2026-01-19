@@ -58,7 +58,7 @@ export async function GET(request) {
     
     // Create a test workflow to verify it's working
     const workflow = createLangGraphWorkflow(apiKey);
-    const testResult = await workflow.invoke({
+    await workflow.invoke({
       message: 'test',
       history: []
     });

@@ -49,7 +49,7 @@ const ChatbotDemoPage = () => {
       </div>
       
       {/* The animated chatbot widget */}
-      <AnimatedChatWidget initialMessage="Hello! I'm the animated portfolio assistant. How do you like my new design?" />
+      <AnimatedChatWidget initialMessage="Hello! I&apos;m the animated portfolio assistant. How do you like my new design?" />
     </div>
   );
 };

@@ -37,7 +37,7 @@ const AnimatedChatBubble = ({ message, isUser }) => {
         <div className="markdown-content">
           <ReactMarkdown
             components={{
-              a: ({ node, ...props }) => (
+              a: ({ ...props }) => (
                 <a 
                   {...props} 
                   className="text-blue-600 underline hover:text-blue-800 transition-colors" 
@@ -45,7 +45,7 @@ const AnimatedChatBubble = ({ message, isUser }) => {
                   rel="noopener noreferrer"
                 />
               ),
-              code: ({ node, inline, ...props }) => (
+              code: ({ inline, ...props }) => (
                 inline ? (
                   <code 
                     {...props} 
@@ -58,13 +58,13 @@ const AnimatedChatBubble = ({ message, isUser }) => {
                   />
                 )
               ),
-              ul: ({ node, ...props }) => (
+              ul: ({ ...props }) => (
                 <ul {...props} className="list-disc pl-5 my-2" />
               ),
-              ol: ({ node, ...props }) => (
+              ol: ({ ...props }) => (
                 <ol {...props} className="list-decimal pl-5 my-2" />
               ),
-              li: ({ node, ...props }) => (
+              li: ({ ...props }) => (
                 <li {...props} className="my-1" />
               ),
             }}

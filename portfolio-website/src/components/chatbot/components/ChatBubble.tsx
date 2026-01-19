@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import { IconBot, IconUser } from './icons';
 
 interface Message {
   role: 'user' | 'assistant';
