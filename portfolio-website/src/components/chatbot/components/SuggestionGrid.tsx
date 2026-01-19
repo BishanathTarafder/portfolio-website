@@ -68,7 +68,7 @@ const SuggestionGrid: React.FC<SuggestionGridProps> = ({ onSelect }) => {
             onClick={() => onSelect(suggestion.subtitle)}
             className="flex flex-col items-start p-3 text-left bg-zinc-50 dark:bg-zinc-900/50 hover:bg-zinc-100 dark:hover:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg transition-colors group"
           >
-            <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
+            <span className="text-sm font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-[#6049ea] transition-colors duration-200">
               {suggestion.title}
             </span>
             <span className="text-xs text-zinc-500 dark:text-zinc-400">

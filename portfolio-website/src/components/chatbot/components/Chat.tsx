@@ -42,10 +42,8 @@ const Chat: React.FC = () => {
 
   const handleToggle = () => {
     if (!isOpen) {
-      playSound('open');
       setIsOpen(true);
     } else {
-      playSound('close');
       setIsOpen(false);
     }
   };

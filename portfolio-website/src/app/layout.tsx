@@ -17,7 +17,7 @@ const firaCode = Fira_Code({
 });
 
 export const metadata: Metadata = {
-  title: 'Saidul Mursalin Khan | AI Engineer Portfolio',
+  title: 'Bishanath Tarafder | Portfolio',
   description: 'Portfolio website showcasing AI engineering projects, machine learning expertise, and software development skills',
   keywords: ['AI Engineer', 'Machine Learning', 'Software Development', 'Portfolio', 'Next.js', 'React'],
   authors: [{ name: 'Saidul Mursalin Khan' }],

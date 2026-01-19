@@ -23,7 +23,7 @@ const ChatToggle: React.FC<ChatToggleProps> = ({ isOpen, onClick }) => {
         backdrop-blur-sm
         ${isOpen 
           ? 'bg-zinc-100/90 dark:bg-zinc-800/90 text-zinc-900 dark:text-zinc-100 border border-zinc-200 dark:border-zinc-700' 
-          : 'bg-gradient-to-br from-zinc-900 to-zinc-800 dark:from-zinc-100 dark:to-zinc-200 text-white dark:text-zinc-900'
+          : 'bg-[#6049ea] text-white hover:bg-[#5039da] transition-colors duration-300'
         }
       `}
       aria-label={isOpen ? 'Close chat' : 'Open chat'}
